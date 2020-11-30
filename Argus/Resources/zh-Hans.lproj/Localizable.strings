@@ -1,0 +1,30 @@
+/* 
+  Localizable.strings (Chinese, Simplified)
+  Argus
+
+  Created by WizJin on 2020/11/29.
+  
+*/
+"OK"="确定";
+"Done"="完成";
+"Close"="关闭";
+"Cancel"="取消";
+"Enable"="启用";
+"Disable"="禁用";
+"Settings"="设置";
+"Scan QR code"="扫描二维码";
+"Manual entry"="手工输入";
+"GENERAL"="通用";
+"Appearance"="外观";
+"Default"="系统默认";
+"Light"="浅色";
+"Dark"="深色";
+"ABOUT"="关于";
+"Version"="版本";
+"Acknowledgements"="版权声明";
+"Privacy Policy"="隐私协议";
+"No QR code"="没有发现二维码";
+"Code copied"="代码已复制";
+"Can't open url"="无法打开url";
+"Tap to reload"="轻触重载页面";
+"Release to reload"="松开重载页面";

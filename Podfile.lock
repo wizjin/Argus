@@ -1,0 +1,28 @@
+PODS:
+  - JLRoutes (2.1)
+  - Masonry (1.1.0)
+  - Toast (4.0.0)
+  - XLForm (4.2.0)
+
+DEPENDENCIES:
+  - JLRoutes
+  - Masonry
+  - Toast
+  - XLForm
+
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - JLRoutes
+    - Masonry
+    - Toast
+    - XLForm
+
+SPEC CHECKSUMS:
+  JLRoutes: d755245322b94227662ea3e43492fdca94e05c5b
+  Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
+  Toast: 91b396c56ee72a5790816f40d3a94dd357abc196
+  XLForm: eb04ea4104f26250b70a72a7fa2eed3748dca5cd
+
+PODFILE CHECKSUM: a718beb58a9e0365a4c5e167c8367db5c68f5b97
+
+COCOAPODS: 1.10.0

@@ -1,0 +1,11 @@
+/* 
+  InfoPlist.strings (Chinese, Simplified)
+  Argus
+
+  Created by WizJin on 2020/11/29.
+  
+*/
+CFBundleDisplayName="Argus";
+NSCameraUsageDescription="在您需要时，用来扫描二维码。";
+NSPhotoLibraryUsageDescription="在您需要时，从相册中获取二维码。";
+ScanActionTitle="扫一扫";

@@ -1,0 +1,30 @@
+/* 
+  Localizable.strings (Base)
+  Argus
+
+  Created by WizJin on 2020/11/29.
+  
+*/
+"OK"="OK";
+"Done"="Done";
+"Close"="Close";
+"Cancel"="Cancel";
+"Enable"="Enable";
+"Disable"="Disable";
+"Settings"="Settings";
+"Scan QR code"="Scan QR code";
+"Manual entry"="Manual entry";
+"GENERAL"="GENERAL";
+"Appearance"="Appearance";
+"Default"="Default";
+"Light"="Light";
+"Dark"="Dark";
+"ABOUT"="ABOUT";
+"Version"="Version";
+"Acknowledgements"="Acknowledgements";
+"Privacy Policy"="Privacy Policy";
+"No QR code"="No QR code";
+"Code copied"="Code copied";
+"Can't open url"="Can't open url";
+"Tap to reload"="Tap to reload";
+"Release to reload"="Release to reload";
