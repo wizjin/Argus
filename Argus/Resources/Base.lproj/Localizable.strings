@@ -28,3 +28,5 @@
 "Can't open url"="Can't open url";
 "Tap to reload"="Tap to reload";
 "Release to reload"="Release to reload";
+"Created at %@"="Created at %@";
+"NoMFA"="No MFA Found\nTap and add record";

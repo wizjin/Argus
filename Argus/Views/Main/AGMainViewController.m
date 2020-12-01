@@ -8,6 +8,8 @@
 #import "AGMainViewController.h"
 #import <Toast/Toast.h>
 #import "AGMFATableViewCell.h"
+#import "AGMFATableView.h"
+#import "AGMFAEmptyView.h"
 #import "AGMFAManager.h"
 #import "AGRouter.h"
 #import "AGDevice.h"
@@ -15,11 +17,12 @@
 
 static NSString *const cellIdentifier = @"cell";
 
-@interface AGMainViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface AGMainViewController () <UITableViewDelegate, UITableViewDataSource, AGMFAManagerDelegate>
 
-@property (nonatomic, readonly, strong) UITableView *tableView;
+@property (nonatomic, readonly, strong) AGMFATableView *tableView;
 @property (nonatomic, readonly, strong) NSTimer *refreshTimer;
 @property (nonatomic, readonly, strong) NSHashTable<AGMFATableViewCell *> *refreshItems;
+@property (nonatomic, readonly, strong) UISwipeActionsConfiguration *trailingSwipeActions;
 
 @end
 
@@ -34,6 +37,7 @@ static NSString *const cellIdentifier = @"cell";
 }
 
 - (void)dealloc {
+    AGMFAManager.shared.delegate = nil;
     [self stopRefreshTimer];
 }
 
@@ -43,28 +47,28 @@ static NSString *const cellIdentifier = @"cell";
 
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage systemImageNamed:@"gear"] style:UIBarButtonItemStylePlain target:self action:@selector(actionSettings:)];
 
-    UIAction *scan = [UIAction actionWithTitle:@"Scan QR code".localized image:[UIImage systemImageNamed:@"qrcode.viewfinder"] identifier:nil handler:^(__kindof UIAction * _Nonnull action) {
+    UIAction *scan = [UIAction actionWithTitle:@"Scan QR code".localized image:[UIImage systemImageNamed:@"qrcode.viewfinder"] identifier:nil handler:^(UIAction *action) {
         [AGRouter.shared routeTo:@"/page/scan"];
     }];
-    UIAction *edit = [UIAction actionWithTitle:@"Manual entry".localized image:[UIImage systemImageNamed:@"square.and.pencil"] identifier:nil handler:^(__kindof UIAction * _Nonnull action) {
+    UIAction *edit = [UIAction actionWithTitle:@"Manual entry".localized image:[UIImage systemImageNamed:@"square.and.pencil"] identifier:nil handler:^(UIAction *action) {
         [AGRouter.shared routeTo:@"/page/editor"];
     }];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage systemImageNamed:@"plus"] menu:[UIMenu menuWithChildren:@[scan, edit]]];
     
-    UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
+    AGMFATableView *tableView = [AGMFATableView new];
     [self.view addSubview:(_tableView = tableView)];
     [tableView registerClass:AGMFATableViewCell.class forCellReuseIdentifier:cellIdentifier];
-    tableView.backgroundColor = AGTheme.shared.groupedBackgroundColor;
-    tableView.sectionHeaderHeight = UITableViewAutomaticDimension;
-    tableView.sectionFooterHeight = UITableViewAutomaticDimension;
-    tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    tableView.showsHorizontalScrollIndicator = NO;
-    tableView.rowHeight = 120;
     tableView.delegate = self;
     tableView.dataSource = self;
     [tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.view);
     }];
+
+    UIContextualAction *deleteAction = [AGMFATableViewCell actionDelete:tableView];
+    _trailingSwipeActions = [UISwipeActionsConfiguration configurationWithActions:@[deleteAction]];
+    self.trailingSwipeActions.performsFirstActionWithFullSwipe = NO;
+    
+    AGMFAManager.shared.delegate = self;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -87,6 +91,14 @@ static NSString *const cellIdentifier = @"cell";
     }
 }
 
+- (UISwipeActionsConfiguration *)tableView:(UITableView *)tableView trailingSwipeActionsConfigurationForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return self.trailingSwipeActions;
+}
+
+- (UIView *)tableViewEmptyView:(UITableView *)tableView {
+    return [[AGMFAEmptyView alloc] initWithTarget:self action:@selector(actionAdd:)];
+}
+
 #pragma mark - UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return AGMFAManager.shared.items.count;
@@ -101,6 +113,11 @@ static NSString *const cellIdentifier = @"cell";
     return cell;
 }
 
+#pragma mark - AGMFAManagerDelegate
+- (void)mfaUpdated {
+    [self.tableView reloadData];
+}
+
 #pragma mark - Private Methods
 - (void)actionSettings:(id)sender {
     [AGRouter.shared routeTo:@"/page/settings"];
@@ -111,6 +128,10 @@ static NSString *const cellIdentifier = @"cell";
     for (AGMFATableViewCell *cell in self.refreshItems) {
         [cell update:now];
     }
+}
+
+- (void)actionAdd:(id)sender {
+    [AGRouter.shared routeTo:@"/page/scan"];
 }
 
 - (void)startRefreshTimer {

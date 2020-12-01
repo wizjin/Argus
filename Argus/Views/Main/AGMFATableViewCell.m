@@ -7,6 +7,7 @@
 
 #import "AGMFATableViewCell.h"
 #import "AGCountdownView.h"
+#import "AGMFAManager.h"
 #import "AGTheme.h"
 
 @interface AGMFATableViewCell () {
@@ -14,6 +15,7 @@
     uint64_t    lastT;
 }
 
+@property (nonatomic, readonly, strong) UIView *mainView;
 @property (nonatomic, readonly, strong) UILabel *titleLabel;
 @property (nonatomic, readonly, strong) UILabel *detailLabel;
 @property (nonatomic, readonly, strong) UILabel *createdLabel;
@@ -29,38 +31,44 @@
     if ([super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         AGTheme *theme = AGTheme.shared;
         self.backgroundColor = UIColor.clearColor;
-        UIView *contentView = self.contentView;
-        contentView.backgroundColor = theme.backgroundColor;
+        
+        UIView *mainView = [UIView new];
+        [self.contentView addSubview:(_mainView = mainView)];
+        mainView.backgroundColor = theme.cellBackgroundColor;
+        [mainView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.left.right.equalTo(self.contentView);
+            make.bottom.equalTo(self.contentView).offset(-kAGMFACellMargin);
+        }];
 
         UILabel *titleLabel = [UILabel new];
-        [contentView addSubview:(_titleLabel = titleLabel)];
+        [mainView addSubview:(_titleLabel = titleLabel)];
         [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(contentView).offset(10);
-            make.left.equalTo(contentView).offset(12);
+            make.top.equalTo(mainView).offset(10);
+            make.left.equalTo(mainView).offset(12);
         }];
         titleLabel.font = [UIFont boldSystemFontOfSize:14];
         titleLabel.textColor = theme.labelColor;
         
         UILabel *detailLabel = [UILabel new];
-        [contentView addSubview:(_detailLabel = detailLabel)];
+        [mainView addSubview:(_detailLabel = detailLabel)];
         [detailLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.bottom.equalTo(contentView).offset(-10);
+            make.bottom.equalTo(mainView).offset(-10);
             make.left.equalTo(titleLabel);
         }];
         detailLabel.font = [UIFont systemFontOfSize:12];
         detailLabel.textColor = theme.labelColor;
 
         UILabel *createdLabel = [UILabel new];
-        [contentView addSubview:(_createdLabel = createdLabel)];
+        [mainView addSubview:(_createdLabel = createdLabel)];
         [createdLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(titleLabel);
-            make.right.equalTo(contentView).offset(-12);
+            make.right.equalTo(mainView).offset(-12);
         }];
         createdLabel.font = [UIFont systemFontOfSize:10];
         createdLabel.textColor = theme.minorLabelColor;
 
         AGCountdownView * countdown = [AGCountdownView new];
-        [contentView addSubview:(_countdown = countdown)];
+        [mainView addSubview:(_countdown = countdown)];
         [countdown mas_makeConstraints:^(MASConstraintMaker *make) {
             make.size.mas_equalTo(CGSizeMake(20, 20));
             make.right.equalTo(createdLabel);
@@ -69,9 +77,9 @@
         countdown.tintColor = theme.minorLabelColor;
     
         UILabel *codeLabel = [UILabel new];
-        [contentView addSubview:(_codeLabel = codeLabel)];
+        [mainView addSubview:(_codeLabel = codeLabel)];
         [codeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.centerY.equalTo(contentView);
+            make.centerY.equalTo(mainView);
             make.left.equalTo(titleLabel);
         }];
         codeLabel.font = [UIFont fontWithName:@"Helvetica Neue" size:50];
@@ -89,15 +97,33 @@
 
 - (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated {
     CGFloat alpha = (highlighted ? 0.7 : 1);
-    if (self.contentView.alpha != alpha) {
+    if (self.mainView.alpha != alpha) {
         if (!animated) {
-            self.contentView.alpha = alpha;
+            self.mainView.alpha = alpha;
         } else {
             [UIViewPropertyAnimator runningPropertyAnimatorWithDuration:0.2 delay:0 options:0 animations:^{
-                self.contentView.alpha = alpha;
+                self.mainView.alpha = alpha;
             } completion:nil];
         }
     }
+}
+
++ (UIContextualAction *)actionDelete:(UITableView *)tableView {
+    UIContextualAction *action = [UIContextualAction contextualActionWithStyle:UIContextualActionStyleDestructive title:nil handler:^(UIContextualAction *action, UIView *sourceView, void (^completionHandler)(BOOL)) {
+        NSIndexPath *indexPath = [sourceView.superview valueForKeyPath:@"_delegate._indexPath"];
+        AGMFAModel *model = [[tableView cellForRowAtIndexPath:indexPath] model];
+        if (model != nil) {
+            [AGMFAManager.shared deleteItem:model completion:^{
+                AGMFAModel *project = [[tableView cellForRowAtIndexPath:indexPath] model];
+                if ([project.created isEqual:model.created]) {
+                    [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+                }
+            }];
+        }
+        completionHandler(YES);
+    }];
+    action.image = [UIImage systemImageNamed:@"trash.fill"];
+    return action;
 }
 
 - (void)setModel:(AGMFAModel *)model {

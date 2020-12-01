@@ -10,6 +10,7 @@
 #import <Toast/Toast.h>
 #import "AGMainViewController.h"
 #import "AGWebViewController.h"
+#import "AGMFAManager.h"
 #import "AGTheme.h"
 
 @interface AGRouter ()
@@ -110,7 +111,11 @@
     }];
     routes.unmatchedURLHandler = ^(JLRoutes *routes, NSURL *url, NSDictionary<NSString *, id> *parameters) {
         NSString *scheme = url.scheme;
-        if ([scheme isEqualToString:@"http"] || [scheme isEqualToString:@"https"]) {
+        if ([scheme isEqualToString:@"otpauth"]) {
+            if ([AGMFAManager.shared openURL:url]) {
+                return;
+            }
+        } else if ([scheme isEqualToString:@"http"] || [scheme isEqualToString:@"https"]) {
             if (showViewController([[AGWebViewController alloc] initWithURL:url withParams:parameters], YES, YES)) {
                 return;
             }

@@ -81,6 +81,8 @@
         if (_secret == nil) _secret = [NSData new];
         if (_period <= 0) _period = 30;
         if (digits <= 0 || digits > 8) digits = 6;
+        
+        _created = NSDate.now;
     }
     return self;
 }
@@ -101,13 +103,13 @@
                     | ((hmac[offset+1] & 0xff) << 16)
                     | ((hmac[offset+2] & 0xff) << 8)
                     | (hmac[offset+3] & 0xff);
-    char *res = malloc(digits * sizeof(char));
+    unichar *res = malloc(digits * sizeof(unichar));
     if (res != NULL) {
         for (int i = 0; i < digits; i++) {
             res[digits-i-1] = value%10 + '0';
             value /= 10;
         }
-        return [[NSString alloc] initWithBytes:res length:digits encoding:NSASCIIStringEncoding];
+        return [[NSString alloc] initWithCharactersNoCopy:res length:digits freeWhenDone:YES];
     }
     return @"";
 }

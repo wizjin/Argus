@@ -28,6 +28,7 @@
         _alertColor = UIColor.systemRedColor;
         _secureColor = UIColor.systemGreenColor;
         _backgroundColor = UIColor.systemBackgroundColor;
+        _cellBackgroundColor = [UIColor colorNamed:@"CellColor"];
         _groupedBackgroundColor = UIColor.systemGroupedBackgroundColor;
         _backImage = [UIImage systemImageNamed:@"chevron.backward"];
         _clearImage = [UIImage new];

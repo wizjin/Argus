@@ -10,8 +10,12 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+#define kAGMFACellHeight    120
+#define kAGMFACellMargin    8
+
 @interface AGMFATableViewCell : UITableViewCell
 
++ (UIContextualAction *)actionDelete:(UITableView *)tableView;
 - (void)setModel:(AGMFAModel *)model;
 - (void)update:(time_t)now;
 

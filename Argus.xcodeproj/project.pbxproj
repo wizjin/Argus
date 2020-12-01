@@ -32,6 +32,9 @@
 		6D906EDA2575186B00901052 /* NSData+AGExt.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D906ED92575186B00901052 /* NSData+AGExt.m */; };
 		6D906EDF2575198F00901052 /* AGCountdownView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D906EDE2575198F00901052 /* AGCountdownView.m */; };
 		6D906EE425751A0B00901052 /* AGMFAManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D906EE325751A0B00901052 /* AGMFAManager.m */; };
+		6DE9356A2576376F00FE1F4E /* AGMFATableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DE935692576376F00FE1F4E /* AGMFATableView.m */; };
+		6DE9356F25766C5E00FE1F4E /* AGMFAEmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DE9356E25766C5E00FE1F4E /* AGMFAEmptyView.m */; };
+		6DE935752576707000FE1F4E /* UIView+AGExt.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DE935742576707000FE1F4E /* UIView+AGExt.m */; };
 		80C2EC2370979D1D2BDE80D7 /* libPods-Argus.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 26B8C60713CB2AB957AD54D7 /* libPods-Argus.a */; };
 /* End PBXBuildFile section */
 
@@ -89,6 +92,12 @@
 		6D906EDE2575198F00901052 /* AGCountdownView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AGCountdownView.m; sourceTree = "<group>"; };
 		6D906EE225751A0B00901052 /* AGMFAManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AGMFAManager.h; sourceTree = "<group>"; };
 		6D906EE325751A0B00901052 /* AGMFAManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AGMFAManager.m; sourceTree = "<group>"; };
+		6DE935682576376F00FE1F4E /* AGMFATableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AGMFATableView.h; sourceTree = "<group>"; };
+		6DE935692576376F00FE1F4E /* AGMFATableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AGMFATableView.m; sourceTree = "<group>"; };
+		6DE9356D25766C5E00FE1F4E /* AGMFAEmptyView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AGMFAEmptyView.h; sourceTree = "<group>"; };
+		6DE9356E25766C5E00FE1F4E /* AGMFAEmptyView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AGMFAEmptyView.m; sourceTree = "<group>"; };
+		6DE935732576707000FE1F4E /* UIView+AGExt.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+AGExt.h"; sourceTree = "<group>"; };
+		6DE935742576707000FE1F4E /* UIView+AGExt.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+AGExt.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -188,6 +197,8 @@
 				6D906ED92575186B00901052 /* NSData+AGExt.m */,
 				6D906E762573E02100901052 /* NSString+AGExt.h */,
 				6D906E772573E02100901052 /* NSString+AGExt.m */,
+				6DE935732576707000FE1F4E /* UIView+AGExt.h */,
+				6DE935742576707000FE1F4E /* UIView+AGExt.m */,
 				6D906E8B2574C32900901052 /* UIViewController+AGExt.h */,
 				6D906E8C2574C32900901052 /* UIViewController+AGExt.m */,
 			);
@@ -223,8 +234,12 @@
 			children = (
 				6D906EDD2575198F00901052 /* AGCountdownView.h */,
 				6D906EDE2575198F00901052 /* AGCountdownView.m */,
+				6DE9356D25766C5E00FE1F4E /* AGMFAEmptyView.h */,
+				6DE9356E25766C5E00FE1F4E /* AGMFAEmptyView.m */,
 				6D906E972574CAB900901052 /* AGMFATableViewCell.h */,
 				6D906E982574CAB900901052 /* AGMFATableViewCell.m */,
+				6DE935682576376F00FE1F4E /* AGMFATableView.h */,
+				6DE935692576376F00FE1F4E /* AGMFATableView.m */,
 				6D906E872574B02B00901052 /* AGMainViewController.h */,
 				6D906E882574B02B00901052 /* AGMainViewController.m */,
 			);
@@ -424,11 +439,14 @@
 			files = (
 				6D906EA72574D7C400901052 /* AGSettingsViewController.m in Sources */,
 				6D906E852574AE0700901052 /* AGRouter.m in Sources */,
+				6DE9356F25766C5E00FE1F4E /* AGMFAEmptyView.m in Sources */,
 				6D906EDA2575186B00901052 /* NSData+AGExt.m in Sources */,
 				6D906E952574C75F00901052 /* AGDevice.m in Sources */,
 				6D906EBD2574FF3200901052 /* AGEditorViewController.m in Sources */,
 				6D906E3F2573CF7100901052 /* AGViewController.m in Sources */,
 				6D906EC3257505D900901052 /* AGWebViewController.m in Sources */,
+				6DE9356A2576376F00FE1F4E /* AGMFATableView.m in Sources */,
+				6DE935752576707000FE1F4E /* UIView+AGExt.m in Sources */,
 				6D906ED6257517E400901052 /* AGMFAModel.m in Sources */,
 				6D906EC8257506F600901052 /* AGWebViewRefresher.m in Sources */,
 				6D906E392573CF7100901052 /* AppDelegate.m in Sources */,

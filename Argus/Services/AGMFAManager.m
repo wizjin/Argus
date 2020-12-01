@@ -6,6 +6,7 @@
 //
 
 #import "AGMFAManager.h"
+#import "AGRouter.h"
 
 @interface AGMFAManager ()
 
@@ -32,8 +33,49 @@
     return self;
 }
 
+- (BOOL)openURL:(NSURL *)url {
+    BOOL res = NO;
+    AGMFAModel *model = [AGMFAModel modelWithURL:url];
+    if (model != nil) {
+        model.created = NSDate.now;
+        [self.mfaItems addObject:model];
+        [AGRouter.shared routeTo:@"/page/main"];
+        [self notifyUpdated];
+        res = YES;
+    }
+    return res;
+}
+
 - (NSArray<AGMFAModel *> *)items {
     return self.mfaItems;
+}
+
+- (void)deleteItem:(AGMFAModel *)item completion:(void (^ __nullable)(void))completion {
+    if (item != nil) {
+        [self.mfaItems removeObject:item];
+    }
+    if (completion != nil) {
+        completion();
+    }
+}
+
+- (void)active {
+
+}
+
+- (void)deactive {
+    
+}
+
+#pragma mark - Private Methods
+- (void)notifyUpdated {
+    @weakify(self);
+    dispatch_async(dispatch_get_main_queue(), ^{
+        @strongify(self);
+        if (self.delegate != nil) {
+            [self.delegate mfaUpdated];
+        }
+    });
 }
 
 

@@ -28,3 +28,5 @@
 "Can't open url"="无法打开url";
 "Tap to reload"="轻触重载页面";
 "Release to reload"="松开重载页面";
+"Created at %@"="创建于%@";
+"NoMFA"="没有MFA\n点击添加记录";
