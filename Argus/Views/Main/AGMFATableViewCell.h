@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface AGMFATableViewCell : UITableViewCell
 
++ (UIContextualAction *)actionEdit:(UITableView *)tableView;
 + (UIContextualAction *)actionDelete:(UITableView *)tableView;
 - (void)setModel:(AGMFAModel *)model;
 - (void)update:(time_t)now;

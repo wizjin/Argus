@@ -6,20 +6,21 @@
 //
 
 #import "AGMFATableViewCell.h"
+#import "AGEditorViewController.h"
 #import "AGCountdownView.h"
+#import "AGCreatedLabel.h"
+#import "AGCodeView.h"
 #import "AGMFAManager.h"
+#import "AGRouter.h"
 #import "AGTheme.h"
 
-@interface AGMFATableViewCell () {
-@private
-    uint64_t    lastT;
-}
+@interface AGMFATableViewCell ()
 
 @property (nonatomic, readonly, strong) UIView *mainView;
 @property (nonatomic, readonly, strong) UILabel *titleLabel;
 @property (nonatomic, readonly, strong) UILabel *detailLabel;
-@property (nonatomic, readonly, strong) UILabel *createdLabel;
-@property (nonatomic, readonly, strong) UILabel *codeLabel;
+@property (nonatomic, readonly, strong) AGCreatedLabel *createdLabel;
+@property (nonatomic, readonly, strong) AGCodeView *codeLabel;
 @property (nonatomic, readonly, strong) AGCountdownView * countdown;
 @property (nonatomic, nullable, strong) AGMFAModel *model;
 
@@ -58,14 +59,12 @@
         detailLabel.font = [UIFont systemFontOfSize:12];
         detailLabel.textColor = theme.labelColor;
 
-        UILabel *createdLabel = [UILabel new];
+        AGCreatedLabel *createdLabel = [AGCreatedLabel new];
         [mainView addSubview:(_createdLabel = createdLabel)];
         [createdLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(titleLabel);
             make.right.equalTo(mainView).offset(-12);
         }];
-        createdLabel.font = [UIFont systemFontOfSize:10];
-        createdLabel.textColor = theme.minorLabelColor;
 
         AGCountdownView * countdown = [AGCountdownView new];
         [mainView addSubview:(_countdown = countdown)];
@@ -74,18 +73,15 @@
             make.right.equalTo(createdLabel);
             make.bottom.equalTo(detailLabel);
         }];
-        countdown.tintColor = theme.minorLabelColor;
     
-        UILabel *codeLabel = [UILabel new];
+        AGCodeView *codeLabel = [AGCodeView new];
         [mainView addSubview:(_codeLabel = codeLabel)];
         [codeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerY.equalTo(mainView);
             make.left.equalTo(titleLabel);
         }];
-        codeLabel.font = [UIFont fontWithName:@"Helvetica Neue" size:50];
-        codeLabel.textColor = theme.tintColor;
+        codeLabel.fontSize = 50;
 
-        lastT = 0;
         _model = nil;
     }
     return self;
@@ -108,17 +104,39 @@
     }
 }
 
++ (UIContextualAction *)actionEdit:(UITableView *)tableView {
+    UIContextualAction *action = [UIContextualAction contextualActionWithStyle:UIContextualActionStyleNormal title:nil handler:^(UIContextualAction *action, UIView *sourceView, void (^completionHandler)(BOOL)) {
+        NSIndexPath *indexPath = [sourceView.superview valueForKeyPath:@"_delegate._indexPath"];
+        AGMFAModel *model = [[tableView cellForRowAtIndexPath:indexPath] model];
+        if (model != nil) {
+            [AGRouter.shared showViewController:[[AGEditorViewController alloc] initWithModel:model] animated:YES];
+        }
+        completionHandler(YES);
+    }];
+    action.backgroundColor = AGTheme.shared.infoColor;
+    action.image = [UIImage systemImageNamed:@"qrcode"];
+    return action;
+}
+
 + (UIContextualAction *)actionDelete:(UITableView *)tableView {
     UIContextualAction *action = [UIContextualAction contextualActionWithStyle:UIContextualActionStyleDestructive title:nil handler:^(UIContextualAction *action, UIView *sourceView, void (^completionHandler)(BOOL)) {
         NSIndexPath *indexPath = [sourceView.superview valueForKeyPath:@"_delegate._indexPath"];
         AGMFAModel *model = [[tableView cellForRowAtIndexPath:indexPath] model];
         if (model != nil) {
-            [AGMFAManager.shared deleteItem:model completion:^{
-                AGMFAModel *project = [[tableView cellForRowAtIndexPath:indexPath] model];
-                if ([project.created isEqual:model.created]) {
-                    [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-                }
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Delete this record will NOT turn off OTP verification".localized message:@"" preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction* cancelAction = [UIAlertAction actionWithTitle:@"Cancel".localized style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {}];
+            UIAlertAction* deleteAction = [UIAlertAction actionWithTitle:@"Delete".localized style:UIAlertActionStyleDestructive
+               handler:^(UIAlertAction * action) {
+                [AGMFAManager.shared deleteItem:model completion:^{
+                    AGMFAModel *project = [[tableView cellForRowAtIndexPath:indexPath] model];
+                    if (project.created == model.created) {
+                        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+                    }
+                }];
             }];
+            [alert addAction:cancelAction];
+            [alert addAction:deleteAction];
+            [AGRouter.shared presentViewController:alert animated:YES];
         }
         completionHandler(YES);
     }];
@@ -129,50 +147,16 @@
 - (void)setModel:(AGMFAModel *)model {
     if (self.model != model) {
         _model = model;
-        lastT = 0;
+        [self.codeLabel reset];
         self.titleLabel.text = model.title;
         self.detailLabel.text = model.detail;
-        NSString *created = @"";
-        if (model.created != nil) {
-            NSDateFormatter *dateFormat = [NSDateFormatter new];
-            [dateFormat setDateFormat:@"YYYY/MM/dd HH:mm"];
-            created = [NSString stringWithFormat:@"Created at %@".localized, [dateFormat stringFromDate:model.created]];
-        }
-        self.createdLabel.text = created;
+        self.createdLabel.created = model.created;
         [self update:time(NULL)];
     }
 }
 
 - (void)update:(time_t)now {
-    AGTheme *theme = AGTheme.shared;
-
-    uint64_t r = 0;
-    uint64_t t = [self.model calcT:now remainder:&r];
-    if (lastT != t) {
-        lastT = t;
-        self.codeLabel.text = format([self.model calcCode:t]);
-    }
-    CGFloat rate = 0;
-    CGFloat period = self.model.period;
-    BOOL warn = NO;
-    if (period > 0) {
-        rate = (double)r/period;
-        warn = (r <= 5);
-    }
-    self.countdown.rate = rate;
-    self.codeLabel.textColor = (warn ? theme.alertColor : theme.tintColor);
-}
-
-static inline NSString *format(NSString *code) {
-    NSMutableString *res = [[NSMutableString alloc] initWithCapacity:code.length + code.length/3];
-    for (int i = 0; i < code.length; i++) {
-        if (i%3 == 0 && i != 0) {
-            [res appendString:@" "];
-        }
-        unichar c = [code characterAtIndex:i];
-        [res appendFormat:@"%C", c];
-    }
-    return res;
+    [self.countdown update:self.model remainder:[self.codeLabel update:self.model now:now]];
 }
 
 

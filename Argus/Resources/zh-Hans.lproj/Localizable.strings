@@ -9,6 +9,7 @@
 "Done"="完成";
 "Close"="关闭";
 "Cancel"="取消";
+"Delete"="删除";
 "Enable"="启用";
 "Disable"="禁用";
 "Settings"="设置";
@@ -30,3 +31,6 @@
 "Release to reload"="松开重载页面";
 "Created at %@"="创建于%@";
 "NoMFA"="没有MFA\n点击添加记录";
+"Add record success"="记录添加成功";
+"Record already exists"="记录已经存在";
+"Delete this record will NOT turn off OTP verification"="删除该条记录不会取消OTP验证";

@@ -46,6 +46,18 @@
     UIApplication.sharedApplication.delegate.window = window;
 }
 
+- (void)active {
+    [AGMFAManager.shared active];
+}
+
+- (void)deactive {
+    UIViewController *vc = self.window.rootViewController;
+    if(vc.presentationController != nil) {
+        [vc dismissViewControllerAnimated:YES completion:nil];
+    }
+    [AGMFAManager.shared deactive];
+}
+
 - (BOOL)launchWithOptions:(NSDictionary *)options {
     UIWindow *window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
     self.window = window;
@@ -75,6 +87,18 @@
 
 - (BOOL)routeTo:(NSString *)url withParams:(nullable NSDictionary<NSString *, id> *)params {
     return [self.routes routeURL:[NSURL URLWithString:url] withParameters:params];
+}
+
+- (void)showViewController:(UIViewController *)vc animated:(BOOL)animated {
+    showViewController(vc, animated, YES);
+}
+
+- (void)presentViewController:(UIViewController *)vc animated:(BOOL)animated {
+    [self.window.rootViewController presentViewController:vc animated:animated completion:nil];
+}
+
+- (void)makeToast:(NSString *)message {
+    [self.window makeToast:message];
 }
 
 #pragma mark - Private Methods
@@ -110,17 +134,18 @@
         return res;
     }];
     routes.unmatchedURLHandler = ^(JLRoutes *routes, NSURL *url, NSDictionary<NSString *, id> *parameters) {
-        NSString *scheme = url.scheme;
-        if ([scheme isEqualToString:@"otpauth"]) {
-            if ([AGMFAManager.shared openURL:url]) {
-                return;
-            }
-        } else if ([scheme isEqualToString:@"http"] || [scheme isEqualToString:@"https"]) {
-            if (showViewController([[AGWebViewController alloc] initWithURL:url withParams:parameters], YES, YES)) {
-                return;
+        BOOL res = NO;
+        if ([AGMFAManager.shared canOpenURL:url]) {
+            res = [AGMFAManager.shared openURL:url];
+        } else {
+            NSString *scheme = url.scheme;
+            if ([scheme isEqualToString:@"http"] || [scheme isEqualToString:@"https"]) {
+                res = showViewController([[AGWebViewController alloc] initWithURL:url withParams:parameters], YES, YES);
             }
         }
-        [self.window makeToast:@"Can't open url".localized];
+        if (!res) {
+            [self makeToast:@"Can't open url".localized];
+        }
     };
 }
 

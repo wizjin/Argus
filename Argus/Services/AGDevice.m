@@ -24,6 +24,7 @@
         _name = [bundle objectForInfoDictionaryKey:@"CFBundleDisplayName"];
         _version = [bundle objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
         _build = [[bundle objectForInfoDictionaryKey:@"CFBundleVersion"] intValue];
+        _docdir = [[NSFileManager.defaultManager URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
     }
     return self;
 }

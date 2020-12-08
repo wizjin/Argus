@@ -28,6 +28,7 @@
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>otpauth</string>
+				<string>otpauth-migration</string>
 			</array>
 		</dict>
 	</array>

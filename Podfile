@@ -9,6 +9,7 @@ inhibit_all_warnings!
 target $project_name do
 	pod 'JLRoutes'
 	pod 'Masonry'
+	pod 'Protobuf'
 	pod 'Toast'
 	pod 'XLForm'
 

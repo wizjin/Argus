@@ -8,7 +8,6 @@
 #import "AGScanViewController.h"
 #import <AVFoundation/AVFoundation.h>
 #import <PhotosUI/PHPicker.h>
-#import <Toast/Toast.h>
 #import "AGRouter.h"
 #import "AGTheme.h"
 
@@ -141,7 +140,7 @@
                 @weakify(self);
                 dispatch_async(dispatch_get_main_queue(), ^{
                     @strongify(self);
-                    [self findQrCode:qrCode];
+                    [self findQRCode:qrCode];
                 });
             }
         }
@@ -191,7 +190,7 @@
     }
 }
 
-- (void)findQrCode:(NSString *)code {
+- (void)findQRCode:(NSString *)code {
     if (!self.isClosed) {
         _isClosed = YES;
         [self.navigationController popViewControllerAnimated:YES];
@@ -208,12 +207,12 @@
         if ([feature isKindOfClass:CIQRCodeFeature.class]) {
             NSString *code = [(CIQRCodeFeature *)feature messageString];
             if (code.length > 0) {
-                [self findQrCode:code];
+                [self findQRCode:code];
             }
             return;
         }
     }
-    [self.view makeToast:@"No QR code".localized];
+    [AGRouter.shared makeToast:@"No QR code".localized];
 }
 
 

@@ -16,21 +16,36 @@
 }
 
 @property (nonatomic, readonly, strong) NSData *secret;
+@property (nonatomic, strong) NSDictionary *data;
+@property (nonatomic, assign) uint64_t created;
 
 @end
 
 @implementation AGMFAModel
 
-+ (instancetype)modelWithURL:(NSURL *)url {
-    NSURLComponents *componemts = [NSURLComponents componentsWithString:url.absoluteString];
-    if ([componemts.scheme isEqualToString:@"otpauth"] && [componemts.host isEqualToString:@"totp"]) {
-        return [[self.class alloc] initWithURLComponents:componemts];
++ (instancetype)modelWithData:(NSDictionary *)data {
+    uint64_t ts = [[data valueForKey:@"created"] longLongValue];
+    if (ts > 0) {
+        NSString *url = [data valueForKey:@"url"];
+        if (url.length > 0) {
+            NSURLComponents *componemts = [NSURLComponents componentsWithString:url];
+            if ([componemts.scheme isEqualToString:@"otpauth"] && [componemts.host isEqualToString:@"totp"]) {
+                AGMFAModel *model = [[self.class alloc] initWithURLComponents:componemts];
+                if (model != nil) {
+                    model.created = ts;
+                    model.data = data;
+                    return model;
+                }
+            }
+        }
     }
     return nil;
 }
 
 - (instancetype)initWithURLComponents:(NSURLComponents *)componemts {
     if (self = [super init]) {
+        _created = 0;
+
         // Note: https://github.com/google/google-authenticator/wiki/Key-Uri-Format
         digits = 6;
         _period = 0;
@@ -75,16 +90,22 @@
                 } else if ([item.value caseInsensitiveCompare:@"SHA512"] == NSOrderedSame) {
                     hashlen = CC_SHA512_DIGEST_LENGTH;
                     algorithm = kCCHmacAlgSHA512;
+                } else if ([item.value caseInsensitiveCompare:@"MD5"] == NSOrderedSame) {
+                    hashlen = CC_MD5_DIGEST_LENGTH;
+                    algorithm = kCCHmacAlgMD5;
                 }
             }
         }
         if (_secret == nil) _secret = [NSData new];
         if (_period <= 0) _period = 30;
         if (digits <= 0 || digits > 8) digits = 6;
-        
-        _created = NSDate.now;
     }
     return self;
+}
+
+- (BOOL)isEqual:(AGMFAModel *)other {
+    return (self.created == other.created || [self.url isEqual:other.url]
+            || ([self.secret isEqualToData:other.secret] && [self.title isEqualToString:other.title] && [self.detail isEqualToString:other.detail] && self.period == other.period));
 }
 
 - (uint64_t)calcT:(time_t)now remainder:(uint64_t *)remainder {
@@ -112,6 +133,10 @@
         return [[NSString alloc] initWithCharactersNoCopy:res length:digits freeWhenDone:YES];
     }
     return @"";
+}
+
+- (NSString *)url {
+    return [self.data valueForKey:@"url"];
 }
 
 

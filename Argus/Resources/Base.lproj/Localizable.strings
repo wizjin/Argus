@@ -9,6 +9,7 @@
 "Done"="Done";
 "Close"="Close";
 "Cancel"="Cancel";
+"Delete"="Delete";
 "Enable"="Enable";
 "Disable"="Disable";
 "Settings"="Settings";
@@ -30,3 +31,6 @@
 "Release to reload"="Release to reload";
 "Created at %@"="Created at %@";
 "NoMFA"="No MFA Found\nTap and add record";
+"Add record success"="Add record success";
+"Record already exists"="Record already exists";
+"Delete this record will NOT turn off OTP verification"="Delete this record will NOT turn off OTP verification";

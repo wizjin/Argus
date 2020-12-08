@@ -19,6 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, nullable, weak) id<AGMFAManagerDelegate> delegate;
 
 + (instancetype)shared;
+- (BOOL)canOpenURL:(NSURL *)url;
 - (BOOL)openURL:(NSURL *)url;
 - (NSArray<AGMFAModel *> *)items;
 - (void)deleteItem:(AGMFAModel *)item completion:(void (^ __nullable)(void))completion;

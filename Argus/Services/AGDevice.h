@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readonly, strong) NSString *name;
 @property (nonatomic, readonly, strong) NSString *version;
 @property (nonatomic, readonly, assign) uint32_t build;
+@property (nonatomic, readonly, strong) NSURL *docdir;
 
 + (instancetype)shared;
 

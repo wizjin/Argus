@@ -24,6 +24,7 @@
         _tintColor = [UIColor colorNamed:@"AccentColor"];
         _labelColor = UIColor.labelColor;
         _minorLabelColor = UIColor.secondaryLabelColor;
+        _infoColor = UIColor.systemGreenColor;
         _warnColor = UIColor.systemYellowColor;
         _alertColor = UIColor.systemRedColor;
         _secureColor = UIColor.systemGreenColor;

@@ -6,13 +6,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AGMFAModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface AGCountdownView : UIView
 
 @property (nonatomic, strong) UIColor *tintColor;
-@property (nonatomic, assign) CGFloat rate;
+
+- (void)update:(AGMFAModel *)model remainder:(uint64_t)r;
 
 
 @end

@@ -6,7 +6,6 @@
 //
 
 #import "AppDelegate.h"
-#import "AGMFAManager.h"
 #import "AGRouter.h"
 
 @implementation AppDelegate
@@ -34,11 +33,11 @@
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
-    [AGMFAManager.shared active];
+    [AGRouter.shared active];
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
-    [AGMFAManager.shared deactive];
+    [AGRouter.shared deactive];
 }
 
 

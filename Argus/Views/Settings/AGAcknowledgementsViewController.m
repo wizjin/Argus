@@ -6,7 +6,6 @@
 //
 
 #import "AGAcknowledgementsViewController.h"
-#import <sys/stat.h>
 #import "AGTheme.h"
 
 @implementation AGAcknowledgementsViewController
@@ -29,8 +28,8 @@
     UIFont *titleFont = [UIFont boldSystemFontOfSize:18];
     UIFont *contextFont = [UIFont systemFontOfSize:14];
 
-    NSString *path = [[NSBundle.mainBundle pathForResource:@"Settings" ofType:@"bundle"] stringByAppendingPathComponent:@"Acknowledgements.plist"];
-    NSDictionary *data = [self loadPlist:path];
+    NSURL *url = [[NSBundle.mainBundle URLForResource:@"Settings" withExtension:@"bundle"] URLByAppendingPathComponent:@"Acknowledgements.plist"];
+    NSDictionary *data = [self loadPlist:url];
     for (NSDictionary *item in [data valueForKey:@"PreferenceSpecifiers"]) {
         NSString *title = [item valueForKey:@"Title"];
         if (title.length > 0) {
@@ -76,30 +75,11 @@
 }
 
 #pragma mark - Private Methods
-- (NSDictionary *)loadPlist:(NSString *)path {
-    NSData *data = nil;
-    struct stat sb;
-    bzero(&sb, sizeof(sb));
-    const char *filepath = path.UTF8String;
-    if (stat(filepath, &sb) == 0) {
-        size_t len = sb.st_size;
-        if (len > 0) {
-            FILE *fp = fopen(filepath, "rb");
-            if (fp != NULL) {
-                uint8_t *pdata = malloc(len);
-                if (pdata != NULL) {
-                    if (fread(pdata, len, 1, fp) == 1) {
-                        data = [NSData dataWithBytesNoCopy:pdata length:len]; // Note: NSData Will auto free
-                    } else {
-                        free(pdata);
-                    }
-                }
-            }
-        }
-    }
+- (NSDictionary *)loadPlist:(NSURL *)url {
+    NSError *error = nil;
     NSDictionary *result = nil;
-    if (data.length > 0) {
-        NSError *error = nil;
+    NSData *data = [NSData dataWithContentsOfURL:url options:NSDataReadingMappedIfSafe error:&error];
+    if (error == nil && data.length > 0) {
         NSDictionary *plist = [NSPropertyListSerialization propertyListWithData:data options:0 format:nil error:&error];
         if (error == nil) {
             result = plist;

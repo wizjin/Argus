@@ -14,11 +14,16 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readonly, strong) UIWindow *window;
 
 + (instancetype)shared;
+- (void)active;
+- (void)deactive;
 - (BOOL)launchWithOptions:(NSDictionary *)options;
 - (BOOL)handleURL:(NSURL *)url;
 - (BOOL)handleShortcut:(NSString *)url;
 - (BOOL)routeTo:(NSString *)url;
 - (BOOL)routeTo:(NSString *)url withParams:(nullable NSDictionary<NSString *, id> *)params;
+- (void)showViewController:(UIViewController *)vc animated:(BOOL)animated;
+- (void)presentViewController:(UIViewController *)vc animated:(BOOL)animated;
+- (void)makeToast:(NSString *)message;
 
 
 @end

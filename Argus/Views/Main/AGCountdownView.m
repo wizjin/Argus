@@ -8,18 +8,29 @@
 #import "AGCountdownView.h"
 #import "AGTheme.h"
 
+@interface AGCountdownView ()
+
+@property (nonatomic, readonly, assign) CGFloat rate;
+
+@end
+
 @implementation AGCountdownView
 
 - (instancetype)init {
     if (self = [super init]) {
         _rate = 0;
-        _tintColor = AGTheme.shared.tintColor;
+        _tintColor = AGTheme.shared.minorLabelColor;
         self.backgroundColor = UIColor.clearColor;
     }
     return self;
 }
 
-- (void)setRate:(CGFloat)rate {
+- (void)update:(AGMFAModel *)model remainder:(uint64_t)r {
+    CGFloat rate = 0;
+    CGFloat period = model.period;
+    if (period > 0) {
+        rate = (double)r/period;
+    }
     if (self.rate != rate) {
         _rate = rate;
         [self setNeedsDisplay];

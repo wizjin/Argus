@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readonly, strong) UIColor *tintColor;
 @property (nonatomic, readonly, strong) UIColor *labelColor;
 @property (nonatomic, readonly, strong) UIColor *minorLabelColor;
+@property (nonatomic, readonly, strong) UIColor *infoColor;
 @property (nonatomic, readonly, strong) UIColor *warnColor;
 @property (nonatomic, readonly, strong) UIColor *alertColor;
 @property (nonatomic, readonly, strong) UIColor *secureColor;

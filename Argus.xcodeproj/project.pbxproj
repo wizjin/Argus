@@ -3,10 +3,14 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6D7DA0B2257F6008009AEFB1 /* AGQRCodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D7DA0B1257F6008009AEFB1 /* AGQRCodeView.m */; };
+		6D7DA0BD257F6F9F009AEFB1 /* AGModel.proto in Sources */ = {isa = PBXBuildFile; fileRef = 6D7DA0BC257F6F9F009AEFB1 /* AGModel.proto */; };
+		6D7DA0C5257FA16D009AEFB1 /* AGCodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D7DA0C4257FA16D009AEFB1 /* AGCodeView.m */; };
+		6D7DA0CB257FA871009AEFB1 /* AGCreatedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D7DA0CA257FA871009AEFB1 /* AGCreatedLabel.m */; };
 		6D906E392573CF7100901052 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D906E382573CF7100901052 /* AppDelegate.m */; };
 		6D906E3F2573CF7100901052 /* AGViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D906E3E2573CF7100901052 /* AGViewController.m */; };
 		6D906E442573CF7200901052 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6D906E432573CF7200901052 /* Assets.xcassets */; };
@@ -38,10 +42,39 @@
 		80C2EC2370979D1D2BDE80D7 /* libPods-Argus.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 26B8C60713CB2AB957AD54D7 /* libPods-Argus.a */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXBuildRule section */
+		6D7DA0C0257F6FAF009AEFB1 /* PBXBuildRule */ = {
+			isa = PBXBuildRule;
+			compilerSpec = com.apple.compilers.proxy.script;
+			filePatterns = "*.proto";
+			fileType = pattern.proxy;
+			inputFiles = (
+			);
+			isEditable = 1;
+			outputFiles = (
+				"$(DERIVED_FILE_DIR)/$(INPUT_FILE_BASE).pbobjc.h",
+				"$(DERIVED_FILE_DIR)/$(INPUT_FILE_BASE).pbobjc.m",
+			);
+			outputFilesCompilerFlags = (
+				"",
+				"-fno-objc-arc",
+			);
+			runOncePerArchitecture = 0;
+			script = "protoc --proto_path=$INPUT_FILE_DIR --objc_out $DERIVED_FILE_DIR $INPUT_FILE_PATH\n";
+		};
+/* End PBXBuildRule section */
+
 /* Begin PBXFileReference section */
 		1E215E829799B64B52EC71B9 /* Pods-Argus.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Argus.release.xcconfig"; path = "Target Support Files/Pods-Argus/Pods-Argus.release.xcconfig"; sourceTree = "<group>"; };
 		26B8C60713CB2AB957AD54D7 /* libPods-Argus.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Argus.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		36CE2E938B433F3B2A760C40 /* Pods-Argus.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Argus.debug.xcconfig"; path = "Target Support Files/Pods-Argus/Pods-Argus.debug.xcconfig"; sourceTree = "<group>"; };
+		6D7DA0B0257F6008009AEFB1 /* AGQRCodeView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AGQRCodeView.h; sourceTree = "<group>"; };
+		6D7DA0B1257F6008009AEFB1 /* AGQRCodeView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AGQRCodeView.m; sourceTree = "<group>"; };
+		6D7DA0BC257F6F9F009AEFB1 /* AGModel.proto */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.protobuf; path = AGModel.proto; sourceTree = "<group>"; };
+		6D7DA0C3257FA16D009AEFB1 /* AGCodeView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AGCodeView.h; sourceTree = "<group>"; };
+		6D7DA0C4257FA16D009AEFB1 /* AGCodeView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AGCodeView.m; sourceTree = "<group>"; };
+		6D7DA0C9257FA871009AEFB1 /* AGCreatedLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AGCreatedLabel.h; sourceTree = "<group>"; };
+		6D7DA0CA257FA871009AEFB1 /* AGCreatedLabel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AGCreatedLabel.m; sourceTree = "<group>"; };
 		6D906E342573CF7100901052 /* Argus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Argus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D906E372573CF7100901052 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		6D906E382573CF7100901052 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -232,6 +265,10 @@
 		6D906EA22574D79C00901052 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				6D7DA0C3257FA16D009AEFB1 /* AGCodeView.h */,
+				6D7DA0C4257FA16D009AEFB1 /* AGCodeView.m */,
+				6D7DA0C9257FA871009AEFB1 /* AGCreatedLabel.h */,
+				6D7DA0CA257FA871009AEFB1 /* AGCreatedLabel.m */,
 				6D906EDD2575198F00901052 /* AGCountdownView.h */,
 				6D906EDE2575198F00901052 /* AGCountdownView.m */,
 				6DE9356D25766C5E00FE1F4E /* AGMFAEmptyView.h */,
@@ -269,6 +306,8 @@
 		6D906EBA2574FF1F00901052 /* Editor */ = {
 			isa = PBXGroup;
 			children = (
+				6D7DA0B0257F6008009AEFB1 /* AGQRCodeView.h */,
+				6D7DA0B1257F6008009AEFB1 /* AGQRCodeView.m */,
 				6D906EBB2574FF3200901052 /* AGEditorViewController.h */,
 				6D906EBC2574FF3200901052 /* AGEditorViewController.m */,
 			);
@@ -289,6 +328,7 @@
 		6D906ED3257517C800901052 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				6D7DA0BC257F6F9F009AEFB1 /* AGModel.proto */,
 				6D906ED4257517E400901052 /* AGMFAModel.h */,
 				6D906ED5257517E400901052 /* AGMFAModel.m */,
 			);
@@ -318,6 +358,7 @@
 				302C2EC9ACB82CF984BD4756 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
+				6D7DA0C0257F6FAF009AEFB1 /* PBXBuildRule */,
 			);
 			dependencies = (
 			);
@@ -439,6 +480,7 @@
 			files = (
 				6D906EA72574D7C400901052 /* AGSettingsViewController.m in Sources */,
 				6D906E852574AE0700901052 /* AGRouter.m in Sources */,
+				6D7DA0B2257F6008009AEFB1 /* AGQRCodeView.m in Sources */,
 				6DE9356F25766C5E00FE1F4E /* AGMFAEmptyView.m in Sources */,
 				6D906EDA2575186B00901052 /* NSData+AGExt.m in Sources */,
 				6D906E952574C75F00901052 /* AGDevice.m in Sources */,
@@ -453,6 +495,7 @@
 				6D906EDF2575198F00901052 /* AGCountdownView.m in Sources */,
 				6D906EAC2574E01900901052 /* AGScanViewController.m in Sources */,
 				6D906E992574CAB900901052 /* AGMFATableViewCell.m in Sources */,
+				6D7DA0C5257FA16D009AEFB1 /* AGCodeView.m in Sources */,
 				6D906E8D2574C32900901052 /* UIViewController+AGExt.m in Sources */,
 				6D906E782573E02100901052 /* NSString+AGExt.m in Sources */,
 				6D906E4A2573CF7200901052 /* main.m in Sources */,
@@ -460,6 +503,8 @@
 				6D906EB02574E90A00901052 /* AGAcknowledgementsViewController.m in Sources */,
 				6D906E892574B02B00901052 /* AGMainViewController.m in Sources */,
 				6D906E912574C3F200901052 /* AGTheme.m in Sources */,
+				6D7DA0CB257FA871009AEFB1 /* AGCreatedLabel.m in Sources */,
+				6D7DA0BD257F6F9F009AEFB1 /* AGModel.proto in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
