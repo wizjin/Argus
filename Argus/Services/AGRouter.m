@@ -7,7 +7,6 @@
 
 #import "AGRouter.h"
 #import <JLRoutes/JLRoutes.h>
-#import <Toast/Toast.h>
 #import "AGMainViewController.h"
 #import "AGWebViewController.h"
 #import "AGMFAManager.h"
@@ -98,7 +97,9 @@
 }
 
 - (void)makeToast:(NSString *)message {
-    [self.window makeToast:message];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        showToast(message);
+    });
 }
 
 #pragma mark - Private Methods
@@ -160,6 +161,58 @@ static inline BOOL showViewController(UIViewController *vc, BOOL animated, BOOL 
     nav.navigationBar.topItem.backButtonDisplayMode = UINavigationItemBackButtonDisplayModeMinimal;
     [nav pushViewController:vc animated:animated];
     return YES;
+}
+
+static inline void showToast(NSString *message) {
+    NSTimeInterval delay = 0;
+
+    static UILabel *lastToast = nil;
+    if (lastToast != nil) {
+        delay += 0.2;
+        closeToast(lastToast, 0);
+        lastToast = nil;
+    }
+
+    CGFloat radius = 14.0;
+    UIView *view = AGRouter.shared.window;
+    UILabel *toast = [UILabel new];
+    [view addSubview:(lastToast = toast)];
+    toast.text = message;
+    toast.alpha = 0;
+    toast.numberOfLines = 1;
+    toast.textAlignment = NSTextAlignmentCenter;
+    toast.font = [UIFont systemFontOfSize:14];
+    toast.textColor = UIColor.whiteColor;
+    toast.backgroundColor = [UIColor colorWithWhite:0.3 alpha:0.8];
+    toast.layer.cornerRadius = radius;
+    toast.clipsToBounds = YES;
+    [toast mas_makeConstraints:^(MASConstraintMaker *make) {
+        CGSize size = [toast sizeThatFits:CGSizeMake(UIScreen.mainScreen.bounds.size.width * 0.8, radius * 2)];
+        size.height = radius * 2;
+        size.width += floor(radius * 2);
+        size.width = fmax(size.width, radius * 4);
+        make.size.mas_equalTo(size);
+        make.centerX.equalTo(view);
+        make.bottom.equalTo(view.mas_safeAreaLayoutGuideBottom).offset(-60);
+    }];
+    openToast(toast, delay);
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        closeToast(toast, delay);
+    });
+}
+
+static inline void openToast(UILabel *toast, NSTimeInterval delay) {
+    [UIViewPropertyAnimator runningPropertyAnimatorWithDuration:0.2 delay:delay options:UIViewAnimationOptionCurveEaseIn animations:^{
+        toast.alpha = 1;
+    } completion:nil];
+}
+
+static inline void closeToast(UILabel *toast, NSTimeInterval delay) {
+    [UIViewPropertyAnimator runningPropertyAnimatorWithDuration:0.2 delay:delay options:UIViewAnimationOptionCurveEaseOut animations:^{
+        toast.alpha = 0;
+    } completion:^(UIViewAnimatingPosition finalPosition) {
+        [toast removeFromSuperview];
+    }];
 }
 
 

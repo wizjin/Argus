@@ -22,6 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (uint64_t)calcT:(time_t)now remainder:(uint64_t *)remainder;
 - (NSString *)calcCode:(uint64_t)t;
 - (NSString *)url;
+- (void)copyToPasteboard;
 
 
 @end

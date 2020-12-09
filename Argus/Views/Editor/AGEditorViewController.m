@@ -19,6 +19,7 @@
 @property (nonatomic, readonly, strong) AGQRCodeView *qrCodeView;
 @property (nonatomic, readonly, strong) AGCountdownView * countdown;
 @property (nonatomic, readonly, strong) AGCodeView *codeLabel;
+@property (nonatomic, readonly, strong) UITapGestureRecognizer *recognizer;
 
 @end
 
@@ -34,6 +35,7 @@
 
 - (void)dealloc {
     [self stopRefreshTimer];
+    [self.view removeGestureRecognizer:self.recognizer];
 }
 
 - (void)viewDidLoad {
@@ -95,6 +97,9 @@
     }];
     createdLabel.font = [UIFont systemFontOfSize:12];
     createdLabel.created = self.model.created;
+    
+    UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(actionDoCopy:)];
+    [self.view addGestureRecognizer:(_recognizer = recognizer)];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -110,7 +115,7 @@
 #pragma mark - Private Methods
 - (void)startRefreshTimer {
     if (self.refreshTimer == nil) {
-        _refreshTimer = [NSTimer scheduledTimerWithTimeInterval:0.2 target:self selector:@selector(actionRefresh:) userInfo:nil repeats:YES];
+        _refreshTimer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(actionRefresh:) userInfo:nil repeats:YES];
     }
 }
 
@@ -119,6 +124,10 @@
         [self.refreshTimer invalidate];
         _refreshTimer = nil;
     }
+}
+
+- (void)actionDoCopy:(id)sender {
+    [self.model copyToPasteboard];
 }
 
 - (void)actionRefresh:(id)sender {

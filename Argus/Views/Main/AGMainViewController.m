@@ -58,9 +58,7 @@ static NSString *const cellIdentifier = @"cell";
     }];
 
     _leadingSwipeActions = [UISwipeActionsConfiguration configurationWithActions:@[[AGMFATableViewCell actionEdit:tableView]]];
-    self.leadingSwipeActions.performsFirstActionWithFullSwipe = NO;
     _trailingSwipeActions = [UISwipeActionsConfiguration configurationWithActions:@[[AGMFATableViewCell actionDelete:tableView]]];
-    self.trailingSwipeActions.performsFirstActionWithFullSwipe = NO;
 
     AGMFAManager.shared.delegate = self;
 }
@@ -78,11 +76,7 @@ static NSString *const cellIdentifier = @"cell";
 #pragma mark - UITableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    AGMFAModel *model = [AGMFAManager.shared.items objectAtIndex:indexPath.row];
-    if (model != nil) {
-        UIPasteboard.generalPasteboard.string = [model calcCode:time(NULL)];
-        [AGRouter.shared makeToast:@"Code copied".localized];
-    }
+    [[AGMFAManager.shared.items objectAtIndex:indexPath.row] copyToPasteboard];
 }
 
 - (nullable UISwipeActionsConfiguration *)tableView:(UITableView *)tableView leadingSwipeActionsConfigurationForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -138,7 +132,7 @@ static NSString *const cellIdentifier = @"cell";
 
 - (void)startRefreshTimer {
     if (self.refreshTimer == nil) {
-        _refreshTimer = [NSTimer scheduledTimerWithTimeInterval:0.2 target:self selector:@selector(actionRefresh:) userInfo:nil repeats:YES];
+        _refreshTimer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(actionRefresh:) userInfo:nil repeats:YES];
     }
 }
 

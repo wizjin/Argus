@@ -11,6 +11,7 @@
 @interface AGCodeView ()
 
 @property (nonatomic, readonly, assign) uint64_t lastT;
+@property (nonatomic, nullable, strong) UIViewPropertyAnimator *animator;
 
 @end
 
@@ -20,6 +21,8 @@
     if (self = [super initWithFrame:frame]) {
         _lastT = 0;
         _fontSize = 50;
+        _animator = nil;
+        self.layer.backgroundColor = UIColor.clearColor.CGColor;
         self.font = [UIFont fontWithName:@"Helvetica Neue" size:self.fontSize];
         self.textColor = AGTheme.shared.tintColor;
     }
@@ -35,6 +38,7 @@
 
 - (void)reset {
     _lastT = 0;
+    [self stopFlashAnimator];
 }
 
 - (uint64_t)update:(AGMFAModel *)model now:(time_t)now {
@@ -45,8 +49,40 @@
         self.text = format([model calcCode:t]);
     }
     AGTheme *theme = AGTheme.shared;
-    self.textColor = ((model.period > 0 && r <= 5) ? theme.alertColor : theme.tintColor);
+    if (model.period > 0 && r <= 5) {
+        self.textColor = theme.alertColor;
+        [self startFlashAnimator];
+    } else {
+        self.textColor = theme.tintColor;
+        [self stopFlashAnimator];
+    }
     return r;
+}
+
+- (void)startFlashAnimator {
+    if (self.animator == nil) {
+        self.alpha = 1.0;
+        self.animator = [UIViewPropertyAnimator runningPropertyAnimatorWithDuration:0.5 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+            [UIView setAnimationRepeatCount:MAXFLOAT];
+            [UIView setAnimationRepeatAutoreverses:YES];
+#pragma clang diagnostic pop
+            self.alpha = 0.4;
+        } completion:^(UIViewAnimatingPosition finalPosition) {
+            [self stopFlashAnimator];
+        }];
+    }
+}
+
+- (void)stopFlashAnimator {
+    if (self.animator != nil) {
+        if (self.animator.isRunning) {
+            [self.animator stopAnimation:YES];
+        }
+        self.animator = nil;
+        self.alpha = 1.0;
+    }
 }
 
 static inline NSString *format(NSString *code) {

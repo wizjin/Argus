@@ -31,11 +31,6 @@
 
 @end
 
-
-@interface AGSettingsViewController ()
-
-@end
-
 @implementation AGSettingsViewController
 
 - (instancetype)init {
@@ -78,7 +73,7 @@
     [form addFormSection:(section = [XLFormSectionDescriptor formSectionWithTitle:@"ABOUT".localized])];
     row = [XLFormRowDescriptor formRowDescriptorWithTag:@"version" rowType:XLFormRowDescriptorTypeInfo title:@"Version".localized];
     AGDevice *device = AGDevice.shared;
-    row.value = [NSString stringWithFormat:@"%@ (%d)", device.version, device.build];
+    row.value = device.version;
     [section addFormRow:row];
     
     row = [XLFormRowDescriptor formRowDescriptorWithTag:@"privacy" rowType:XLFormRowDescriptorTypeSelectorPush title:@"Privacy Policy".localized];

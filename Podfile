@@ -10,7 +10,6 @@ target $project_name do
 	pod 'JLRoutes'
 	pod 'Masonry'
 	pod 'Protobuf'
-	pod 'Toast'
 	pod 'XLForm'
 
 	post_install do |installer|

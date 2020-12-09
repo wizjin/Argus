@@ -7,6 +7,7 @@
 
 #import "AGMFAModel.h"
 #import <CommonCrypto/CommonHMAC.h>
+#import "AGRouter.h"
 
 @interface AGMFAModel () {
 @private
@@ -137,6 +138,11 @@
 
 - (NSString *)url {
     return [self.data valueForKey:@"url"];
+}
+
+- (void)copyToPasteboard {
+    UIPasteboard.generalPasteboard.string = [self calcCode:time(NULL)];
+    [AGRouter.shared makeToast:@"Code copied".localized];
 }
 
 
