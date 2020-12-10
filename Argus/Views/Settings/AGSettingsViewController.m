@@ -7,6 +7,7 @@
 
 #import "AGSettingsViewController.h"
 #import <XLForm/XLForm.h>
+#import "AGSecurity.h"
 #import "AGDevice.h"
 #import "AGRouter.h"
 #import "AGTheme.h"
@@ -31,6 +32,10 @@
 
 @end
 
+@interface AGSettingsViewController () <XLFormDescriptorDelegate>
+
+@end
+
 @implementation AGSettingsViewController
 
 - (instancetype)init {
@@ -40,6 +45,21 @@
     return self;
 }
 
+#pragma mark - XLFormDescriptorDelegate
+-(void)formRowDescriptorValueHasChanged:(XLFormRowDescriptor *)formRow oldValue:(id)oldValue newValue:(id)newValue {
+    if ([formRow.tag isEqualToString:@"locker"]) {
+        AGSecurity.shared.hasLocker = [newValue boolValue];
+        if (AGSecurity.shared.hasLocker != [newValue boolValue]) {
+            @weakify(self);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                @strongify(self);
+                formRow.value = @(AGSecurity.shared.hasLocker);
+                [self reloadFormRow:formRow];
+            });
+        }
+    }
+}
+
 #pragma mark - Private Methods
 - (void)initializeForm {
     self.title = @"Settings".localized;
@@ -47,6 +67,8 @@
     XLFormRowDescriptor *row;
     XLFormSectionDescriptor *section;
     XLFormDescriptor *form = [XLFormDescriptor formDescriptorWithTitle:self.title];
+    form.delegate = self;
+
     // GENERAL
     [form addFormSection:(section = [XLFormSectionDescriptor formSectionWithTitle:@"GENERAL".localized])];
     row = [XLFormRowDescriptor formRowDescriptorWithTag:@"appearance" rowType:XLFormRowDescriptorTypeSelectorActionSheet title:@"Appearance".localized];
@@ -67,6 +89,10 @@
     row.onChangeBlock = ^(id oldValue, XLFormOptionsObject *newValue, XLFormRowDescriptor *rowDescriptor) {
         AGTheme.shared.userInterfaceStyle = [newValue.formValue integerValue];
     };
+    [section addFormRow:row];
+
+    row = [XLFormRowDescriptor formRowDescriptorWithTag:@"locker" rowType:XLFormRowDescriptorTypeBooleanSwitch title:@"Locker".localized];
+    row.value = @(AGSecurity.shared.hasLocker);
     [section addFormRow:row];
 
     // ABOUT

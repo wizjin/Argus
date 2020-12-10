@@ -10,11 +10,13 @@
 #import "AGMainViewController.h"
 #import "AGWebViewController.h"
 #import "AGMFAManager.h"
+#import "AGSecurity.h"
 #import "AGTheme.h"
 
 @interface AGRouter ()
 
 @property (nonatomic, readonly, strong) JLRoutes *routes;
+@property (nonatomic, nullable, strong) UIWindow *maskScreen;
 
 @end
 
@@ -31,6 +33,7 @@
 
 - (instancetype)init {
     if (self = [super init]) {
+        _maskScreen = nil;
         _routes = [JLRoutes routesForScheme:@".argus.router"];
         [self initRouters:self.routes];
     }
@@ -46,10 +49,21 @@
 }
 
 - (void)active {
+    if (!AGSecurity.shared.isLocking) {
+        [self hideMaskView];
+    } else {
+        [self showMaskView];
+        if (AGSecurity.shared.checkLocker) {
+            [self hideMaskView];
+        }
+    }
     [AGMFAManager.shared active];
 }
 
 - (void)deactive {
+    if (AGSecurity.shared.hasLocker) {
+        [self showMaskView];
+    }
     UIViewController *vc = self.window.rootViewController;
     if(vc.presentationController != nil) {
         [vc dismissViewControllerAnimated:YES completion:nil];
@@ -62,7 +76,9 @@
     self.window = window;
     window.backgroundColor = AGTheme.shared.backgroundColor;
     [self routeTo:@"/page/main"];
-    [window makeKeyAndVisible];
+    if (!AGSecurity.shared.isLocking) {
+        [self.window makeKeyAndVisible];
+    }
     return YES;
 }
 
@@ -103,6 +119,24 @@
 }
 
 #pragma mark - Private Methods
+- (void)showMaskView {
+    if (self.maskScreen == nil) {
+        self.maskScreen = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
+        self.maskScreen.windowLevel = UIWindowLevelStatusBar;
+        self.maskScreen.rootViewController = [UIViewController new];
+        self.maskScreen.rootViewController.view = [[UIVisualEffectView alloc] initWithEffect:[UIBlurEffect effectWithStyle:UIBlurEffectStyleLight]];
+    }
+    [self.window setHidden:YES];
+    [self.maskScreen makeKeyAndVisible];
+}
+
+- (void)hideMaskView {
+    if (self.maskScreen != nil) {
+        self.maskScreen = nil;
+        [self.window makeKeyAndVisible];
+    }
+}
+
 - (void)initRouters:(JLRoutes *)routes {
     [routes addRoute:@"/page/main" handler:^BOOL(NSDictionary<NSString *, id> *parameters) {
         if (self.window.rootViewController == nil) {

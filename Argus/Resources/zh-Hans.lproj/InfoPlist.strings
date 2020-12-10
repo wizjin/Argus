@@ -8,4 +8,5 @@
 CFBundleDisplayName="Argus";
 NSCameraUsageDescription="在您需要时，用来扫描二维码。";
 NSPhotoLibraryUsageDescription="在您需要时，从相册中获取二维码。";
+NSFaceIDUsageDescription="在您需要时，使用面容ID解锁应用。";
 ScanActionTitle="扫一扫";

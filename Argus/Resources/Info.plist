@@ -40,6 +40,8 @@
 	<true/>
 	<key>NSCameraUsageDescription</key>
 	<string>To scan a QR code when you need it.</string>
+	<key>NSFaceIDUsageDescription</key>
+	<string>Use FaceID to unlock app when you need it.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>To picker a QR code from photo when you need it.</string>
 	<key>UIApplicationShortcutItems</key>

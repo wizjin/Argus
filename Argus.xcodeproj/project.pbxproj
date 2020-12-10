@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6D14B7D92581C57E00240C1B /* AGSecurity.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D14B7D82581C57E00240C1B /* AGSecurity.m */; };
 		6D7DA0B2257F6008009AEFB1 /* AGQRCodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D7DA0B1257F6008009AEFB1 /* AGQRCodeView.m */; };
 		6D7DA0BD257F6F9F009AEFB1 /* AGModel.proto in Sources */ = {isa = PBXBuildFile; fileRef = 6D7DA0BC257F6F9F009AEFB1 /* AGModel.proto */; };
 		6D7DA0C5257FA16D009AEFB1 /* AGCodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D7DA0C4257FA16D009AEFB1 /* AGCodeView.m */; };
@@ -68,6 +69,8 @@
 		1E215E829799B64B52EC71B9 /* Pods-Argus.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Argus.release.xcconfig"; path = "Target Support Files/Pods-Argus/Pods-Argus.release.xcconfig"; sourceTree = "<group>"; };
 		26B8C60713CB2AB957AD54D7 /* libPods-Argus.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Argus.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		36CE2E938B433F3B2A760C40 /* Pods-Argus.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Argus.debug.xcconfig"; path = "Target Support Files/Pods-Argus/Pods-Argus.debug.xcconfig"; sourceTree = "<group>"; };
+		6D14B7D72581C57E00240C1B /* AGSecurity.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AGSecurity.h; sourceTree = "<group>"; };
+		6D14B7D82581C57E00240C1B /* AGSecurity.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AGSecurity.m; sourceTree = "<group>"; };
 		6D7DA0B0257F6008009AEFB1 /* AGQRCodeView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AGQRCodeView.h; sourceTree = "<group>"; };
 		6D7DA0B1257F6008009AEFB1 /* AGQRCodeView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AGQRCodeView.m; sourceTree = "<group>"; };
 		6D7DA0BC257F6F9F009AEFB1 /* AGModel.proto */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.protobuf; path = AGModel.proto; sourceTree = "<group>"; };
@@ -247,6 +250,8 @@
 				6D906E902574C3F200901052 /* AGTheme.m */,
 				6D906E932574C75F00901052 /* AGDevice.h */,
 				6D906E942574C75F00901052 /* AGDevice.m */,
+				6D14B7D72581C57E00240C1B /* AGSecurity.h */,
+				6D14B7D82581C57E00240C1B /* AGSecurity.m */,
 				6D906EE225751A0B00901052 /* AGMFAManager.h */,
 				6D906EE325751A0B00901052 /* AGMFAManager.m */,
 			);
@@ -489,6 +494,7 @@
 				6D906EC3257505D900901052 /* AGWebViewController.m in Sources */,
 				6DE9356A2576376F00FE1F4E /* AGMFATableView.m in Sources */,
 				6DE935752576707000FE1F4E /* UIView+AGExt.m in Sources */,
+				6D14B7D92581C57E00240C1B /* AGSecurity.m in Sources */,
 				6D906ED6257517E400901052 /* AGMFAModel.m in Sources */,
 				6D906EC8257506F600901052 /* AGWebViewRefresher.m in Sources */,
 				6D906E392573CF7100901052 /* AppDelegate.m in Sources */,
@@ -663,7 +669,7 @@
 				CODE_SIGN_ENTITLEMENTS = Argus/Argus.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = P4XS4AVCLW;
 				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/$(PROJECT_NAME)/Classes/$(PROJECT_NAME).pch";
 				INFOPLIST_FILE = "$(SRCROOT)/Argus/Resources/Info.plist";
@@ -671,7 +677,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.9.0;
+				MARKETING_VERSION = 0.9.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.wizjin.argus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -688,7 +694,7 @@
 				CODE_SIGN_ENTITLEMENTS = Argus/Argus.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = P4XS4AVCLW;
 				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/$(PROJECT_NAME)/Classes/$(PROJECT_NAME).pch";
 				INFOPLIST_FILE = "$(SRCROOT)/Argus/Resources/Info.plist";
@@ -696,7 +702,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.9.0;
+				MARKETING_VERSION = 0.9.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.wizjin.argus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

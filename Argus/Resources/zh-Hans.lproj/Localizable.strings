@@ -20,6 +20,7 @@
 "Default"="系统默认";
 "Light"="浅色";
 "Dark"="深色";
+"Locker"="加锁保护";
 "ABOUT"="关于";
 "Version"="版本";
 "Acknowledgements"="版权声明";
@@ -34,3 +35,4 @@
 "Add record success"="记录添加成功";
 "Record already exists"="记录已经存在";
 "Delete this record will NOT turn off OTP verification"="删除该条记录不会取消OTP验证";
+"Use password to unlock"="使用密码解锁";

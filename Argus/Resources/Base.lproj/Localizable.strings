@@ -20,6 +20,7 @@
 "Default"="Default";
 "Light"="Light";
 "Dark"="Dark";
+"Locker"="Locker";
 "ABOUT"="ABOUT";
 "Version"="Version";
 "Acknowledgements"="Acknowledgements";
@@ -34,3 +35,4 @@
 "Add record success"="Add record success";
 "Record already exists"="Record already exists";
 "Delete this record will NOT turn off OTP verification"="Delete this record will NOT turn off OTP verification";
+"Use password to unlock"="Use password to unlock";
