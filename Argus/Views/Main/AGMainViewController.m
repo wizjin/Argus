@@ -76,7 +76,7 @@ static NSString *const cellIdentifier = @"cell";
 #pragma mark - UITableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    [[AGMFAManager.shared.items objectAtIndex:indexPath.row] copyToPasteboard];
+    [AGMFAManager.shared copyToPasteboard:[AGMFAManager.shared.items objectAtIndex:indexPath.row]];
 }
 
 - (nullable UISwipeActionsConfiguration *)tableView:(UITableView *)tableView leadingSwipeActionsConfigurationForRowAtIndexPath:(NSIndexPath *)indexPath {

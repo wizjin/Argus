@@ -107,6 +107,13 @@
     }
 }
 
+- (void)copyToPasteboard:(nullable AGMFAModel *)item {
+    if (item != nil) {
+        [UIPasteboard.generalPasteboard setString:[item calcCode:time(NULL)]];
+        [AGRouter.shared makeToast:@"Code copied".localized];
+    }
+}
+
 - (void)active {
     [self loadRecords];
 }

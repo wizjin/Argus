@@ -10,6 +10,7 @@
 #import "AGCreatedLabel.h"
 #import "AGQRCodeView.h"
 #import "AGCodeView.h"
+#import "AGMFAManager.h"
 #import "AGTheme.h"
 
 @interface AGEditorViewController ()
@@ -127,7 +128,7 @@
 }
 
 - (void)actionDoCopy:(id)sender {
-    [self.model copyToPasteboard];
+    [AGMFAManager.shared copyToPasteboard:self.model];
 }
 
 - (void)actionRefresh:(id)sender {

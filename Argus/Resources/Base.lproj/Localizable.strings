@@ -32,6 +32,8 @@
 "Release to reload"="Release to reload";
 "Created at %@"="Created at %@";
 "NoMFA"="No MFA Found\nTap and add record";
+"NoMFATitle"="No MFA Record";
+"NoMFAWatch"="You can add record in the Argus app on your iPhone.";
 "Add record success"="Add record success";
 "Record already exists"="Record already exists";
 "Delete this record will NOT turn off OTP verification"="Delete this record will NOT turn off OTP verification";

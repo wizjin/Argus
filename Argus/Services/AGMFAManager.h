@@ -23,6 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (BOOL)openURL:(NSURL *)url;
 - (NSArray<AGMFAModel *> *)items;
 - (void)deleteItem:(AGMFAModel *)item completion:(void (^ __nullable)(void))completion;
+- (void)copyToPasteboard:(nullable AGMFAModel *)item;
 - (void)active;
 - (void)deactive;
 

@@ -32,6 +32,8 @@
 "Release to reload"="松开重载页面";
 "Created at %@"="创建于%@";
 "NoMFA"="没有MFA\n点击添加记录";
+"NoMFATitle"="没有MFA记录";
+"NoMFAWatch"="可以从iPhone上的Argus应用添加记录";
 "Add record success"="记录添加成功";
 "Record already exists"="记录已经存在";
 "Delete this record will NOT turn off OTP verification"="删除该条记录不会取消OTP验证";

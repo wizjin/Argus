@@ -46,7 +46,7 @@
     uint64_t t = [model calcT:now remainder:&r];
     if (self.lastT != t) {
         _lastT = t;
-        self.text = format([model calcCode:t]);
+        self.text = [model calcCode:t].formatSpace;
     }
     AGTheme *theme = AGTheme.shared;
     if (model.period > 0 && r <= 5) {
@@ -83,18 +83,6 @@
         self.animator = nil;
         self.alpha = 1.0;
     }
-}
-
-static inline NSString *format(NSString *code) {
-    NSMutableString *res = [[NSMutableString alloc] initWithCapacity:code.length + code.length/3];
-    for (int i = 0; i < code.length; i++) {
-        if (i%3 == 0 && i != 0) {
-            [res appendString:@" "];
-        }
-        unichar c = [code characterAtIndex:i];
-        [res appendFormat:@"%C", c];
-    }
-    return res;
 }
 
 

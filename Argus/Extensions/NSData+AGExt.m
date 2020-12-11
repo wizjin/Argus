@@ -7,6 +7,7 @@
 
 #import "NSData+AGExt.h"
 #import <zlib.h>
+#import <strings.h>
 
 #define kCompressChunkSize  4096
 #define kCompressLevel      Z_BEST_COMPRESSION
@@ -53,8 +54,11 @@
         status = deflate(&zStream, Z_FINISH);
     } while ((status == Z_BUF_ERROR) || (status == Z_OK));
     status = deflateEnd(&zStream);
-    assert((status == Z_OK) || (status == Z_STREAM_END));
-    outData.length = zStream.total_out;
+    if ((status == Z_OK) || (status == Z_STREAM_END)) {
+        outData.length = zStream.total_out;
+    } else {
+        outData.length = 0;
+    }
     return outData;
 }
 
@@ -157,5 +161,6 @@ static inline int base32_encode(const uint8_t *ptr, size_t len, uint8_t *outbuf,
     }
     return count;
 }
+
 
 @end

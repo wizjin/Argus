@@ -14,6 +14,18 @@
     return [NSBundle.mainBundle localizedStringForKey:self value:@"" table:nil];
 }
 
+- (NSString *)formatSpace {
+    NSMutableString *res = [[NSMutableString alloc] initWithCapacity:self.length + self.length/3];
+    for (int i = 0; i < self.length; i++) {
+        if (i%3 == 0 && i != 0) {
+            [res appendString:@" "];
+        }
+        unichar c = [self characterAtIndex:i];
+        [res appendFormat:@"%C", c];
+    }
+    return res;
+}
+
 - (NSString *)code {
     NSString *name = self;
     NSUInteger length = self.length;

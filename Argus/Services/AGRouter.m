@@ -8,6 +8,7 @@
 #import "AGRouter.h"
 #import <JLRoutes/JLRoutes.h>
 #import "AGMainViewController.h"
+#import "AGBlurViewController.h"
 #import "AGWebViewController.h"
 #import "AGMFAManager.h"
 #import "AGSecurity.h"
@@ -123,8 +124,7 @@
     if (self.maskScreen == nil) {
         self.maskScreen = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
         self.maskScreen.windowLevel = UIWindowLevelStatusBar;
-        self.maskScreen.rootViewController = [UIViewController new];
-        self.maskScreen.rootViewController.view = [[UIVisualEffectView alloc] initWithEffect:[UIBlurEffect effectWithStyle:UIBlurEffectStyleLight]];
+        self.maskScreen.rootViewController = [AGBlurViewController new];
     }
     [self.window setHidden:YES];
     [self.maskScreen makeKeyAndVisible];
@@ -132,8 +132,9 @@
 
 - (void)hideMaskView {
     if (self.maskScreen != nil) {
-        self.maskScreen = nil;
+        [self.maskScreen setHidden:YES];
         [self.window makeKeyAndVisible];
+        self.maskScreen = nil;
     }
 }
 
