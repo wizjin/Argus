@@ -21,11 +21,15 @@ NS_ASSUME_NONNULL_BEGIN
 + (instancetype)shared;
 - (BOOL)canOpenURL:(NSURL *)url;
 - (BOOL)openURL:(NSURL *)url;
-- (NSArray<AGMFAModel *> *)items;
+- (AGMFAModel *)itemAtIndex:(NSInteger)index;
+- (NSUInteger)itemCount;
 - (void)deleteItem:(AGMFAModel *)item completion:(void (^ __nullable)(void))completion;
 - (void)copyToPasteboard:(nullable AGMFAModel *)item;
 - (void)active;
 - (void)deactive;
+- (BOOL)hasWatch;
+- (BOOL)isWatchAppInstalled;
+- (BOOL)syncWatch;
 
 
 @end

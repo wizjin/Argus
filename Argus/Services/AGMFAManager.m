@@ -6,15 +6,16 @@
 //
 
 #import "AGMFAManager.h"
+#import <WatchConnectivity/WatchConnectivity.h>
 #import "AGModel.pbobjc.h"
+#import "AGMFAStorage.h"
 #import "AGDevice.h"
 #import "AGRouter.h"
 
-@interface AGMFAManager ()
+@interface AGMFAManager () <WCSessionDelegate>
 
-@property (nonatomic, readonly, strong) NSURL *storageURL;
-@property (nonatomic, readonly, strong) NSDate *lastUpdate;
-@property (nonatomic, readonly, strong) NSMutableArray<AGMFAModel *> *mfaItems;
+@property (nonatomic, readonly, strong) AGMFAStorage *storage;
+@property (nonatomic, readonly, strong) WCSession *session;
 
 @end
 
@@ -31,9 +32,14 @@
 
 - (instancetype)init {
     if (self = [super init]) {
-        _storageURL = [NSURL URLWithString:@"mfa.dat" relativeToURL:AGDevice.shared.docdir];
-        _mfaItems = [NSMutableArray new];
+        _storage = [[AGMFAStorage alloc] initWithURL:[NSURL URLWithString:@kAGMFAFileName relativeToURL:AGDevice.shared.docdir]];
         [self loadRecords];
+        _session = nil;
+        if (WCSession.isSupported) {
+            _session = WCSession.defaultSession;
+            self.session.delegate = self;
+            [self.session activateSession];
+        }
     }
     return self;
 }
@@ -93,13 +99,17 @@
     return res;
 }
 
-- (NSArray<AGMFAModel *> *)items {
-    return self.mfaItems;
+- (AGMFAModel *)itemAtIndex:(NSInteger)index {
+    return [self.storage itemAtIndex:index];
+}
+
+- (NSUInteger)itemCount {
+    return self.storage.count;
 }
 
 - (void)deleteItem:(AGMFAModel *)item completion:(void (^ __nullable)(void))completion {
     if (item != nil) {
-        [self.mfaItems removeObject:item];
+        [self.storage removeItem:item];
         [self saveRecords];
     }
     if (completion != nil) {
@@ -121,6 +131,35 @@
 - (void)deactive {
 }
 
+- (BOOL)hasWatch {
+    return (self.session != nil && self.session.isPaired);
+}
+
+- (BOOL)isWatchAppInstalled {
+    return (self.hasWatch && self.session.isWatchAppInstalled);
+}
+
+- (BOOL)syncWatch {
+    BOOL res = NO;
+    if (self.hasWatch) {
+        res = [self.session updateApplicationContext:@{ @"data": self.storage.fileData } error:nil];
+    }
+    return res;
+}
+
+#pragma mark - WCSessionDelegate
+- (void)session:(WCSession *)session activationDidCompleteWithState:(WCSessionActivationState)activationState error:(nullable NSError *)error {
+
+}
+
+- (void)sessionDidBecomeInactive:(WCSession *)session {
+
+}
+
+- (void)sessionDidDeactivate:(WCSession *)session {
+
+}
+
 #pragma mark - Private Methods
 - (void)notifyUpdated {
     @weakify(self);
@@ -135,8 +174,8 @@
 - (BOOL)insertItems:(NSArray<AGMFAModel *> *)models {
     BOOL res = NO;
     for (AGMFAModel *model in models) {
-        if (![self.mfaItems containsObject:model]) {
-            [self.mfaItems addObject:model];
+        if (![self.storage containsItem:model]) {
+            [self.storage addItem:model];
             res = YES;
         }
     }
@@ -148,50 +187,14 @@
 }
 
 - (void)loadRecords {
-    NSDate *date = self.fileLastUpdate;
-    if (![date isEqualToDate:self.lastUpdate]) {
-        _lastUpdate = date;
-        NSError *error = nil;
-        NSData *data = [[NSData dataWithContentsOfURL:self.storageURL options:NSDataReadingUncached error:&error] decompress];
-        if (data .length > 0) {
-            NSDictionary *item = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingFragmentsAllowed error:&error];
-            if (error == nil && item != nil) {
-                NSArray<NSDictionary *> *items = [item valueForKey:@"items"];
-                NSMutableArray<AGMFAModel *> *mfaItems = [NSMutableArray arrayWithCapacity:items.count];
-                for (NSDictionary *item in items) {
-                    AGMFAModel *mfa = [AGMFAModel modelWithData:item];
-                    if (mfa != nil) {
-                        [mfaItems addObject:mfa];
-                    }
-                }
-                _mfaItems = mfaItems;
-                [self notifyUpdated];
-            }
-        }
+    if (self.storage.changed && [self.storage load]) {
+        [self notifyUpdated];
     }
 }
 
 - (void)saveRecords {
-    NSMutableArray<NSDictionary *> *items = [NSMutableArray arrayWithCapacity:self.mfaItems.count];
-    for (AGMFAModel *model in self.mfaItems) {
-        [items addObject:model.data];
-    }
-    NSError *error = nil;
-    NSData *data = [[NSJSONSerialization dataWithJSONObject:@{ @"items": items } options:NSJSONWritingSortedKeys error:&error] compress];
-    if (error == nil && data.length > 0) {
-        [data writeToURL:self.storageURL atomically:YES];
-        _lastUpdate = self.fileLastUpdate;
-    }
-}
-
-- (NSDate *)fileLastUpdate {
-    NSDate *date;
-    NSError *error = nil;
-    [self.storageURL getResourceValue:&date forKey:NSURLContentModificationDateKey error:&error];
-    if (error != nil) {
-        date = nil;
-    }
-    return date;
+    [self.storage save];
+    [self syncWatch];
 }
 
 static inline NSString *buildURLWithParams(AGMOtpParameters *params) {

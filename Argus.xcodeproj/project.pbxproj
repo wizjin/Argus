@@ -53,6 +53,9 @@
 		6DCBAC67258387A000803292 /* AGBlurViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DCBAC66258387A000803292 /* AGBlurViewController.m */; };
 		6DCBAC712583A0C500803292 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6D906E432573CF7200901052 /* Assets.xcassets */; };
 		6DCBAC752583A0C600803292 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6D906E432573CF7200901052 /* Assets.xcassets */; };
+		6DCBAC792583DC9700803292 /* AGDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D906E942574C75F00901052 /* AGDevice.m */; };
+		6DCBAC8B2584ADC000803292 /* AGMFAStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DCBAC8A2584ADC000803292 /* AGMFAStorage.m */; };
+		6DCBAC982584B44400803292 /* AGMFAStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DCBAC8A2584ADC000803292 /* AGMFAStorage.m */; };
 		6DE9356A2576376F00FE1F4E /* AGMFATableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DE935692576376F00FE1F4E /* AGMFATableView.m */; };
 		6DE9356F25766C5E00FE1F4E /* AGMFAEmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DE9356E25766C5E00FE1F4E /* AGMFAEmptyView.m */; };
 		6DE935752576707000FE1F4E /* UIView+AGExt.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DE935742576707000FE1F4E /* UIView+AGExt.m */; };
@@ -203,6 +206,8 @@
 		6DCBAC0F2583629C00803292 /* CodeRowType.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CodeRowType.m; sourceTree = "<group>"; };
 		6DCBAC65258387A000803292 /* AGBlurViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AGBlurViewController.h; sourceTree = "<group>"; };
 		6DCBAC66258387A000803292 /* AGBlurViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AGBlurViewController.m; sourceTree = "<group>"; };
+		6DCBAC892584ADC000803292 /* AGMFAStorage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AGMFAStorage.h; sourceTree = "<group>"; };
+		6DCBAC8A2584ADC000803292 /* AGMFAStorage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AGMFAStorage.m; sourceTree = "<group>"; };
 		6DE935682576376F00FE1F4E /* AGMFATableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AGMFATableView.h; sourceTree = "<group>"; };
 		6DE935692576376F00FE1F4E /* AGMFATableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AGMFATableView.m; sourceTree = "<group>"; };
 		6DE9356D25766C5E00FE1F4E /* AGMFAEmptyView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AGMFAEmptyView.h; sourceTree = "<group>"; };
@@ -424,6 +429,8 @@
 				6D7DA0BC257F6F9F009AEFB1 /* AGModel.proto */,
 				6D906ED4257517E400901052 /* AGMFAModel.h */,
 				6D906ED5257517E400901052 /* AGMFAModel.m */,
+				6DCBAC892584ADC000803292 /* AGMFAStorage.h */,
+				6DCBAC8A2584ADC000803292 /* AGMFAStorage.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -692,6 +699,7 @@
 				6D7DA0C5257FA16D009AEFB1 /* AGCodeView.m in Sources */,
 				6D906E8D2574C32900901052 /* UIViewController+AGExt.m in Sources */,
 				6D906E782573E02100901052 /* NSString+AGExt.m in Sources */,
+				6DCBAC8B2584ADC000803292 /* AGMFAStorage.m in Sources */,
 				6D906E4A2573CF7200901052 /* main.m in Sources */,
 				6D906EE425751A0B00901052 /* AGMFAManager.m in Sources */,
 				6D906EB02574E90A00901052 /* AGAcknowledgementsViewController.m in Sources */,
@@ -711,6 +719,8 @@
 				6DCBABEC2583535200803292 /* ExtensionDelegate.m in Sources */,
 				6DCBAC5D2583782700803292 /* AGMFAModel.m in Sources */,
 				6DCBAC3025836C5B00803292 /* NSString+AGExt.m in Sources */,
+				6DCBAC982584B44400803292 /* AGMFAStorage.m in Sources */,
+				6DCBAC792583DC9700803292 /* AGDevice.m in Sources */,
 				6DCBABE92583535200803292 /* InterfaceController.m in Sources */,
 				6DCBAC102583629C00803292 /* CodeRowType.m in Sources */,
 			);

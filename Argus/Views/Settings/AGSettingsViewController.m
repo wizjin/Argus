@@ -7,6 +7,7 @@
 
 #import "AGSettingsViewController.h"
 #import <XLForm/XLForm.h>
+#import "AGMFAManager.h"
 #import "AGSecurity.h"
 #import "AGDevice.h"
 #import "AGRouter.h"
@@ -64,6 +65,8 @@
 - (void)initializeForm {
     self.title = @"Settings".localized;
     
+    AGTheme *theme = AGTheme.shared;
+    
     XLFormRowDescriptor *row;
     XLFormSectionDescriptor *section;
     XLFormDescriptor *form = [XLFormDescriptor formDescriptorWithTitle:self.title];
@@ -79,7 +82,7 @@
         [XLFormOptionsObject formOptionsObjectWithValue:@(UIUserInterfaceStyleDark) displayText:@"Dark".localized],
     ];
     for (XLFormOptionsObject *option in row.selectorOptions) {
-        if ([option.formValue integerValue] == AGTheme.shared.userInterfaceStyle) {
+        if ([option.formValue integerValue] == theme.userInterfaceStyle) {
             [row setValue:option];
             row.value = option;
             [self reloadFormRow:row];
@@ -93,6 +96,33 @@
 
     row = [XLFormRowDescriptor formRowDescriptorWithTag:@"locker" rowType:XLFormRowDescriptorTypeBooleanSwitch title:@"Locker".localized];
     row.value = @(AGSecurity.shared.hasLocker);
+    [section addFormRow:row];
+
+    // WATCH
+    [form addFormSection:(section = [XLFormSectionDescriptor formSectionWithTitle:@"WATCH".localized])];
+    section.hidden = [NSPredicate predicateWithBlock:^BOOL(id obj, NSDictionary<NSString *,id> *binds) {
+        return !AGMFAManager.shared.hasWatch;
+    }];
+
+    row = [XLFormRowDescriptor formRowDescriptorWithTag:@"appinstall" rowType:XLFormRowDescriptorTypeInfo title:@"No watch app installed".localized];
+    [row.cellConfig setObject:theme.minorLabelColor forKey:@"textLabel.textColor"];
+    row.hidden = [NSPredicate predicateWithBlock:^BOOL(id obj, NSDictionary<NSString *,id> *binds) {
+        return AGMFAManager.shared.isWatchAppInstalled;
+    }];
+    [section addFormRow:row];
+
+    row = [XLFormRowDescriptor formRowDescriptorWithTag:@"syncwatch" rowType:XLFormRowDescriptorTypeSelectorPush title:@"Force data sync".localized];
+    [row.cellConfig setObject:@(UITableViewCellAccessoryNone) forKey:@"accessoryType"];
+    row.cellClass = AGFormSelectorCell.class;
+    row.hidden = @"$appinstall.isHidden=NO";
+
+    row.action.formBlock = ^(XLFormRowDescriptor *row) {
+        if ([AGMFAManager.shared syncWatch]) {
+            [AGRouter.shared makeToast:@"Sync data success!".localized];
+        } else {
+            [AGRouter.shared makeToast:@"Sync data failed!".localized];
+        }
+    };
     [section addFormRow:row];
 
     // ABOUT

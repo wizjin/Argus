@@ -6,11 +6,14 @@
 //
 
 #import "NSData+AGExt.h"
+#import <CommonCrypto/CommonDigest.h>
 #import <zlib.h>
 #import <strings.h>
 
 #define kCompressChunkSize  4096
 #define kCompressLevel      Z_BEST_COMPRESSION
+
+static const char *tbl = "0123456789ABCDEF";
 
 @implementation NSData (AGExt)
 
@@ -32,6 +35,34 @@
     int len = base32_encode(self.bytes, self.length, data.mutableBytes, data.length);
     data.length = (len <= 0 ? 0 : len);
     return [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
+}
+
+- (NSData *)sha1 {
+    NSMutableData *data = [NSMutableData dataWithLength:CC_SHA1_DIGEST_LENGTH];
+    CC_SHA1(self.bytes, (CC_LONG)self.length, data.mutableBytes);
+    return data;
+}
+
+- (NSString *)hex {
+    NSString *res = @"";
+    size_t len = self.length;
+    if (len > 0) {
+        const uint8_t *ptr = self.bytes;
+        NSMutableData *data = [NSMutableData dataWithLength:sizeof(uint16_t)*len];
+        uint16_t *pout = data.mutableBytes;
+        if (pout != NULL) {
+            for (int i = 0; i < len; i++) {
+                uint8_t c = ptr[i];
+#if BYTE_ORDER == BIG_ENDIAN
+                pout[i] = (uint16_t)(tbl[c&0x0f]) | ((uint16_t)(tbl[(c>>4)&0x0f]) << 8);
+#else
+                pout[i] = ((uint16_t)(tbl[c&0x0f]) << 8) | (uint16_t)(tbl[(c>>4)&0x0f]);
+#endif
+            }
+            res = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];;
+        }
+    }
+    return res;
 }
 
 - (NSData *)compress {

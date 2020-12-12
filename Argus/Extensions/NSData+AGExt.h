@@ -13,8 +13,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (nullable instancetype)dataWithBase32EncodedString:(NSString *)base32String;
 - (NSString *)base32EncodedString;
-- (NSData *)compress API_UNAVAILABLE(watchos);
-- (NSData *)decompress API_UNAVAILABLE(watchos);
+- (NSData *)sha1;
+- (NSString *)hex;
+- (NSData *)compress;
+- (NSData *)decompress;
 
 
 @end

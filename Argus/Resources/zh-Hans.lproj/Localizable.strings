@@ -21,6 +21,11 @@
 "Light"="浅色";
 "Dark"="深色";
 "Locker"="加锁保护";
+"WATCH"="手表";
+"No watch app installed"="没有安装到Apple Watch";
+"Force data sync"="强制数据同步";
+"Sync data success!"="同步数据成功！";
+"Sync data failed!"="同步数据失败！";
 "ABOUT"="关于";
 "Version"="版本";
 "Acknowledgements"="版权声明";

@@ -6,15 +6,19 @@
 //
 
 #import "InterfaceController.h"
-#import "AGMFAModel.h"
+#import <WatchConnectivity/WatchConnectivity.h>
 #import "CodeRowType.h"
+#import "AGMFAStorage.h"
+#import "AGDevice.h"
 
-@interface InterfaceController ()
+@interface InterfaceController () <WCSessionDelegate>
 
 @property (weak, nonatomic) IBOutlet WKInterfaceLabel *emptyTitle;
 @property (weak, nonatomic) IBOutlet WKInterfaceLabel *emptyBody;
 @property (weak, nonatomic) IBOutlet WKInterfaceTable *codeTable;
-@property (nonatomic, readonly, strong) NSArray<AGMFAModel *> *items;
+
+@property (nonatomic, readonly, strong) AGMFAStorage *storage;
+@property (nonatomic, readonly, strong) WCSession *session;
 @property (nonatomic, nullable, strong) NSTimer *refreshTimer;
 
 @end
@@ -22,47 +26,34 @@
 
 @implementation InterfaceController
 
-- (void)awakeWithContext:(id)context {
-    uint64_t ts = (uint64_t)(NSDate.now.timeIntervalSince1970 * 1000);
-    _items = @[
-        [AGMFAModel modelWithData:@{
-            @"created": @(ts),
-            @"url": @"otpauth://totp/Example:alice@google.com?secret=JBSWY3DPEHPK3PXP&issuer=Example",
-        }],
-        [AGMFAModel modelWithData:@{
-            @"created": @(ts+1),
-            @"url": @"otpauth://totp/Github:alice@google.com?secret=JBSWY3DPEHPK3PXT&issuer=Github",
-        }],
-        [AGMFAModel modelWithData:@{
-            @"created": @(ts+1),
-            @"url": @"otpauth://totp/Docker:alice@google.com?secret=JBSWY3DPEHPK3QXT&issuer=Github",
-        }],
-    ];
-    
-    [self.emptyTitle setText:@"NoMFATitle".localized];
-    [self.emptyBody setText:@"NoMFAWatch".localized];
-
-    if (self.items.count <= 0) {
-        [self.emptyTitle setHidden:NO];
-        [self.emptyBody setHidden:NO];
-        [self.codeTable setHidden:YES];
-    } else {
-        [self.emptyTitle setHidden:YES];
-        [self.emptyBody setHidden:YES];
-        [self.codeTable setHidden:NO];
-        [self.codeTable setNumberOfRows:self.items.count withRowType:@"CodeRowType"];
-        for(NSInteger i = 0; i < self.codeTable.numberOfRows; i++) {
-            [[self.codeTable rowControllerAtIndex:i] setModel:[self.items objectAtIndex:i]];
+- (instancetype)init {
+    if (self = [super init]) {
+        _storage = [[AGMFAStorage alloc] initWithURL:[NSURL URLWithString:@kAGMFAFileName relativeToURL:AGDevice.shared.docdir]];
+        _refreshTimer = nil;
+        if (!WCSession.isSupported) {
+            _session = nil;
+        } else {
+            _session = WCSession.defaultSession;
+            self.session.delegate = self;
+            [self.session activateSession];
         }
     }
+    return self;
+}
+
+- (void)awakeWithContext:(id)context {
+    [self.emptyTitle setText:@"NoMFATitle".localized];
+    [self.emptyBody setText:@"NoMFAWatch".localized];
+    [self.emptyTitle setHidden:NO];
+    [self.emptyBody setHidden:NO];
+    [self.codeTable setHidden:YES];
 }
 
 - (void)willActivate {
-    // This method is called when watch view controller is about to be visible to user
+    [self updateContext];
 }
 
 - (void)didDeactivate {
-    // This method is called when watch view controller is no longer visible
 }
 
 - (void)didAppear {
@@ -71,6 +62,18 @@
 
 - (void)willDisappear {
     [self stopRefreshTimer];
+}
+
+#pragma mark - WCSessionDelegate
+- (void)session:(WCSession *)session activationDidCompleteWithState:(WCSessionActivationState)activationState error:(nullable NSError *)error {
+}
+
+- (void)session:(WCSession *)session didReceiveApplicationContext:(NSDictionary<NSString *, id> *)applicationContext {
+    @weakify(self);
+    dispatch_async(dispatch_get_main_queue(), ^{
+        @strongify(self);
+        [self updateContext];
+    });
 }
 
 #pragma mark - Private Methods
@@ -91,6 +94,36 @@
     time_t now = time(NULL);
     for(NSInteger i = 0; i < self.codeTable.numberOfRows; i++) {
         [[self.codeTable rowControllerAtIndex:i] update:now];
+    }
+}
+
+- (void)updateContext {
+    if (self.session != nil && self.session.receivedApplicationContext != nil) {
+        id data = [self.session.receivedApplicationContext objectForKey:@"data"];
+        if (data != nil && [data isKindOfClass:NSData.class]) {
+            [self reloadData]; // TODO: fix cache
+            if ([self.storage saveData:data]) {
+                [self reloadData];
+            }
+        }
+    }
+}
+
+- (void)reloadData {
+    if (self.storage.changed && [self.storage load]) {
+        if (self.storage.count <= 0) {
+            [self.emptyTitle setHidden:NO];
+            [self.emptyBody setHidden:NO];
+            [self.codeTable setHidden:YES];
+        } else {
+            [self.emptyTitle setHidden:YES];
+            [self.emptyBody setHidden:YES];
+            [self.codeTable setHidden:NO];
+            [self.codeTable setNumberOfRows:self.storage.count withRowType:@"CodeRowType"];
+            for(NSInteger i = 0; i < self.codeTable.numberOfRows; i++) {
+                [[self.codeTable rowControllerAtIndex:i] setModel:[self.storage itemAtIndex:i]];
+            }
+        }
     }
 }
 

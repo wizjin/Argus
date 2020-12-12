@@ -12,7 +12,7 @@
             <objects>
                 <controller id="AgC-eL-Hgc" customClass="InterfaceController">
                     <items>
-                        <table alignment="left" id="BMA-DO-cva">
+                        <table alignment="left" hidden="YES" id="BMA-DO-cva">
                             <items>
                                 <tableRow identifier="CodeRowType" selectable="NO" id="pBF-2L-Nk0" customClass="CodeRowType">
                                     <group key="rootItem" width="1" height="0.0" alignment="left" layout="vertical" id="ICo-Bf-ZYi">

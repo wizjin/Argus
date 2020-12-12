@@ -21,6 +21,11 @@
 "Light"="Light";
 "Dark"="Dark";
 "Locker"="Locker";
+"WATCH"="WATCH";
+"No watch app installed"="No watch app installed";
+"Force data sync"="Force data sync";
+"Sync data success!"="Sync data success!";
+"Sync data failed!"="Sync data failed!";
 "ABOUT"="ABOUT";
 "Version"="Version";
 "Acknowledgements"="Acknowledgements";

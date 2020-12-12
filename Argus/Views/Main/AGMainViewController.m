@@ -76,7 +76,7 @@ static NSString *const cellIdentifier = @"cell";
 #pragma mark - UITableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    [AGMFAManager.shared copyToPasteboard:[AGMFAManager.shared.items objectAtIndex:indexPath.row]];
+    [AGMFAManager.shared copyToPasteboard:[AGMFAManager.shared itemAtIndex:indexPath.row]];
 }
 
 - (nullable UISwipeActionsConfiguration *)tableView:(UITableView *)tableView leadingSwipeActionsConfigurationForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -93,13 +93,13 @@ static NSString *const cellIdentifier = @"cell";
 
 #pragma mark - UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return AGMFAManager.shared.items.count;
+    return AGMFAManager.shared.itemCount;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     AGMFATableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (cell != nil) {
-        cell.model = [AGMFAManager.shared.items objectAtIndex:indexPath.row];
+        cell.model = [AGMFAManager.shared itemAtIndex:indexPath.row];
         [self.refreshItems addObject:cell];
     }
     return cell;

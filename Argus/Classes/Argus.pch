@@ -9,6 +9,7 @@
 #define __ARGUS_PCH__
 
 #define kAGPrivacyURL   "https://argus.wizjin.com/privacy.html"
+#define kAGMFAFileName  "mfa.dat"
 
 #if DEBUG
 #   define ext_keywordify   autoreleasepool {}
