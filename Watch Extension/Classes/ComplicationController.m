@@ -6,16 +6,22 @@
 //
 
 #import "ComplicationController.h"
+#import "Theme.h"
 
 @implementation ComplicationController
 
 #pragma mark - Complication Configuration
 
 - (void)getComplicationDescriptorsWithHandler:(void (^)(NSArray<CLKComplicationDescriptor *> * _Nonnull))handler {
+    NSMutableArray *families = [NSMutableArray arrayWithArray:CLKAllComplicationFamilies()];
+    [families removeObject:@(CLKComplicationFamilyModularLarge)];
+    [families removeObject:@(CLKComplicationFamilyUtilitarianLarge)];
+    [families removeObject:@(CLKComplicationFamilyExtraLarge)];
+    [families removeObject:@(CLKComplicationFamilyGraphicExtraLarge)];
     NSArray<CLKComplicationDescriptor *> *descriptors = @[
         [[CLKComplicationDescriptor alloc] initWithIdentifier:@"complication"
                                                   displayName:@"Argus"
-                                            supportedFamilies:CLKAllComplicationFamilies()]
+                                            supportedFamilies:families]
         // Multiple complication support can be added here with more descriptors
     ];
     
@@ -30,7 +36,6 @@
 #pragma mark - Timeline Configuration
 
 - (void)getTimelineEndDateForComplication:(CLKComplication *)complication withHandler:(void(^)(NSDate * __nullable date))handler {
-    // Call the handler with the last entry date you can currently provide or nil if you can't support future timelines
     handler(nil);
 }
 
@@ -42,20 +47,75 @@
 #pragma mark - Timeline Population
 
 - (void)getCurrentTimelineEntryForComplication:(CLKComplication *)complication withHandler:(void(^)(CLKComplicationTimelineEntry * __nullable))handler {
-    // Call the handler with the current timeline entry
-    handler(nil);
+    [self getLocalizableSampleTemplateForComplication:complication withHandler:^(CLKComplicationTemplate *_Nullable complicationTemplate) {
+        if (complicationTemplate == nil) {
+            handler(nil);
+        } else {
+            CLKComplicationTimelineEntry *entry = [CLKComplicationTimelineEntry new];
+            entry.complicationTemplate = complicationTemplate;
+            entry.date = NSDate.now;
+            handler(entry);
+        }
+    }];
 }
 
-- (void)getTimelineEntriesForComplication:(CLKComplication *)complication afterDate:(NSDate *)date limit:(NSUInteger)limit withHandler:(void(^)(NSArray<CLKComplicationTimelineEntry *> * __nullable entries))handler {
-    // Call the handler with the timeline entries after the given date
-    handler(nil);
-}
+//- (void)getTimelineEntriesForComplication:(CLKComplication *)complication afterDate:(NSDate *)date limit:(NSUInteger)limit withHandler:(void(^)(NSArray<CLKComplicationTimelineEntry *> * __nullable entries))handler {
+//    // Call the handler with the timeline entries after the given date
+//    handler(nil);
+//}
 
 #pragma mark - Sample Templates
 
 - (void)getLocalizableSampleTemplateForComplication:(CLKComplication *)complication withHandler:(void(^)(CLKComplicationTemplate * __nullable complicationTemplate))handler {
-    // This method will be called once per supported complication, and the results will be cached
-    handler(nil);
+    switch (complication.family) {
+        case CLKComplicationFamilyModularSmall:
+            handler([CLKComplicationTemplateModularSmallSimpleImage templateWithImageProvider:[self imageProvider:@"Modular"]]);
+            break;
+        case CLKComplicationFamilyModularLarge:
+            handler(nil);
+            break;
+        case CLKComplicationFamilyUtilitarianSmall:
+            handler([CLKComplicationTemplateUtilitarianSmallSquare templateWithImageProvider:[self imageProvider:@"Utilitarian"]]);
+            break;
+        case CLKComplicationFamilyUtilitarianSmallFlat:
+            handler([CLKComplicationTemplateUtilitarianSmallFlat templateWithTextProvider:[CLKTextProvider textProviderWithFormat:@"Argus"] imageProvider:[self imageProvider:@"Utilitarian"]]);
+            break;
+        case CLKComplicationFamilyUtilitarianLarge:
+            handler(nil);
+            break;
+        case CLKComplicationFamilyCircularSmall:
+            handler([CLKComplicationTemplateCircularSmallSimpleImage templateWithImageProvider:[self imageProvider:@"Circular"]]);
+            break;
+        case CLKComplicationFamilyExtraLarge:
+            handler(nil);
+            break;
+        case CLKComplicationFamilyGraphicCorner:
+            handler([CLKComplicationTemplateGraphicCornerTextImage templateWithTextProvider:[CLKTextProvider textProviderWithFormat:@"Argus"] imageProvider:[self imageColorProvider:@"Graphic Corner"]]);
+            break;
+        case CLKComplicationFamilyGraphicBezel:
+            handler([CLKComplicationTemplateGraphicBezelCircularText templateWithCircularTemplate:[CLKComplicationTemplateGraphicCircularImage templateWithImageProvider:[self imageColorProvider:@"Graphic Circular"]]]);
+            break;
+        case CLKComplicationFamilyGraphicCircular:
+            handler([CLKComplicationTemplateGraphicCircularImage templateWithImageProvider:[self imageColorProvider:@"Graphic Circular"]]);
+            break;
+        case CLKComplicationFamilyGraphicRectangular:
+            handler([CLKComplicationTemplateGraphicRectangularFullImage templateWithImageProvider:[self imageColorProvider:@"Graphic Circular"]]);
+            break;
+        case CLKComplicationFamilyGraphicExtraLarge:
+            handler(nil);
+            break;
+    }
 }
+
+#pragma mark - Private Mehods
+- (CLKImageProvider *)imageProvider:(NSString *)name {
+    CLKImageProvider *provider = [CLKImageProvider imageProviderWithOnePieceImage:[UIImage imageNamed:[NSString stringWithFormat:@"Complication/%@", name]]];
+    return provider;
+}
+
+- (CLKFullColorImageProvider *)imageColorProvider:(NSString *)name {
+    return [CLKFullColorImageProvider providerWithFullColorImage:[UIImage imageNamed:[NSString stringWithFormat:@"Complication/%@", name]]];
+}
+
 
 @end

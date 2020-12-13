@@ -56,6 +56,7 @@
 		6DCBAC792583DC9700803292 /* AGDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D906E942574C75F00901052 /* AGDevice.m */; };
 		6DCBAC8B2584ADC000803292 /* AGMFAStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DCBAC8A2584ADC000803292 /* AGMFAStorage.m */; };
 		6DCBAC982584B44400803292 /* AGMFAStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DCBAC8A2584ADC000803292 /* AGMFAStorage.m */; };
+		6DCBACA12585E27A00803292 /* Theme.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DCBACA02585E27A00803292 /* Theme.m */; };
 		6DE9356A2576376F00FE1F4E /* AGMFATableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DE935692576376F00FE1F4E /* AGMFATableView.m */; };
 		6DE9356F25766C5E00FE1F4E /* AGMFAEmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DE9356E25766C5E00FE1F4E /* AGMFAEmptyView.m */; };
 		6DE935752576707000FE1F4E /* UIView+AGExt.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DE935742576707000FE1F4E /* UIView+AGExt.m */; };
@@ -208,6 +209,8 @@
 		6DCBAC66258387A000803292 /* AGBlurViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AGBlurViewController.m; sourceTree = "<group>"; };
 		6DCBAC892584ADC000803292 /* AGMFAStorage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AGMFAStorage.h; sourceTree = "<group>"; };
 		6DCBAC8A2584ADC000803292 /* AGMFAStorage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AGMFAStorage.m; sourceTree = "<group>"; };
+		6DCBAC9F2585E27A00803292 /* Theme.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Theme.h; sourceTree = "<group>"; };
+		6DCBACA02585E27A00803292 /* Theme.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Theme.m; sourceTree = "<group>"; };
 		6DE935682576376F00FE1F4E /* AGMFATableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AGMFATableView.h; sourceTree = "<group>"; };
 		6DE935692576376F00FE1F4E /* AGMFATableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AGMFATableView.m; sourceTree = "<group>"; };
 		6DE9356D25766C5E00FE1F4E /* AGMFAEmptyView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AGMFAEmptyView.h; sourceTree = "<group>"; };
@@ -458,6 +461,8 @@
 		6DCBAC2525836C0E00803292 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				6DCBAC9F2585E27A00803292 /* Theme.h */,
+				6DCBACA02585E27A00803292 /* Theme.m */,
 				6DCBAC0E2583629C00803292 /* CodeRowType.h */,
 				6DCBAC0F2583629C00803292 /* CodeRowType.m */,
 				6DCBABE72583535200803292 /* InterfaceController.h */,
@@ -717,6 +722,7 @@
 				6DCBABEF2583535200803292 /* ComplicationController.m in Sources */,
 				6DCBAC6125837C3700803292 /* NSData+AGExt.m in Sources */,
 				6DCBABEC2583535200803292 /* ExtensionDelegate.m in Sources */,
+				6DCBACA12585E27A00803292 /* Theme.m in Sources */,
 				6DCBAC5D2583782700803292 /* AGMFAModel.m in Sources */,
 				6DCBAC3025836C5B00803292 /* NSString+AGExt.m in Sources */,
 				6DCBAC982584B44400803292 /* AGMFAStorage.m in Sources */,
@@ -960,7 +966,7 @@
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 7.1;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = Debug;
 		};
@@ -981,7 +987,7 @@
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 7.1;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = Release;
 		};
@@ -1005,7 +1011,7 @@
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 7.1;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = Debug;
 		};
@@ -1029,7 +1035,7 @@
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 7.1;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = Release;
 		};

@@ -51,9 +51,11 @@
 
 - (void)willActivate {
     [self updateContext];
+    [self startRefreshTimer];
 }
 
 - (void)didDeactivate {
+    [self stopRefreshTimer];
 }
 
 - (void)didAppear {

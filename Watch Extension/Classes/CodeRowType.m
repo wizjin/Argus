@@ -6,6 +6,7 @@
 //
 
 #import "CodeRowType.h"
+#import "Theme.h"
 
 @interface CodeRowType ()
 
@@ -14,15 +15,6 @@
 @end
 
 @implementation CodeRowType
-
-+ (UIColor *)tinColor {
-    static UIColor *color = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        color = [UIColor colorNamed:@"AccentColor"];
-    });
-    return color;
-}
 
 - (void)setModel:(AGMFAModel *)model {
     if (_model != model) {
@@ -33,7 +25,7 @@
         [self.accountLabel setText:model.detail];
         [self.timerLabel setText:@""];
         [self.codeLabel setText:@"--- ---"];
-        [self.codeLabel setTextColor:CodeRowType.tinColor];
+        [self.codeLabel setTextColor:Theme.tintColor];
     }
 }
 
@@ -47,7 +39,7 @@
     if (self.model.period > 0 && r <= 5) {
         [self.codeLabel setTextColor:UIColor.redColor];
     } else {
-        [self.codeLabel setTextColor:CodeRowType.tinColor];
+        [self.codeLabel setTextColor:Theme.tintColor];
     }
     [self.timerLabel setText:[@(r) stringValue]];
 }
