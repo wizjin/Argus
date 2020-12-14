@@ -1,0 +1,45 @@
+/* 
+  Localizable.strings (Chinese, Simplified)
+  Argus
+
+  Created by WizJin on 2020/11/29.
+  
+*/
+"OK"="确定";
+"Done"="完成";
+"Close"="关闭";
+"Cancel"="取消";
+"Delete"="删除";
+"Enable"="启用";
+"Disable"="禁用";
+"Settings"="设置";
+"Scan QR code"="扫描二维码";
+"Manual entry"="手工输入";
+"GENERAL"="通用";
+"Appearance"="外观";
+"Default"="系统默认";
+"Light"="浅色";
+"Dark"="深色";
+"Locker"="加锁保护";
+"WATCH"="手表";
+"No watch app installed"="没有安装到Apple Watch";
+"Force data sync"="强制数据同步";
+"Sync data success!"="同步数据成功！";
+"Sync data failed!"="同步数据失败！";
+"ABOUT"="关于";
+"Version"="版本";
+"Acknowledgements"="版权声明";
+"Privacy Policy"="隐私协议";
+"No QR code"="没有发现二维码";
+"Code copied"="代码已复制";
+"Can't open url"="无法打开url";
+"Tap to reload"="轻触重载页面";
+"Release to reload"="松开重载页面";
+"Created at %@"="创建于%@";
+"NoMFA"="没有MFA\n点击添加记录";
+"NoMFATitle"="没有MFA记录";
+"NoMFAWatch"="可以从iPhone上的Argus应用添加记录";
+"Add record success"="记录添加成功";
+"Record already exists"="记录已经存在";
+"Delete this record will NOT turn off OTP verification"="删除该条记录不会取消OTP验证";
+"Use password to unlock"="使用密码解锁";

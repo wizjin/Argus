@@ -1,0 +1,44 @@
+//
+//  Argus.pch
+//  Argus
+//
+//  Created by WizJin on 2020/11/29.
+//
+
+#ifndef __ARGUS_PCH__
+#define __ARGUS_PCH__
+
+#define kAGPrivacyURL   "https://argus.wizjin.com/privacy.html"
+#define kAGMFAFileName  "mfa.dat"
+
+#if DEBUG
+#   define ext_keywordify   autoreleasepool {}
+#else
+#   define ext_keywordify   try {} @catch (...) {}
+#endif
+
+#define weakify(_x)         ext_keywordify __weak __typeof__(_x) __weak_##_x##__ = _x;
+#define strongify(_x)       ext_keywordify __strong __typeof__(_x) _x = __weak_##_x##__;
+
+#ifdef __OBJC__
+
+#if __has_include(<Foundation/NSData.h>)
+#   import "NSData+AGExt.h"
+#endif
+
+#if __has_include(<Foundation/NSString.h>)
+#   import "NSString+AGExt.h"
+#endif
+
+#if __has_include(<UIKit/UIView.h>)
+#   import <Masonry/Masonry.h>
+#   import "UIView+AGExt.h"
+#endif
+
+#if __has_include(<UIKit/UIViewController.h>)
+#   import "UIViewController+AGExt.h"
+#endif
+
+#endif /* __OBJC__ */
+
+#endif /* __ARGUS_PCH__ */

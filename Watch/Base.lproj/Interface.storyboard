@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="17506" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
+    <device id="watch38"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="17500"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+    </dependencies>
+    <scenes>
+        <!--Interface Controller-->
+        <scene sceneID="aou-V4-d1y">
+            <objects>
+                <controller id="AgC-eL-Hgc" customClass="InterfaceController">
+                    <items>
+                        <table alignment="left" hidden="YES" id="BMA-DO-cva">
+                            <items>
+                                <tableRow identifier="CodeRowType" selectable="NO" id="pBF-2L-Nk0" customClass="CodeRowType">
+                                    <group key="rootItem" width="1" height="0.0" alignment="left" layout="vertical" id="ICo-Bf-ZYi">
+                                        <items>
+                                            <separator alignment="left" id="vBS-c2-Q7d">
+                                                <color key="color" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </separator>
+                                            <label width="1" alignment="left" text="title" textAlignment="left" id="4bM-SJ-4gD">
+                                                <fontDescription key="font" type="system" pointSize="10"/>
+                                            </label>
+                                            <label alignment="left" verticalAlignment="center" text="--- --- --" textAlignment="left" baselineAdjustment="alignCenters" id="nmj-Tr-gbG">
+                                                <color key="textColor" name="AccentColor"/>
+                                                <fontDescription key="font" type="system" weight="semibold" pointSize="32"/>
+                                            </label>
+                                            <group width="1" alignment="left" verticalAlignment="bottom" id="lfS-pC-N5E" userLabel="Content">
+                                                <items>
+                                                    <label alignment="left" verticalAlignment="center" text="account" textAlignment="left" id="dpi-J4-hIV">
+                                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <fontDescription key="font" type="system" pointSize="8"/>
+                                                    </label>
+                                                    <label alignment="right" alpha="0.80000000000000004" text="30" textAlignment="right" id="Mwp-b7-efI">
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <fontDescription key="font" type="system" pointSize="12"/>
+                                                    </label>
+                                                </items>
+                                            </group>
+                                            <separator alignment="left" verticalAlignment="bottom" id="cyh-5y-jpT">
+                                                <color key="color" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </separator>
+                                        </items>
+                                    </group>
+                                    <connections>
+                                        <outlet property="accountLabel" destination="dpi-J4-hIV" id="WrL-DJ-NZM"/>
+                                        <outlet property="codeLabel" destination="nmj-Tr-gbG" id="h9e-Cd-BRm"/>
+                                        <outlet property="timerLabel" destination="Mwp-b7-efI" id="IgY-gX-fQ7"/>
+                                        <outlet property="titleLabel" destination="4bM-SJ-4gD" id="Ye0-6O-hUE"/>
+                                    </connections>
+                                </tableRow>
+                            </items>
+                        </table>
+                        <label alignment="center" verticalAlignment="center" text="Title" textAlignment="center" id="igg-OR-9fR">
+                            <fontDescription key="font" style="UICTFontTextStyleTitle3"/>
+                        </label>
+                        <label alignment="center" verticalAlignment="center" text="NoMFA" textAlignment="center" numberOfLines="0" id="7Jt-Rf-t2K">
+                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <fontDescription key="font" style="UICTFontTextStyleBody"/>
+                        </label>
+                    </items>
+                    <connections>
+                        <outlet property="codeTable" destination="BMA-DO-cva" id="ioy-Fy-WOs"/>
+                        <outlet property="emptyBody" destination="7Jt-Rf-t2K" id="icM-Xb-aTF"/>
+                        <outlet property="emptyTitle" destination="igg-OR-9fR" id="19D-Lb-t4X"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="-173" y="-20"/>
+        </scene>
+    </scenes>
+    <resources>
+        <namedColor name="AccentColor">
+            <color red="0.039215686274509803" green="0.51764705882352946" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

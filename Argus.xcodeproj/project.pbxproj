@@ -1,0 +1,1084 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 52;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		6D14B7D92581C57E00240C1B /* AGSecurity.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D14B7D82581C57E00240C1B /* AGSecurity.m */; };
+		6D7DA0B2257F6008009AEFB1 /* AGQRCodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D7DA0B1257F6008009AEFB1 /* AGQRCodeView.m */; };
+		6D7DA0BD257F6F9F009AEFB1 /* AGModel.proto in Sources */ = {isa = PBXBuildFile; fileRef = 6D7DA0BC257F6F9F009AEFB1 /* AGModel.proto */; };
+		6D7DA0C5257FA16D009AEFB1 /* AGCodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D7DA0C4257FA16D009AEFB1 /* AGCodeView.m */; };
+		6D7DA0CB257FA871009AEFB1 /* AGCreatedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D7DA0CA257FA871009AEFB1 /* AGCreatedLabel.m */; };
+		6D906E392573CF7100901052 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D906E382573CF7100901052 /* AppDelegate.m */; };
+		6D906E3F2573CF7100901052 /* AGViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D906E3E2573CF7100901052 /* AGViewController.m */; };
+		6D906E442573CF7200901052 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6D906E432573CF7200901052 /* Assets.xcassets */; };
+		6D906E472573CF7200901052 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6D906E452573CF7200901052 /* LaunchScreen.storyboard */; };
+		6D906E4A2573CF7200901052 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D906E492573CF7200901052 /* main.m */; };
+		6D906E5F2573D7CD00901052 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6D906E5D2573D7CD00901052 /* InfoPlist.strings */; };
+		6D906E642573D84400901052 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6D906E622573D84400901052 /* Localizable.strings */; };
+		6D906E692573DC5800901052 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 6D906E682573DC5800901052 /* Settings.bundle */; };
+		6D906E782573E02100901052 /* NSString+AGExt.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D906E772573E02100901052 /* NSString+AGExt.m */; };
+		6D906E852574AE0700901052 /* AGRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D906E842574AE0700901052 /* AGRouter.m */; };
+		6D906E892574B02B00901052 /* AGMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D906E882574B02B00901052 /* AGMainViewController.m */; };
+		6D906E8D2574C32900901052 /* UIViewController+AGExt.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D906E8C2574C32900901052 /* UIViewController+AGExt.m */; };
+		6D906E912574C3F200901052 /* AGTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D906E902574C3F200901052 /* AGTheme.m */; };
+		6D906E952574C75F00901052 /* AGDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D906E942574C75F00901052 /* AGDevice.m */; };
+		6D906E992574CAB900901052 /* AGMFATableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D906E982574CAB900901052 /* AGMFATableViewCell.m */; };
+		6D906EA72574D7C400901052 /* AGSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D906EA62574D7C400901052 /* AGSettingsViewController.m */; };
+		6D906EAC2574E01900901052 /* AGScanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D906EAB2574E01900901052 /* AGScanViewController.m */; };
+		6D906EB02574E90A00901052 /* AGAcknowledgementsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D906EAF2574E90A00901052 /* AGAcknowledgementsViewController.m */; };
+		6D906EBD2574FF3200901052 /* AGEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D906EBC2574FF3200901052 /* AGEditorViewController.m */; };
+		6D906EC3257505D900901052 /* AGWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D906EC2257505D900901052 /* AGWebViewController.m */; };
+		6D906EC8257506F600901052 /* AGWebViewRefresher.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D906EC7257506F600901052 /* AGWebViewRefresher.m */; };
+		6D906ED6257517E400901052 /* AGMFAModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D906ED5257517E400901052 /* AGMFAModel.m */; };
+		6D906EDA2575186B00901052 /* NSData+AGExt.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D906ED92575186B00901052 /* NSData+AGExt.m */; };
+		6D906EDF2575198F00901052 /* AGCountdownView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D906EDE2575198F00901052 /* AGCountdownView.m */; };
+		6D906EE425751A0B00901052 /* AGMFAManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D906EE325751A0B00901052 /* AGMFAManager.m */; };
+		6DCBABDA2583535100803292 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6DCBABD82583535100803292 /* Interface.storyboard */; };
+		6DCBABE32583535200803292 /* Watch Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 6DCBABE22583535200803292 /* Watch Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		6DCBABE92583535200803292 /* InterfaceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DCBABE82583535200803292 /* InterfaceController.m */; };
+		6DCBABEC2583535200803292 /* ExtensionDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DCBABEB2583535200803292 /* ExtensionDelegate.m */; };
+		6DCBABEF2583535200803292 /* ComplicationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DCBABEE2583535200803292 /* ComplicationController.m */; };
+		6DCBABF12583535200803292 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6DCBABF02583535200803292 /* Assets.xcassets */; };
+		6DCBABF52583535200803292 /* Watch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 6DCBABD62583535100803292 /* Watch.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		6DCBAC102583629C00803292 /* CodeRowType.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DCBAC0F2583629C00803292 /* CodeRowType.m */; };
+		6DCBAC3025836C5B00803292 /* NSString+AGExt.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D906E772573E02100901052 /* NSString+AGExt.m */; };
+		6DCBAC3425836D3400803292 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6D906E622573D84400901052 /* Localizable.strings */; };
+		6DCBAC3B25836D8300803292 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6DCBABDB2583535100803292 /* Assets.xcassets */; };
+		6DCBAC5D2583782700803292 /* AGMFAModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D906ED5257517E400901052 /* AGMFAModel.m */; };
+		6DCBAC6125837C3700803292 /* NSData+AGExt.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D906ED92575186B00901052 /* NSData+AGExt.m */; };
+		6DCBAC67258387A000803292 /* AGBlurViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DCBAC66258387A000803292 /* AGBlurViewController.m */; };
+		6DCBAC712583A0C500803292 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6D906E432573CF7200901052 /* Assets.xcassets */; };
+		6DCBAC752583A0C600803292 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6D906E432573CF7200901052 /* Assets.xcassets */; };
+		6DCBAC792583DC9700803292 /* AGDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D906E942574C75F00901052 /* AGDevice.m */; };
+		6DCBAC8B2584ADC000803292 /* AGMFAStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DCBAC8A2584ADC000803292 /* AGMFAStorage.m */; };
+		6DCBAC982584B44400803292 /* AGMFAStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DCBAC8A2584ADC000803292 /* AGMFAStorage.m */; };
+		6DCBACA12585E27A00803292 /* Theme.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DCBACA02585E27A00803292 /* Theme.m */; };
+		6DE9356A2576376F00FE1F4E /* AGMFATableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DE935692576376F00FE1F4E /* AGMFATableView.m */; };
+		6DE9356F25766C5E00FE1F4E /* AGMFAEmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DE9356E25766C5E00FE1F4E /* AGMFAEmptyView.m */; };
+		6DE935752576707000FE1F4E /* UIView+AGExt.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DE935742576707000FE1F4E /* UIView+AGExt.m */; };
+		80C2EC2370979D1D2BDE80D7 /* libPods-Argus.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 26B8C60713CB2AB957AD54D7 /* libPods-Argus.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXBuildRule section */
+		6D7DA0C0257F6FAF009AEFB1 /* PBXBuildRule */ = {
+			isa = PBXBuildRule;
+			compilerSpec = com.apple.compilers.proxy.script;
+			filePatterns = "*.proto";
+			fileType = pattern.proxy;
+			inputFiles = (
+			);
+			isEditable = 1;
+			outputFiles = (
+				"$(DERIVED_FILE_DIR)/$(INPUT_FILE_BASE).pbobjc.h",
+				"$(DERIVED_FILE_DIR)/$(INPUT_FILE_BASE).pbobjc.m",
+			);
+			outputFilesCompilerFlags = (
+				"",
+				"-fno-objc-arc",
+			);
+			runOncePerArchitecture = 0;
+			script = "protoc --proto_path=$INPUT_FILE_DIR --objc_out $DERIVED_FILE_DIR $INPUT_FILE_PATH\n";
+		};
+/* End PBXBuildRule section */
+
+/* Begin PBXContainerItemProxy section */
+		6DCBABE42583535200803292 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6D906E2C2573CF7100901052 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6DCBABE12583535200803292;
+			remoteInfo = "Watch Extension";
+		};
+		6DCBABF32583535200803292 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6D906E2C2573CF7100901052 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6DCBABD52583535100803292;
+			remoteInfo = Watch;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		6DCBABF62583535200803292 /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				6DCBABF52583535200803292 /* Watch.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6DCBABF92583535200803292 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				6DCBABE32583535200803292 /* Watch Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		1E215E829799B64B52EC71B9 /* Pods-Argus.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Argus.release.xcconfig"; path = "Target Support Files/Pods-Argus/Pods-Argus.release.xcconfig"; sourceTree = "<group>"; };
+		26B8C60713CB2AB957AD54D7 /* libPods-Argus.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Argus.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		36CE2E938B433F3B2A760C40 /* Pods-Argus.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Argus.debug.xcconfig"; path = "Target Support Files/Pods-Argus/Pods-Argus.debug.xcconfig"; sourceTree = "<group>"; };
+		6D14B7D72581C57E00240C1B /* AGSecurity.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AGSecurity.h; sourceTree = "<group>"; };
+		6D14B7D82581C57E00240C1B /* AGSecurity.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AGSecurity.m; sourceTree = "<group>"; };
+		6D7DA0B0257F6008009AEFB1 /* AGQRCodeView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AGQRCodeView.h; sourceTree = "<group>"; };
+		6D7DA0B1257F6008009AEFB1 /* AGQRCodeView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AGQRCodeView.m; sourceTree = "<group>"; };
+		6D7DA0BC257F6F9F009AEFB1 /* AGModel.proto */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.protobuf; path = AGModel.proto; sourceTree = "<group>"; };
+		6D7DA0C3257FA16D009AEFB1 /* AGCodeView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AGCodeView.h; sourceTree = "<group>"; };
+		6D7DA0C4257FA16D009AEFB1 /* AGCodeView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AGCodeView.m; sourceTree = "<group>"; };
+		6D7DA0C9257FA871009AEFB1 /* AGCreatedLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AGCreatedLabel.h; sourceTree = "<group>"; };
+		6D7DA0CA257FA871009AEFB1 /* AGCreatedLabel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AGCreatedLabel.m; sourceTree = "<group>"; };
+		6D906E342573CF7100901052 /* Argus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Argus.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6D906E372573CF7100901052 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		6D906E382573CF7100901052 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		6D906E3D2573CF7100901052 /* AGViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AGViewController.h; sourceTree = "<group>"; };
+		6D906E3E2573CF7100901052 /* AGViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AGViewController.m; sourceTree = "<group>"; };
+		6D906E432573CF7200901052 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		6D906E462573CF7200901052 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		6D906E482573CF7200901052 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6D906E492573CF7200901052 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		6D906E5A2573D69800901052 /* Argus.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Argus.entitlements; sourceTree = "<group>"; };
+		6D906E5E2573D7CD00901052 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		6D906E612573D81A00901052 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		6D906E632573D84400901052 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
+		6D906E662573D86900901052 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		6D906E682573DC5800901052 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		6D906E722573DFA600901052 /* Argus.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Argus.pch; sourceTree = "<group>"; };
+		6D906E762573E02100901052 /* NSString+AGExt.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+AGExt.h"; sourceTree = "<group>"; };
+		6D906E772573E02100901052 /* NSString+AGExt.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+AGExt.m"; sourceTree = "<group>"; };
+		6D906E832574AE0700901052 /* AGRouter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AGRouter.h; sourceTree = "<group>"; };
+		6D906E842574AE0700901052 /* AGRouter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AGRouter.m; sourceTree = "<group>"; };
+		6D906E872574B02B00901052 /* AGMainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AGMainViewController.h; sourceTree = "<group>"; };
+		6D906E882574B02B00901052 /* AGMainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AGMainViewController.m; sourceTree = "<group>"; };
+		6D906E8B2574C32900901052 /* UIViewController+AGExt.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+AGExt.h"; sourceTree = "<group>"; };
+		6D906E8C2574C32900901052 /* UIViewController+AGExt.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+AGExt.m"; sourceTree = "<group>"; };
+		6D906E8F2574C3F200901052 /* AGTheme.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AGTheme.h; sourceTree = "<group>"; };
+		6D906E902574C3F200901052 /* AGTheme.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AGTheme.m; sourceTree = "<group>"; };
+		6D906E932574C75F00901052 /* AGDevice.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AGDevice.h; sourceTree = "<group>"; };
+		6D906E942574C75F00901052 /* AGDevice.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AGDevice.m; sourceTree = "<group>"; };
+		6D906E972574CAB900901052 /* AGMFATableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AGMFATableViewCell.h; sourceTree = "<group>"; };
+		6D906E982574CAB900901052 /* AGMFATableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AGMFATableViewCell.m; sourceTree = "<group>"; };
+		6D906EA52574D7C400901052 /* AGSettingsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AGSettingsViewController.h; sourceTree = "<group>"; };
+		6D906EA62574D7C400901052 /* AGSettingsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AGSettingsViewController.m; sourceTree = "<group>"; };
+		6D906EAA2574E01900901052 /* AGScanViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AGScanViewController.h; sourceTree = "<group>"; };
+		6D906EAB2574E01900901052 /* AGScanViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AGScanViewController.m; sourceTree = "<group>"; };
+		6D906EAE2574E90A00901052 /* AGAcknowledgementsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AGAcknowledgementsViewController.h; sourceTree = "<group>"; };
+		6D906EAF2574E90A00901052 /* AGAcknowledgementsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AGAcknowledgementsViewController.m; sourceTree = "<group>"; };
+		6D906EBB2574FF3200901052 /* AGEditorViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AGEditorViewController.h; sourceTree = "<group>"; };
+		6D906EBC2574FF3200901052 /* AGEditorViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AGEditorViewController.m; sourceTree = "<group>"; };
+		6D906EC1257505D900901052 /* AGWebViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AGWebViewController.h; sourceTree = "<group>"; };
+		6D906EC2257505D900901052 /* AGWebViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AGWebViewController.m; sourceTree = "<group>"; };
+		6D906EC6257506F600901052 /* AGWebViewRefresher.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AGWebViewRefresher.h; sourceTree = "<group>"; };
+		6D906EC7257506F600901052 /* AGWebViewRefresher.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AGWebViewRefresher.m; sourceTree = "<group>"; };
+		6D906ED4257517E400901052 /* AGMFAModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AGMFAModel.h; sourceTree = "<group>"; };
+		6D906ED5257517E400901052 /* AGMFAModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AGMFAModel.m; sourceTree = "<group>"; };
+		6D906ED82575186B00901052 /* NSData+AGExt.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSData+AGExt.h"; sourceTree = "<group>"; };
+		6D906ED92575186B00901052 /* NSData+AGExt.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSData+AGExt.m"; sourceTree = "<group>"; };
+		6D906EDD2575198F00901052 /* AGCountdownView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AGCountdownView.h; sourceTree = "<group>"; };
+		6D906EDE2575198F00901052 /* AGCountdownView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AGCountdownView.m; sourceTree = "<group>"; };
+		6D906EE225751A0B00901052 /* AGMFAManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AGMFAManager.h; sourceTree = "<group>"; };
+		6D906EE325751A0B00901052 /* AGMFAManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AGMFAManager.m; sourceTree = "<group>"; };
+		6DCBABD62583535100803292 /* Watch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Watch.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6DCBABD92583535100803292 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
+		6DCBABDB2583535100803292 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		6DCBABDD2583535100803292 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6DCBABE22583535200803292 /* Watch Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Watch Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6DCBABE72583535200803292 /* InterfaceController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InterfaceController.h; sourceTree = "<group>"; };
+		6DCBABE82583535200803292 /* InterfaceController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InterfaceController.m; sourceTree = "<group>"; };
+		6DCBABEA2583535200803292 /* ExtensionDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExtensionDelegate.h; sourceTree = "<group>"; };
+		6DCBABEB2583535200803292 /* ExtensionDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExtensionDelegate.m; sourceTree = "<group>"; };
+		6DCBABED2583535200803292 /* ComplicationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ComplicationController.h; sourceTree = "<group>"; };
+		6DCBABEE2583535200803292 /* ComplicationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ComplicationController.m; sourceTree = "<group>"; };
+		6DCBABF02583535200803292 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		6DCBABF22583535200803292 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6DCBAC0E2583629C00803292 /* CodeRowType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CodeRowType.h; sourceTree = "<group>"; };
+		6DCBAC0F2583629C00803292 /* CodeRowType.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CodeRowType.m; sourceTree = "<group>"; };
+		6DCBAC65258387A000803292 /* AGBlurViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AGBlurViewController.h; sourceTree = "<group>"; };
+		6DCBAC66258387A000803292 /* AGBlurViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AGBlurViewController.m; sourceTree = "<group>"; };
+		6DCBAC892584ADC000803292 /* AGMFAStorage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AGMFAStorage.h; sourceTree = "<group>"; };
+		6DCBAC8A2584ADC000803292 /* AGMFAStorage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AGMFAStorage.m; sourceTree = "<group>"; };
+		6DCBAC9F2585E27A00803292 /* Theme.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Theme.h; sourceTree = "<group>"; };
+		6DCBACA02585E27A00803292 /* Theme.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Theme.m; sourceTree = "<group>"; };
+		6DE935682576376F00FE1F4E /* AGMFATableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AGMFATableView.h; sourceTree = "<group>"; };
+		6DE935692576376F00FE1F4E /* AGMFATableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AGMFATableView.m; sourceTree = "<group>"; };
+		6DE9356D25766C5E00FE1F4E /* AGMFAEmptyView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AGMFAEmptyView.h; sourceTree = "<group>"; };
+		6DE9356E25766C5E00FE1F4E /* AGMFAEmptyView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AGMFAEmptyView.m; sourceTree = "<group>"; };
+		6DE935732576707000FE1F4E /* UIView+AGExt.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+AGExt.h"; sourceTree = "<group>"; };
+		6DE935742576707000FE1F4E /* UIView+AGExt.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+AGExt.m"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		6D906E312573CF7100901052 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				80C2EC2370979D1D2BDE80D7 /* libPods-Argus.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6DCBABDF2583535200803292 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		5E1BFC48423A4E5292D1342D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				36CE2E938B433F3B2A760C40 /* Pods-Argus.debug.xcconfig */,
+				1E215E829799B64B52EC71B9 /* Pods-Argus.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		6D906E2B2573CF7100901052 = {
+			isa = PBXGroup;
+			children = (
+				6D906E362573CF7100901052 /* Argus */,
+				6DCBABD72583535100803292 /* Watch */,
+				6DCBABE62583535200803292 /* Watch Extension */,
+				6D906E352573CF7100901052 /* Products */,
+				5E1BFC48423A4E5292D1342D /* Pods */,
+				A86C8DAE07194D19A0495989 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		6D906E352573CF7100901052 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6D906E342573CF7100901052 /* Argus.app */,
+				6DCBABD62583535100803292 /* Watch.app */,
+				6DCBABE22583535200803292 /* Watch Extension.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		6D906E362573CF7100901052 /* Argus */ = {
+			isa = PBXGroup;
+			children = (
+				6D906E712573DF8800901052 /* Views */,
+				6D906E552573D4F000901052 /* Classes */,
+				6D906ED3257517C800901052 /* Models */,
+				6D906E7F2574AD9A00901052 /* Services */,
+				6D906E752573E00C00901052 /* Extensions */,
+				6D906E522573D4CE00901052 /* Resources */,
+				6D906E5A2573D69800901052 /* Argus.entitlements */,
+			);
+			path = Argus;
+			sourceTree = "<group>";
+		};
+		6D906E522573D4CE00901052 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				6D906E682573DC5800901052 /* Settings.bundle */,
+				6D906E5D2573D7CD00901052 /* InfoPlist.strings */,
+				6D906E622573D84400901052 /* Localizable.strings */,
+				6D906E432573CF7200901052 /* Assets.xcassets */,
+				6D906E452573CF7200901052 /* LaunchScreen.storyboard */,
+				6D906E482573CF7200901052 /* Info.plist */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		6D906E552573D4F000901052 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				6D906E372573CF7100901052 /* AppDelegate.h */,
+				6D906E382573CF7100901052 /* AppDelegate.m */,
+				6D906E722573DFA600901052 /* Argus.pch */,
+				6D906E492573CF7200901052 /* main.m */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		6D906E712573DF8800901052 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				6D906EA42574D7A700901052 /* Settings */,
+				6D906EA22574D79C00901052 /* Main */,
+				6D906EBA2574FF1F00901052 /* Editor */,
+				6D906EA92574DFF600901052 /* Scan */,
+				6D906EC0257505C800901052 /* Web */,
+				6D906EA12574D78900901052 /* Utils */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		6D906E752573E00C00901052 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				6D906ED82575186B00901052 /* NSData+AGExt.h */,
+				6D906ED92575186B00901052 /* NSData+AGExt.m */,
+				6D906E762573E02100901052 /* NSString+AGExt.h */,
+				6D906E772573E02100901052 /* NSString+AGExt.m */,
+				6DE935732576707000FE1F4E /* UIView+AGExt.h */,
+				6DE935742576707000FE1F4E /* UIView+AGExt.m */,
+				6D906E8B2574C32900901052 /* UIViewController+AGExt.h */,
+				6D906E8C2574C32900901052 /* UIViewController+AGExt.m */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		6D906E7F2574AD9A00901052 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				6D906E832574AE0700901052 /* AGRouter.h */,
+				6D906E842574AE0700901052 /* AGRouter.m */,
+				6D906E8F2574C3F200901052 /* AGTheme.h */,
+				6D906E902574C3F200901052 /* AGTheme.m */,
+				6D906E932574C75F00901052 /* AGDevice.h */,
+				6D906E942574C75F00901052 /* AGDevice.m */,
+				6D14B7D72581C57E00240C1B /* AGSecurity.h */,
+				6D14B7D82581C57E00240C1B /* AGSecurity.m */,
+				6D906EE225751A0B00901052 /* AGMFAManager.h */,
+				6D906EE325751A0B00901052 /* AGMFAManager.m */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		6D906EA12574D78900901052 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				6D906E3D2573CF7100901052 /* AGViewController.h */,
+				6D906E3E2573CF7100901052 /* AGViewController.m */,
+				6DCBAC65258387A000803292 /* AGBlurViewController.h */,
+				6DCBAC66258387A000803292 /* AGBlurViewController.m */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		6D906EA22574D79C00901052 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				6D7DA0C3257FA16D009AEFB1 /* AGCodeView.h */,
+				6D7DA0C4257FA16D009AEFB1 /* AGCodeView.m */,
+				6D7DA0C9257FA871009AEFB1 /* AGCreatedLabel.h */,
+				6D7DA0CA257FA871009AEFB1 /* AGCreatedLabel.m */,
+				6D906EDD2575198F00901052 /* AGCountdownView.h */,
+				6D906EDE2575198F00901052 /* AGCountdownView.m */,
+				6DE9356D25766C5E00FE1F4E /* AGMFAEmptyView.h */,
+				6DE9356E25766C5E00FE1F4E /* AGMFAEmptyView.m */,
+				6D906E972574CAB900901052 /* AGMFATableViewCell.h */,
+				6D906E982574CAB900901052 /* AGMFATableViewCell.m */,
+				6DE935682576376F00FE1F4E /* AGMFATableView.h */,
+				6DE935692576376F00FE1F4E /* AGMFATableView.m */,
+				6D906E872574B02B00901052 /* AGMainViewController.h */,
+				6D906E882574B02B00901052 /* AGMainViewController.m */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		6D906EA42574D7A700901052 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				6D906EA52574D7C400901052 /* AGSettingsViewController.h */,
+				6D906EA62574D7C400901052 /* AGSettingsViewController.m */,
+				6D906EAE2574E90A00901052 /* AGAcknowledgementsViewController.h */,
+				6D906EAF2574E90A00901052 /* AGAcknowledgementsViewController.m */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		6D906EA92574DFF600901052 /* Scan */ = {
+			isa = PBXGroup;
+			children = (
+				6D906EAA2574E01900901052 /* AGScanViewController.h */,
+				6D906EAB2574E01900901052 /* AGScanViewController.m */,
+			);
+			path = Scan;
+			sourceTree = "<group>";
+		};
+		6D906EBA2574FF1F00901052 /* Editor */ = {
+			isa = PBXGroup;
+			children = (
+				6D7DA0B0257F6008009AEFB1 /* AGQRCodeView.h */,
+				6D7DA0B1257F6008009AEFB1 /* AGQRCodeView.m */,
+				6D906EBB2574FF3200901052 /* AGEditorViewController.h */,
+				6D906EBC2574FF3200901052 /* AGEditorViewController.m */,
+			);
+			path = Editor;
+			sourceTree = "<group>";
+		};
+		6D906EC0257505C800901052 /* Web */ = {
+			isa = PBXGroup;
+			children = (
+				6D906EC6257506F600901052 /* AGWebViewRefresher.h */,
+				6D906EC7257506F600901052 /* AGWebViewRefresher.m */,
+				6D906EC1257505D900901052 /* AGWebViewController.h */,
+				6D906EC2257505D900901052 /* AGWebViewController.m */,
+			);
+			path = Web;
+			sourceTree = "<group>";
+		};
+		6D906ED3257517C800901052 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				6D7DA0BC257F6F9F009AEFB1 /* AGModel.proto */,
+				6D906ED4257517E400901052 /* AGMFAModel.h */,
+				6D906ED5257517E400901052 /* AGMFAModel.m */,
+				6DCBAC892584ADC000803292 /* AGMFAStorage.h */,
+				6DCBAC8A2584ADC000803292 /* AGMFAStorage.m */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		6DCBABD72583535100803292 /* Watch */ = {
+			isa = PBXGroup;
+			children = (
+				6DCBABD82583535100803292 /* Interface.storyboard */,
+				6DCBABDB2583535100803292 /* Assets.xcassets */,
+				6DCBABDD2583535100803292 /* Info.plist */,
+			);
+			path = Watch;
+			sourceTree = "<group>";
+		};
+		6DCBABE62583535200803292 /* Watch Extension */ = {
+			isa = PBXGroup;
+			children = (
+				6DCBAC2525836C0E00803292 /* Classes */,
+				6DCBABF02583535200803292 /* Assets.xcassets */,
+				6DCBABF22583535200803292 /* Info.plist */,
+			);
+			path = "Watch Extension";
+			sourceTree = "<group>";
+		};
+		6DCBAC2525836C0E00803292 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				6DCBAC9F2585E27A00803292 /* Theme.h */,
+				6DCBACA02585E27A00803292 /* Theme.m */,
+				6DCBAC0E2583629C00803292 /* CodeRowType.h */,
+				6DCBAC0F2583629C00803292 /* CodeRowType.m */,
+				6DCBABE72583535200803292 /* InterfaceController.h */,
+				6DCBABE82583535200803292 /* InterfaceController.m */,
+				6DCBABEA2583535200803292 /* ExtensionDelegate.h */,
+				6DCBABEB2583535200803292 /* ExtensionDelegate.m */,
+				6DCBABED2583535200803292 /* ComplicationController.h */,
+				6DCBABEE2583535200803292 /* ComplicationController.m */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		A86C8DAE07194D19A0495989 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				26B8C60713CB2AB957AD54D7 /* libPods-Argus.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		6D906E332573CF7100901052 /* Argus */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6D906E4D2573CF7200901052 /* Build configuration list for PBXNativeTarget "Argus" */;
+			buildPhases = (
+				CA7CA77E859CD1E1BB0C32ED /* [CP] Check Pods Manifest.lock */,
+				6D906E302573CF7100901052 /* Sources */,
+				6D906E312573CF7100901052 /* Frameworks */,
+				6D906E322573CF7100901052 /* Resources */,
+				6D906E7D2573E0EF00901052 /* ShellScript */,
+				302C2EC9ACB82CF984BD4756 /* [CP] Copy Pods Resources */,
+				6DCBABF62583535200803292 /* Embed Watch Content */,
+			);
+			buildRules = (
+				6D7DA0C0257F6FAF009AEFB1 /* PBXBuildRule */,
+			);
+			dependencies = (
+				6DCBABF42583535200803292 /* PBXTargetDependency */,
+			);
+			name = Argus;
+			productName = Argus;
+			productReference = 6D906E342573CF7100901052 /* Argus.app */;
+			productType = "com.apple.product-type.application";
+		};
+		6DCBABD52583535100803292 /* Watch */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6DCBABFD2583535200803292 /* Build configuration list for PBXNativeTarget "Watch" */;
+			buildPhases = (
+				6DCBABD42583535100803292 /* Resources */,
+				6DCBABF92583535200803292 /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6DCBABE52583535200803292 /* PBXTargetDependency */,
+			);
+			name = Watch;
+			productName = Watch;
+			productReference = 6DCBABD62583535100803292 /* Watch.app */;
+			productType = "com.apple.product-type.application.watchapp2";
+		};
+		6DCBABE12583535200803292 /* Watch Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6DCBABFC2583535200803292 /* Build configuration list for PBXNativeTarget "Watch Extension" */;
+			buildPhases = (
+				6DCBABDE2583535200803292 /* Sources */,
+				6DCBABDF2583535200803292 /* Frameworks */,
+				6DCBABE02583535200803292 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Watch Extension";
+			productName = "Watch Extension";
+			productReference = 6DCBABE22583535200803292 /* Watch Extension.appex */;
+			productType = "com.apple.product-type.watchkit2-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		6D906E2C2573CF7100901052 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1220;
+				TargetAttributes = {
+					6D906E332573CF7100901052 = {
+						CreatedOnToolsVersion = 12.2;
+					};
+					6DCBABD52583535100803292 = {
+						CreatedOnToolsVersion = 12.2;
+					};
+					6DCBABE12583535200803292 = {
+						CreatedOnToolsVersion = 12.2;
+					};
+				};
+			};
+			buildConfigurationList = 6D906E2F2573CF7100901052 /* Build configuration list for PBXProject "Argus" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+				"zh-Hans",
+			);
+			mainGroup = 6D906E2B2573CF7100901052;
+			productRefGroup = 6D906E352573CF7100901052 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				6D906E332573CF7100901052 /* Argus */,
+				6DCBABD52583535100803292 /* Watch */,
+				6DCBABE12583535200803292 /* Watch Extension */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		6D906E322573CF7100901052 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6D906E472573CF7200901052 /* LaunchScreen.storyboard in Resources */,
+				6D906E642573D84400901052 /* Localizable.strings in Resources */,
+				6D906E692573DC5800901052 /* Settings.bundle in Resources */,
+				6D906E5F2573D7CD00901052 /* InfoPlist.strings in Resources */,
+				6D906E442573CF7200901052 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6DCBABD42583535100803292 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6DCBAC3B25836D8300803292 /* Assets.xcassets in Resources */,
+				6DCBAC712583A0C500803292 /* Assets.xcassets in Resources */,
+				6DCBABDA2583535100803292 /* Interface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6DCBABE02583535200803292 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6DCBABF12583535200803292 /* Assets.xcassets in Resources */,
+				6DCBAC752583A0C600803292 /* Assets.xcassets in Resources */,
+				6DCBAC3425836D3400803292 /* Localizable.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		302C2EC9ACB82CF984BD4756 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Argus/Pods-Argus-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Argus/Pods-Argus-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Argus/Pods-Argus-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6D906E7D2573E0EF00901052 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "PLISTBUDDY=\"/usr/libexec/PlistBuddy\"\nINFO_PLIST=\"$CODESIGNING_FOLDER_PATH/Info.plist\"\nSETTINGS_PLIST=\"$CODESIGNING_FOLDER_PATH/Settings.bundle/Root.plist\"\nVERSION_NUMBER=\"`$PLISTBUDDY -c \\\"Print CFBundleShortVersionString\\\" \\\"$INFO_PLIST\\\"`\"\nGITREVSHA=$(git --git-dir=\"${PROJECT_DIR}/.git\" --work-tree=\"${PROJECT_DIR}\" rev-parse --short HEAD)\nVERSION=\"$VERSION_NUMBER ($GITREVSHA)\"\necho \"Version: $VERSION\"\n$PLISTBUDDY -c \"Set :PreferenceSpecifiers:1:DefaultValue '$VERSION'\"  \"${SETTINGS_PLIST}\"\n";
+		};
+		CA7CA77E859CD1E1BB0C32ED /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Argus-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		6D906E302573CF7100901052 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6D906EA72574D7C400901052 /* AGSettingsViewController.m in Sources */,
+				6D906E852574AE0700901052 /* AGRouter.m in Sources */,
+				6D7DA0B2257F6008009AEFB1 /* AGQRCodeView.m in Sources */,
+				6DE9356F25766C5E00FE1F4E /* AGMFAEmptyView.m in Sources */,
+				6D906EDA2575186B00901052 /* NSData+AGExt.m in Sources */,
+				6D906E952574C75F00901052 /* AGDevice.m in Sources */,
+				6D906EBD2574FF3200901052 /* AGEditorViewController.m in Sources */,
+				6D906E3F2573CF7100901052 /* AGViewController.m in Sources */,
+				6D906EC3257505D900901052 /* AGWebViewController.m in Sources */,
+				6DE9356A2576376F00FE1F4E /* AGMFATableView.m in Sources */,
+				6DE935752576707000FE1F4E /* UIView+AGExt.m in Sources */,
+				6D14B7D92581C57E00240C1B /* AGSecurity.m in Sources */,
+				6D906ED6257517E400901052 /* AGMFAModel.m in Sources */,
+				6D906EC8257506F600901052 /* AGWebViewRefresher.m in Sources */,
+				6DCBAC67258387A000803292 /* AGBlurViewController.m in Sources */,
+				6D906E392573CF7100901052 /* AppDelegate.m in Sources */,
+				6D906EDF2575198F00901052 /* AGCountdownView.m in Sources */,
+				6D906EAC2574E01900901052 /* AGScanViewController.m in Sources */,
+				6D906E992574CAB900901052 /* AGMFATableViewCell.m in Sources */,
+				6D7DA0C5257FA16D009AEFB1 /* AGCodeView.m in Sources */,
+				6D906E8D2574C32900901052 /* UIViewController+AGExt.m in Sources */,
+				6D906E782573E02100901052 /* NSString+AGExt.m in Sources */,
+				6DCBAC8B2584ADC000803292 /* AGMFAStorage.m in Sources */,
+				6D906E4A2573CF7200901052 /* main.m in Sources */,
+				6D906EE425751A0B00901052 /* AGMFAManager.m in Sources */,
+				6D906EB02574E90A00901052 /* AGAcknowledgementsViewController.m in Sources */,
+				6D906E892574B02B00901052 /* AGMainViewController.m in Sources */,
+				6D906E912574C3F200901052 /* AGTheme.m in Sources */,
+				6D7DA0CB257FA871009AEFB1 /* AGCreatedLabel.m in Sources */,
+				6D7DA0BD257F6F9F009AEFB1 /* AGModel.proto in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6DCBABDE2583535200803292 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6DCBABEF2583535200803292 /* ComplicationController.m in Sources */,
+				6DCBAC6125837C3700803292 /* NSData+AGExt.m in Sources */,
+				6DCBABEC2583535200803292 /* ExtensionDelegate.m in Sources */,
+				6DCBACA12585E27A00803292 /* Theme.m in Sources */,
+				6DCBAC5D2583782700803292 /* AGMFAModel.m in Sources */,
+				6DCBAC3025836C5B00803292 /* NSString+AGExt.m in Sources */,
+				6DCBAC982584B44400803292 /* AGMFAStorage.m in Sources */,
+				6DCBAC792583DC9700803292 /* AGDevice.m in Sources */,
+				6DCBABE92583535200803292 /* InterfaceController.m in Sources */,
+				6DCBAC102583629C00803292 /* CodeRowType.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		6DCBABE52583535200803292 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6DCBABE12583535200803292 /* Watch Extension */;
+			targetProxy = 6DCBABE42583535200803292 /* PBXContainerItemProxy */;
+		};
+		6DCBABF42583535200803292 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6DCBABD52583535100803292 /* Watch */;
+			targetProxy = 6DCBABF32583535200803292 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		6D906E452573CF7200901052 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6D906E462573CF7200901052 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		6D906E5D2573D7CD00901052 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6D906E5E2573D7CD00901052 /* Base */,
+				6D906E612573D81A00901052 /* zh-Hans */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		6D906E622573D84400901052 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6D906E632573D84400901052 /* Base */,
+				6D906E662573D86900901052 /* zh-Hans */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		6DCBABD82583535100803292 /* Interface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6DCBABD92583535100803292 /* Base */,
+			);
+			name = Interface.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		6D906E4B2573CF7200901052 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		6D906E4C2573CF7200901052 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		6D906E4E2573CF7200901052 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 36CE2E938B433F3B2A760C40 /* Pods-Argus.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Argus/Argus.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 3;
+				DEVELOPMENT_TEAM = P4XS4AVCLW;
+				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/$(PROJECT_NAME)/Classes/$(PROJECT_NAME).pch";
+				INFOPLIST_FILE = "$(SRCROOT)/Argus/Resources/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 0.9.2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wizjin.argus;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		6D906E4F2573CF7200901052 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1E215E829799B64B52EC71B9 /* Pods-Argus.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Argus/Argus.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 3;
+				DEVELOPMENT_TEAM = P4XS4AVCLW;
+				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/$(PROJECT_NAME)/Classes/$(PROJECT_NAME).pch";
+				INFOPLIST_FILE = "$(SRCROOT)/Argus/Resources/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 0.9.2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wizjin.argus;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		6DCBABF72583535200803292 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 3;
+				DEVELOPMENT_TEAM = P4XS4AVCLW;
+				IBSC_MODULE = Watch_Extension;
+				INFOPLIST_FILE = Watch/Info.plist;
+				MARKETING_VERSION = 0.9.2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wizjin.argus.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
+			};
+			name = Debug;
+		};
+		6DCBABF82583535200803292 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 3;
+				DEVELOPMENT_TEAM = P4XS4AVCLW;
+				IBSC_MODULE = Watch_Extension;
+				INFOPLIST_FILE = Watch/Info.plist;
+				MARKETING_VERSION = 0.9.2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wizjin.argus.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
+			};
+			name = Release;
+		};
+		6DCBABFA2583535200803292 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 3;
+				DEVELOPMENT_TEAM = P4XS4AVCLW;
+				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/$(PROJECT_NAME)/Classes/$(PROJECT_NAME).pch";
+				INFOPLIST_FILE = "Watch Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 0.9.2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wizjin.argus.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
+			};
+			name = Debug;
+		};
+		6DCBABFB2583535200803292 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 3;
+				DEVELOPMENT_TEAM = P4XS4AVCLW;
+				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/$(PROJECT_NAME)/Classes/$(PROJECT_NAME).pch";
+				INFOPLIST_FILE = "Watch Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 0.9.2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wizjin.argus.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		6D906E2F2573CF7100901052 /* Build configuration list for PBXProject "Argus" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6D906E4B2573CF7200901052 /* Debug */,
+				6D906E4C2573CF7200901052 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6D906E4D2573CF7200901052 /* Build configuration list for PBXNativeTarget "Argus" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6D906E4E2573CF7200901052 /* Debug */,
+				6D906E4F2573CF7200901052 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6DCBABFC2583535200803292 /* Build configuration list for PBXNativeTarget "Watch Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6DCBABFA2583535200803292 /* Debug */,
+				6DCBABFB2583535200803292 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6DCBABFD2583535200803292 /* Build configuration list for PBXNativeTarget "Watch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6DCBABF72583535200803292 /* Debug */,
+				6DCBABF82583535200803292 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 6D906E2C2573CF7100901052 /* Project object */;
+}

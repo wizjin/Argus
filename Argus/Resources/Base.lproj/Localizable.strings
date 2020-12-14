@@ -1,0 +1,45 @@
+/* 
+  Localizable.strings (Base)
+  Argus
+
+  Created by WizJin on 2020/11/29.
+  
+*/
+"OK"="OK";
+"Done"="Done";
+"Close"="Close";
+"Cancel"="Cancel";
+"Delete"="Delete";
+"Enable"="Enable";
+"Disable"="Disable";
+"Settings"="Settings";
+"Scan QR code"="Scan QR code";
+"Manual entry"="Manual entry";
+"GENERAL"="GENERAL";
+"Appearance"="Appearance";
+"Default"="Default";
+"Light"="Light";
+"Dark"="Dark";
+"Locker"="Locker";
+"WATCH"="WATCH";
+"No watch app installed"="No watch app installed";
+"Force data sync"="Force data sync";
+"Sync data success!"="Sync data success!";
+"Sync data failed!"="Sync data failed!";
+"ABOUT"="ABOUT";
+"Version"="Version";
+"Acknowledgements"="Acknowledgements";
+"Privacy Policy"="Privacy Policy";
+"No QR code"="No QR code";
+"Code copied"="Code copied";
+"Can't open url"="Can't open url";
+"Tap to reload"="Tap to reload";
+"Release to reload"="Release to reload";
+"Created at %@"="Created at %@";
+"NoMFA"="No MFA Found\nTap and add record";
+"NoMFATitle"="No MFA Record";
+"NoMFAWatch"="You can add record in the Argus app on your iPhone.";
+"Add record success"="Add record success";
+"Record already exists"="Record already exists";
+"Delete this record will NOT turn off OTP verification"="Delete this record will NOT turn off OTP verification";
+"Use password to unlock"="Use password to unlock";
