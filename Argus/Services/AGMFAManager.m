@@ -139,10 +139,13 @@
     return (self.hasWatch && self.session.isWatchAppInstalled);
 }
 
-- (BOOL)syncWatch {
+- (BOOL)syncWatch:(BOOL)focus {
     BOOL res = NO;
     if (self.hasWatch) {
-        res = [self.session updateApplicationContext:@{ @"data": self.storage.fileData } error:nil];
+        res = [self.session updateApplicationContext:@{
+            @"last": @(focus ? NSDate.now.timeIntervalSince1970 : 0),
+            @"data": self.storage.fileData
+        } error:nil];
     }
     return res;
 }
@@ -194,7 +197,7 @@
 
 - (void)saveRecords {
     [self.storage save];
-    [self syncWatch];
+    [self syncWatch:NO];
 }
 
 static inline NSString *buildURLWithParams(AGMOtpParameters *params) {

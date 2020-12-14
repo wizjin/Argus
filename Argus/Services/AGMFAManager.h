@@ -29,7 +29,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)deactive;
 - (BOOL)hasWatch;
 - (BOOL)isWatchAppInstalled;
-- (BOOL)syncWatch;
+- (BOOL)syncWatch:(BOOL)focus;
 
 
 @end

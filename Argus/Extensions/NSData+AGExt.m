@@ -10,7 +10,7 @@
 #import <zlib.h>
 #import <strings.h>
 
-#define kCompressChunkSize  4096
+#define kCompressChunkSize  2048
 #define kCompressLevel      Z_BEST_COMPRESSION
 
 static const char *tbl = "0123456789ABCDEF";
@@ -66,58 +66,64 @@ static const char *tbl = "0123456789ABCDEF";
 }
 
 - (NSData *)compress {
-    z_stream zStream;
-    bzero(&zStream, sizeof(zStream));
-    zStream.zalloc = Z_NULL;
-    zStream.zfree = Z_NULL;
-    zStream.opaque = Z_NULL;
-    zStream.next_in = (Bytef *)self.bytes;
-    zStream.avail_in = (uint)self.length;
-    zStream.total_out = 0;
-    int status = deflateInit2(&zStream, kCompressLevel, Z_DEFLATED, -15, 8, Z_DEFAULT_STRATEGY);
-    NSMutableData *outData = [NSMutableData dataWithLength:kCompressChunkSize];
-    do {
-        if ((status == Z_BUF_ERROR) || (zStream.total_out == outData.length)) {
-            outData.length += kCompressChunkSize;
+    NSMutableData *outData = nil;
+    if (self.length > 0) {
+        z_stream zStream;
+        bzero(&zStream, sizeof(zStream));
+        zStream.zalloc = Z_NULL;
+        zStream.zfree = Z_NULL;
+        zStream.opaque = Z_NULL;
+        zStream.next_in = (Bytef *)self.bytes;
+        zStream.avail_in = (uint)self.length;
+        zStream.total_out = 0;
+        int status = deflateInit2(&zStream, kCompressLevel, Z_DEFLATED, -15, 8, Z_DEFAULT_STRATEGY);
+        outData = [NSMutableData dataWithLength:kCompressChunkSize];
+        do {
+            if ((status == Z_BUF_ERROR) || (zStream.total_out == outData.length)) {
+                outData.length += kCompressChunkSize;
+            }
+            zStream.next_out = (Bytef *)outData.mutableBytes + zStream.total_out;
+            zStream.avail_out = (uInt)(outData.length - zStream.total_out);
+            status = deflate(&zStream, Z_FINISH);
+        } while ((status == Z_BUF_ERROR) || (status == Z_OK));
+        status = deflateEnd(&zStream);
+        if ((status == Z_OK) || (status == Z_STREAM_END)) {
+            outData.length = zStream.total_out;
+        } else {
+            outData.length = 0;
         }
-        zStream.next_out = (Bytef *)outData.mutableBytes + zStream.total_out;
-        zStream.avail_out = (uInt)(outData.length - zStream.total_out);
-        status = deflate(&zStream, Z_FINISH);
-    } while ((status == Z_BUF_ERROR) || (status == Z_OK));
-    status = deflateEnd(&zStream);
-    if ((status == Z_OK) || (status == Z_STREAM_END)) {
-        outData.length = zStream.total_out;
-    } else {
-        outData.length = 0;
     }
-    return outData;
+    return outData != nil ? outData : [NSData new];
 }
 
 - (NSData *)decompress {
-    z_stream zStream;
-    bzero(&zStream, sizeof(zStream));
-    zStream.zalloc = Z_NULL;
-    zStream.zfree = Z_NULL;
-    zStream.opaque = Z_NULL;
-    zStream.next_in = (Bytef *)self.bytes;
-    zStream.avail_in = (uInt)self.length;
-    zStream.total_out = 0;
-    int status = inflateInit2(&zStream, -15);
-    NSMutableData *outData = [NSMutableData dataWithLength:kCompressChunkSize];
-    do {
-        if ((status == Z_BUF_ERROR) || (zStream.total_out == outData.length)) {
-            outData.length += kCompressChunkSize;
-        }
-        zStream.next_out = (Bytef *)outData.mutableBytes + zStream.total_out;
-        zStream.avail_out = (uInt)(outData.length - zStream.total_out);
-        status = inflate(&zStream, Z_FINISH);
-    } while ((status == Z_BUF_ERROR) || (status == Z_OK));
-    status = inflateEnd(&zStream);
-    if ((status != Z_OK) && (status != Z_STREAM_END)) {
+    NSMutableData *outData = nil;
+    if (self.length > 0) {
+        z_stream zStream;
+        bzero(&zStream, sizeof(zStream));
+        zStream.zalloc = Z_NULL;
+        zStream.zfree = Z_NULL;
+        zStream.opaque = Z_NULL;
+        zStream.next_in = (Bytef *)self.bytes;
+        zStream.avail_in = (uInt)self.length;
         zStream.total_out = 0;
+        int status = inflateInit2(&zStream, -15);
+        outData = [NSMutableData dataWithLength:kCompressChunkSize];
+        do {
+            if ((status == Z_BUF_ERROR) || (zStream.total_out == outData.length)) {
+                outData.length += kCompressChunkSize;
+            }
+            zStream.next_out = (Bytef *)outData.mutableBytes + zStream.total_out;
+            zStream.avail_out = (uInt)(outData.length - zStream.total_out);
+            status = inflate(&zStream, Z_FINISH);
+        } while ((status == Z_BUF_ERROR) || (status == Z_OK));
+        status = inflateEnd(&zStream);
+        if ((status != Z_OK) && (status != Z_STREAM_END)) {
+            zStream.total_out = 0;
+        }
+        outData.length = zStream.total_out;
     }
-    outData.length = zStream.total_out;
-    return outData;
+    return outData != nil ? outData : [NSData new];
 }
 
 #pragma mark - Private Methods

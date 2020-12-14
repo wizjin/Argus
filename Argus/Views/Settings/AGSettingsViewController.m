@@ -117,7 +117,7 @@
     row.hidden = @"$appinstall.isHidden=NO";
 
     row.action.formBlock = ^(XLFormRowDescriptor *row) {
-        if ([AGMFAManager.shared syncWatch]) {
+        if ([AGMFAManager.shared syncWatch:YES]) {
             [AGRouter.shared makeToast:@"Sync data success!".localized];
         } else {
             [AGRouter.shared makeToast:@"Sync data failed!".localized];

@@ -82,10 +82,10 @@
                     }
                 }
                 _items = mfaItems;
-                _dataKey = fileData.sha1.hex;
                 res = YES;
             }
         }
+        _dataKey = fileData.sha1.hex;
     }
     return res;
 }
