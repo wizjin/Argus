@@ -21,6 +21,9 @@
 "Light"="Light";
 "Dark"="Dark";
 "Locker"="Locker";
+"DATA MANAGER"="DATA MANAGER";
+"iCloud has been disabled"="iCloud has been disabled";
+"Backup to iCloud"="Backup to iCloud";
 "WATCH"="WATCH";
 "No watch app installed"="No watch app installed";
 "Force data sync"="Force data sync";

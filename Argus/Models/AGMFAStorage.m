@@ -9,19 +9,14 @@
 
 @interface AGMFAStorage ()
 
-@property (nonatomic, readonly, strong) NSURL *pathURL;
-@property (nonatomic, readonly, strong) NSDate *lastUpdate;
 @property (nonatomic, readonly, strong) NSMutableArray<AGMFAModel *> *items;
-@property (nonatomic, readonly, strong) NSString *dataKey;
 
 @end
 
 @implementation AGMFAStorage
 
 - (instancetype)initWithURL:(NSURL *)url {
-    if (self = [super init]) {
-        _pathURL = url;
-        _dataKey = nil;
+    if (self = [super initWithURL:url]) {
         _items = [NSMutableArray new];
     }
     return self;
@@ -47,26 +42,11 @@
     return self.items.count;
 }
 
-- (NSData *)fileData {
-    NSError *error = nil;
-    NSData *data = [NSData dataWithContentsOfURL:self.pathURL options:NSDataReadingUncached error:&error];
-    if (error != nil) {
-        data = [NSData new];
-    }
-    return data;
-}
-
-- (BOOL)changed {
-    return ![self.fileLastUpdate isEqualToDate:self.lastUpdate];
-}
-
 - (BOOL)load {
     BOOL res = NO;
-    NSDate *date = self.fileLastUpdate;
-    if ([date isEqualToDate:self.lastUpdate]) {
+    if (!self.changed) {
         res = YES;
     } else {
-        _lastUpdate = date;
         NSError *error = nil;
         NSData *fileData = self.fileData;
         NSData *data = [fileData decompress];
@@ -85,7 +65,6 @@
                 res = YES;
             }
         }
-        _dataKey = fileData.sha1.hex;
     }
     return res;
 }
@@ -99,9 +78,7 @@
     NSError *error = nil;
     NSData *data = [[NSJSONSerialization dataWithJSONObject:@{ @"items": items } options:NSJSONWritingSortedKeys error:&error] compress];
     if (error == nil && data.length > 0) {
-        [data writeToURL:self.pathURL atomically:YES];
-        _lastUpdate = self.fileLastUpdate;
-        _dataKey = data.sha1.hex;
+        [self write:data updateStatus:YES];
         res = YES;
     }
     return res;
@@ -114,24 +91,12 @@
         if ([self.dataKey isEqualToString:key]) {
             res = YES;
         } else {
-            if ([data writeToURL:self.pathURL atomically:YES]) {
-                _dataKey = key;
+            if ([self write:data updateStatus:NO]) {
                 res = YES;
             }
         }
     }
     return res;
-}
-
-#pragma mark - Private Methods
-- (NSDate *)fileLastUpdate {
-    NSDate *date;
-    NSError *error = nil;
-    [self.pathURL getResourceValue:&date forKey:NSURLContentModificationDateKey error:&error];
-    if (error != nil) {
-        date = nil;
-    }
-    return date;
 }
 
 

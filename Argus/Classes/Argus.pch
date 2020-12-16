@@ -8,8 +8,9 @@
 #ifndef __ARGUS_PCH__
 #define __ARGUS_PCH__
 
-#define kAGPrivacyURL   "https://argus.wizjin.com/privacy.html"
-#define kAGMFAFileName  "mfa.dat"
+#define kAGPrivacyURL       "https://argus.wizjin.com/privacy.html"
+#define kAGMFAFileName      "mfa.dat"
+#define kAGiCloudContainer  "iCloud.com.wizjin.argus"
 
 #if DEBUG
 #   define ext_keywordify   autoreleasepool {}
@@ -24,6 +25,10 @@
 
 #if __has_include(<Foundation/NSData.h>)
 #   import "NSData+AGExt.h"
+#endif
+
+#if __has_include(<Foundation/NSURL.h>)
+#   import "NSURL+AGExt.h"
 #endif
 
 #if __has_include(<Foundation/NSString.h>)

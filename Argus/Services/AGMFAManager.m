@@ -12,9 +12,14 @@
 #import "AGDevice.h"
 #import "AGRouter.h"
 
+#define kCHiCloudSyncKey        "icloud.sync"
+#define kCHiCloudLastSyncKey    "icloud.lastsync"
+
 @interface AGMFAManager () <WCSessionDelegate>
 
+@property (nonatomic, readonly, strong) NSHashTable<id<AGMFAManagerDelegate>> *delegates;
 @property (nonatomic, readonly, strong) AGMFAStorage *storage;
+@property (nonatomic, readonly, strong) NSMetadataQuery *iCloudQuery;
 @property (nonatomic, readonly, strong) WCSession *session;
 
 @end
@@ -32,16 +37,37 @@
 
 - (instancetype)init {
     if (self = [super init]) {
+        _delegates = [NSHashTable weakObjectsHashTable];
+        NSUserDefaults *userDefaults = NSUserDefaults.standardUserDefaults;
+        if ([userDefaults objectForKey:@kCHiCloudSyncKey] == nil) {
+            [userDefaults setBool:YES forKey:@kCHiCloudSyncKey]; // Defalut enabled
+        }
+        _iCloudSyncEnabled = [userDefaults boolForKey:@kCHiCloudSyncKey];
         _storage = [[AGMFAStorage alloc] initWithURL:[NSURL URLWithString:@kAGMFAFileName relativeToURL:AGDevice.shared.docdir]];
-        [self loadRecords];
         _session = nil;
         if (WCSession.isSupported) {
             _session = WCSession.defaultSession;
             self.session.delegate = self;
             [self.session activateSession];
         }
+        _iCloudQuery = [NSMetadataQuery new];
+        self.iCloudQuery.searchScopes = @[NSMetadataQueryUbiquitousDocumentsScope];
+        self.iCloudQuery.predicate = [NSPredicate predicateWithValue:YES];
+        [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(queryDidUpdate:) name:NSMetadataQueryDidUpdateNotification object:nil];
+        [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(queryDidFinishGathering:) name:NSMetadataQueryDidFinishGatheringNotification object:nil];
+
+        [self loadRecords];
+        [self readFromiCloud];
     }
     return self;
+}
+
+- (void)addDelegate:(id<AGMFAManagerDelegate>)delegate {
+    [self.delegates addObject:delegate];
+}
+
+- (void)removeDelegate:(id<AGMFAManagerDelegate>)delegate {
+    [self.delegates removeObject:delegate];
 }
 
 - (BOOL)canOpenURL:(NSURL *)url {
@@ -125,10 +151,30 @@
 }
 
 - (void)active {
+    [self.iCloudQuery startQuery];
     [self loadRecords];
 }
 
 - (void)deactive {
+    if (self.iCloudQuery.isStarted) {
+        [self.iCloudQuery stopQuery];
+    }
+}
+
+- (BOOL)iCloudEnabled {
+    return (self.iCloudItemUrl != nil);
+}
+
+- (void)setICloudSyncEnabled:(BOOL)iCloudSyncEnabled cleanup:(BOOL)cleanup {
+    if (_iCloudSyncEnabled != iCloudSyncEnabled) {
+        _iCloudSyncEnabled = iCloudSyncEnabled;
+        if (self.iCloudSyncEnabled) {
+            [self writeToiCloud];
+        } else {
+            [NSUserDefaults.standardUserDefaults removeObjectForKey:@kCHiCloudLastSyncKey];
+        }
+        [NSUserDefaults.standardUserDefaults setBool:self.iCloudSyncEnabled forKey:@kCHiCloudSyncKey];
+    }
 }
 
 - (BOOL)hasWatch {
@@ -150,9 +196,38 @@
     return res;
 }
 
+#pragma mark - Query
+- (void)queryDidUpdate:(NSNotification *)notification {
+    [self.iCloudQuery disableUpdates];
+    [self readFromiCloud];
+    [self.iCloudQuery enableUpdates];
+}
+
+
+- (void)queryDidFinishGathering:(NSNotification *)notification {
+    [self.iCloudQuery disableUpdates];
+    [self readFromiCloud];
+    [self.iCloudQuery enableUpdates];
+}
+
 #pragma mark - WCSessionDelegate
 - (void)session:(WCSession *)session activationDidCompleteWithState:(WCSessionActivationState)activationState error:(nullable NSError *)error {
 
+}
+
+- (void)sessionWatchStateDidChange:(WCSession *)session {
+    @weakify(self);
+    dispatch_async(dispatch_get_main_queue(), ^{
+        @strongify(self);
+        for (id<AGMFAManagerDelegate> delegate in self.delegates) {
+            if (delegate != nil && [delegate respondsToSelector:@selector(watchStatusChanged)]) {
+                [delegate watchStatusChanged];
+            }
+        }
+        if (self.isWatchAppInstalled) {
+            [self syncWatch:YES];
+        }
+    });
 }
 
 - (void)sessionDidBecomeInactive:(WCSession *)session {
@@ -168,8 +243,10 @@
     @weakify(self);
     dispatch_async(dispatch_get_main_queue(), ^{
         @strongify(self);
-        if (self.delegate != nil) {
-            [self.delegate mfaUpdated];
+        for (id<AGMFAManagerDelegate> delegate in self.delegates) {
+            if (delegate != nil && [delegate respondsToSelector:@selector(mfaUpdated)]) {
+                [delegate mfaUpdated];
+            }
         }
     });
 }
@@ -197,7 +274,88 @@
 
 - (void)saveRecords {
     [self.storage save];
+    [self writeToiCloud];
     [self syncWatch:NO];
+}
+
+- (void)readFromiCloud {
+    if (self.iCloudSyncEnabled) {
+        NSFileManager *manager = NSFileManager.defaultManager;
+        NSURL *url = self.iCloudItemUrl;
+        if ([manager isUbiquitousItemAtURL:url]) {
+            NSError *error = nil;
+            NSString *status = nil;
+            [url getResourceValue:&status forKey:NSURLUbiquitousItemDownloadingStatusKey error:&error];
+            if (error == nil) {
+                if ([status isEqualToString:NSURLUbiquitousItemDownloadingStatusNotDownloaded]) {
+                    [manager startDownloadingUbiquitousItemAtURL:url error:&error];
+                } else if ([status isEqualToString:NSURLUbiquitousItemDownloadingStatusCurrent]) {
+                    NSDate *date;
+                    [url getResourceValue:&date forKey:NSURLContentModificationDateKey error:&error];
+                    if (error == nil) {
+                        if([NSUserDefaults.standardUserDefaults integerForKey:@kCHiCloudLastSyncKey] != date.timeIntervalSince1970) {
+                            NSData *data = [NSData dataWithContentsOfURL:url options:NSDataReadingUncached error:&error];
+                            if (error == nil && data.length > 0) {
+                                if ([self.storage.fileData isEqualToData:data]) {
+                                    [NSUserDefaults.standardUserDefaults setInteger:date.timeIntervalSince1970 forKey:@kCHiCloudLastSyncKey];
+                                } else {
+                                    @weakify(self);
+                                    dispatch_async(dispatch_get_main_queue(), ^{
+                                        if ([self.storage saveData:data]) {
+                                            @strongify(self);
+                                            [NSUserDefaults.standardUserDefaults setInteger:date.timeIntervalSince1970 forKey:@kCHiCloudLastSyncKey];
+                                            [self loadRecords];
+                                            [self syncWatch:YES];
+                                        }
+                                    });
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+- (BOOL)writeToiCloud {
+    BOOL res = YES;
+    if (self.iCloudSyncEnabled) {
+        res = NO;
+        NSURL *url = self.iCloudItemUrl;
+        if (url != nil) {
+            NSData *data = self.storage.fileData;
+            NSError *error = nil;
+            NSString *status = nil;
+            [url getResourceValue:&status forKey:NSURLUbiquitousItemDownloadingStatusKey error:&error];
+            if (error == nil && [status isEqualToString:NSURLUbiquitousItemDownloadingStatusCurrent]) {
+                NSData *remoteData = [NSData dataWithContentsOfURL:url options:NSDataReadingUncached error:&error];
+                if (error == nil && remoteData.length > 0) {
+                    res = [remoteData isEqualToData:data];
+                }
+            }
+            if (!res) {
+                NSFileManager *manager = NSFileManager.defaultManager;
+                if ([manager isUbiquitousItemAtURL:url]) {
+                    [data writeToURL:url options:NSDataWritingAtomic error:&error];
+                } else if (data.length > 0) {
+                    [manager setUbiquitous:YES itemAtURL:self.storage.pathURL destinationURL:url error:&error];
+                }
+                if (error == nil) {
+                    res = YES;
+                }
+            }
+        }
+    }
+    return res;
+}
+
+- (NSURL *)iCloudItemUrl {
+    NSURL *url = [NSFileManager.defaultManager URLForUbiquityContainerIdentifier:@kAGiCloudContainer];
+    if (url != nil) {
+        url = [[url URLByAppendingPathComponent:@"Documents"] URLByAppendingPathComponent:@kAGMFAFileName];
+    }
+    return url;
 }
 
 static inline NSString *buildURLWithParams(AGMOtpParameters *params) {

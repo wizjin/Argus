@@ -11,14 +11,18 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @protocol AGMFAManagerDelegate <NSObject>
+@optional
 - (void)mfaUpdated;
+- (void)watchStatusChanged;
 @end
 
 @interface AGMFAManager : NSObject
 
-@property (nonatomic, nullable, weak) id<AGMFAManagerDelegate> delegate;
+@property (nonatomic, readonly, assign) BOOL iCloudSyncEnabled;
 
 + (instancetype)shared;
+- (void)addDelegate:(id<AGMFAManagerDelegate>)delegate;
+- (void)removeDelegate:(id<AGMFAManagerDelegate>)delegate;
 - (BOOL)canOpenURL:(NSURL *)url;
 - (BOOL)openURL:(NSURL *)url;
 - (AGMFAModel *)itemAtIndex:(NSInteger)index;
@@ -27,6 +31,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)copyToPasteboard:(nullable AGMFAModel *)item;
 - (void)active;
 - (void)deactive;
+- (BOOL)iCloudEnabled;
+- (void)setICloudSyncEnabled:(BOOL)iCloudSyncEnabled cleanup:(BOOL)cleanup;
 - (BOOL)hasWatch;
 - (BOOL)isWatchAppInstalled;
 - (BOOL)syncWatch:(BOOL)focus;

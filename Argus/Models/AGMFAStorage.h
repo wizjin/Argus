@@ -6,11 +6,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "AGFile.h"
 #import "AGMFAModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface AGMFAStorage : NSObject
+@interface AGMFAStorage : AGFile
 
 - (instancetype)initWithURL:(NSURL *)url;
 - (BOOL)containsItem:(AGMFAModel *)item;
@@ -18,8 +19,6 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)addItem:(AGMFAModel *)item;
 - (AGMFAModel *)itemAtIndex:(NSInteger)index;
 - (NSUInteger)count;
-- (NSData *)fileData;
-- (BOOL)changed;
 - (BOOL)load;
 - (BOOL)save;
 - (BOOL)saveData:(NSData *)data;

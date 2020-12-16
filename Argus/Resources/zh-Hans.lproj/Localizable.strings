@@ -21,6 +21,9 @@
 "Light"="浅色";
 "Dark"="深色";
 "Locker"="加锁保护";
+"DATA MANAGER"="数据管理";
+"iCloud has been disabled"="iCloud已被禁用";
+"Backup to iCloud"="将数据备份到iCloud";
 "WATCH"="手表";
 "No watch app installed"="没有安装到Apple Watch";
 "Force data sync"="强制数据同步";

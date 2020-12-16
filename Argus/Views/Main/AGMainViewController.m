@@ -37,7 +37,7 @@ static NSString *const cellIdentifier = @"cell";
 }
 
 - (void)dealloc {
-    AGMFAManager.shared.delegate = nil;
+    [AGMFAManager.shared removeDelegate:self];
     [self stopRefreshTimer];
 }
 
@@ -60,7 +60,7 @@ static NSString *const cellIdentifier = @"cell";
     _leadingSwipeActions = [UISwipeActionsConfiguration configurationWithActions:@[[AGMFATableViewCell actionEdit:tableView]]];
     _trailingSwipeActions = [UISwipeActionsConfiguration configurationWithActions:@[[AGMFATableViewCell actionDelete:tableView]]];
 
-    AGMFAManager.shared.delegate = self;
+    [AGMFAManager.shared addDelegate:self];
 }
 
 - (void)viewWillAppear:(BOOL)animated {

@@ -33,7 +33,7 @@
 
 @end
 
-@interface AGSettingsViewController () <XLFormDescriptorDelegate>
+@interface AGSettingsViewController () <AGMFAManagerDelegate>
 
 @end
 
@@ -42,27 +42,26 @@
 - (instancetype)init {
     if (self = [super init]) {
         [self initializeForm];
+        [AGMFAManager.shared addDelegate:self];
     }
     return self;
 }
 
-#pragma mark - XLFormDescriptorDelegate
--(void)formRowDescriptorValueHasChanged:(XLFormRowDescriptor *)formRow oldValue:(id)oldValue newValue:(id)newValue {
-    if ([formRow.tag isEqualToString:@"locker"]) {
-        AGSecurity.shared.hasLocker = [newValue boolValue];
-        if (AGSecurity.shared.hasLocker != [newValue boolValue]) {
-            @weakify(self);
-            dispatch_async(dispatch_get_main_queue(), ^{
-                @strongify(self);
-                formRow.value = @(AGSecurity.shared.hasLocker);
-                [self reloadFormRow:formRow];
-            });
-        }
-    }
+- (void)dealloc {
+    [AGMFAManager.shared removeDelegate:self];
+}
+
+#pragma mark - AGMFAManagerDelegate
+- (void)watchStatusChanged {
+    XLFormRowDescriptor *row = [self.form formRowWithTag:@"appinstall"];
+    [row setHidden:row.hidden];
+    [self.tableView reloadData];
 }
 
 #pragma mark - Private Methods
 - (void)initializeForm {
+    @weakify(self);
+    
     self.title = @"Settings".localized;
     
     AGTheme *theme = AGTheme.shared;
@@ -70,7 +69,6 @@
     XLFormRowDescriptor *row;
     XLFormSectionDescriptor *section;
     XLFormDescriptor *form = [XLFormDescriptor formDescriptorWithTitle:self.title];
-    form.delegate = self;
 
     // GENERAL
     [form addFormSection:(section = [XLFormSectionDescriptor formSectionWithTitle:@"GENERAL".localized])];
@@ -96,6 +94,40 @@
 
     row = [XLFormRowDescriptor formRowDescriptorWithTag:@"locker" rowType:XLFormRowDescriptorTypeBooleanSwitch title:@"Locker".localized];
     row.value = @(AGSecurity.shared.hasLocker);
+    row.onChangeBlock = ^(id oldValue, id newValue, XLFormRowDescriptor *formRow) {
+        AGSecurity.shared.hasLocker = [newValue boolValue];
+        if (AGSecurity.shared.hasLocker != [newValue boolValue]) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                @strongify(self);
+                formRow.value = @(AGSecurity.shared.hasLocker);
+                [self reloadFormRow:formRow];
+            });
+        }
+    };
+    [section addFormRow:row];
+    
+    // DATA Manager
+    [form addFormSection:(section = [XLFormSectionDescriptor formSectionWithTitle:@"DATA MANAGER".localized])];
+    
+    row = [XLFormRowDescriptor formRowDescriptorWithTag:@"icloudwarn" rowType:XLFormRowDescriptorTypeInfo title:@"iCloud has been disabled".localized];
+    [row.cellConfig setObject:theme.minorLabelColor forKey:@"textLabel.textColor"];
+    row.hidden = [NSPredicate predicateWithBlock:^BOOL(id obj, NSDictionary<NSString *,id> *binds) {
+        return AGMFAManager.shared.iCloudEnabled;
+    }];
+    [section addFormRow:row];
+    row = [XLFormRowDescriptor formRowDescriptorWithTag:@"icloud" rowType:XLFormRowDescriptorTypeBooleanSwitch title:@"Backup to iCloud".localized];
+    row.value = @(AGMFAManager.shared.iCloudSyncEnabled);
+    row.onChangeBlock = ^(id oldValue, id newValue, XLFormRowDescriptor *formRow) {
+        [AGMFAManager.shared setICloudSyncEnabled:[newValue boolValue] cleanup:NO];
+        if (AGMFAManager.shared.iCloudSyncEnabled != [newValue boolValue]) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                @strongify(self);
+                formRow.value = @(AGMFAManager.shared.iCloudSyncEnabled);
+                [self reloadFormRow:formRow];
+            });
+        }
+    };
+    row.hidden = @"$icloudwarn.isHidden=NO";
     [section addFormRow:row];
 
     // WATCH
