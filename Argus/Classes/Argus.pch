@@ -9,6 +9,7 @@
 #define __ARGUS_PCH__
 
 #define kAGPrivacyURL       "https://argus.wizjin.com/privacy.html"
+#define kAGWatchLinkURL     "itms-watchs://com.wizjin.argus.watchkitapp"
 #define kAGMFAFileName      "mfa.dat"
 #define kAGiCloudContainer  "iCloud.com.wizjin.argus"
 

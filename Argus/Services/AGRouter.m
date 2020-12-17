@@ -169,6 +169,15 @@
         }
         return res;
     }];
+    [routes addRoute:@"/action/openurl" handler:^BOOL(NSDictionary<NSString *,id> *parameters) {
+        BOOL res = NO;
+        NSString *url = [parameters valueForKey:@"url"];
+        if (url.length > 0) {
+            [UIApplication.sharedApplication openURL:[NSURL URLWithString:url] options:@{} completionHandler:nil];
+            res = YES;
+        }
+        return res;
+    }];
     routes.unmatchedURLHandler = ^(JLRoutes *routes, NSURL *url, NSDictionary<NSString *, id> *parameters) {
         BOOL res = NO;
         if ([AGMFAManager.shared canOpenURL:url]) {

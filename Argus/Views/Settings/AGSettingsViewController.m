@@ -13,26 +13,6 @@
 #import "AGRouter.h"
 #import "AGTheme.h"
 
-@interface AGFormSelectorCell : XLFormSelectorCell
-@end
-
-@implementation AGFormSelectorCell
-
-- (void)formDescriptorCellDidSelectedWithFormController:(XLFormViewController *)controller {
-    if (self.rowDescriptor.action.formBlock) {
-        self.rowDescriptor.action.formBlock(self.rowDescriptor);
-    }
-    UITableView *tableView = controller.tableView;
-    if (tableView != nil) {
-        NSIndexPath *index = tableView.indexPathForSelectedRow;
-        if (index != nil) {
-            [tableView deselectRowAtIndexPath:index animated:YES];
-        }
-    }
-}
-
-@end
-
 @interface AGSettingsViewController () <AGMFAManagerDelegate>
 
 @end
@@ -49,6 +29,15 @@
 
 - (void)dealloc {
     [AGMFAManager.shared removeDelegate:self];
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [super tableView:tableView didSelectRowAtIndexPath:indexPath];
+    XLFormRowDescriptor *row = [self.form formRowAtIndex:indexPath];
+    if (row.rowType == XLFormRowDescriptorTypeSelectorPush && row.action.formBlock != nil) {
+        row.action.formBlock(row);
+    }
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 #pragma mark - AGMFAManagerDelegate
@@ -136,16 +125,18 @@
         return !AGMFAManager.shared.hasWatch;
     }];
 
-    row = [XLFormRowDescriptor formRowDescriptorWithTag:@"appinstall" rowType:XLFormRowDescriptorTypeInfo title:@"No watch app installed".localized];
+    row = [XLFormRowDescriptor formRowDescriptorWithTag:@"appinstall" rowType:XLFormRowDescriptorTypeSelectorPush title:@"No watch app installed".localized];
     [row.cellConfig setObject:theme.minorLabelColor forKey:@"textLabel.textColor"];
     row.hidden = [NSPredicate predicateWithBlock:^BOOL(id obj, NSDictionary<NSString *,id> *binds) {
         return AGMFAManager.shared.isWatchAppInstalled;
     }];
+    row.action.formBlock = ^(XLFormRowDescriptor *row) {
+        [AGRouter.shared routeTo:@"/action/openurl" withParams:@{ @"url": @kAGWatchLinkURL }];
+    };
     [section addFormRow:row];
 
     row = [XLFormRowDescriptor formRowDescriptorWithTag:@"syncwatch" rowType:XLFormRowDescriptorTypeSelectorPush title:@"Force data sync".localized];
     [row.cellConfig setObject:@(UITableViewCellAccessoryNone) forKey:@"accessoryType"];
-    row.cellClass = AGFormSelectorCell.class;
     row.hidden = @"$appinstall.isHidden=NO";
 
     row.action.formBlock = ^(XLFormRowDescriptor *row) {
@@ -165,14 +156,12 @@
     [section addFormRow:row];
     
     row = [XLFormRowDescriptor formRowDescriptorWithTag:@"privacy" rowType:XLFormRowDescriptorTypeSelectorPush title:@"Privacy Policy".localized];
-    row.cellClass = AGFormSelectorCell.class;
     row.action.formBlock = ^(XLFormRowDescriptor *row) {
         [AGRouter.shared routeTo:@kAGPrivacyURL withParams:@{ @"title": @"Privacy Policy".localized }];
     };
     [section addFormRow:row];
 
     row = [XLFormRowDescriptor formRowDescriptorWithTag:@"acknowledgements" rowType:XLFormRowDescriptorTypeSelectorPush title:@"Acknowledgements".localized];
-    row.cellClass = AGFormSelectorCell.class;
     row.action.formBlock = ^(XLFormRowDescriptor *row) {
         [AGRouter.shared routeTo:@"/page/acknowledgements"];
     };
