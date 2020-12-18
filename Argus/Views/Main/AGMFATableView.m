@@ -20,10 +20,10 @@
 - (instancetype)init {
     if (self = [super initWithFrame:CGRectZero style:UITableViewStylePlain]) {
         self.backgroundColor = AGTheme.shared.groupedBackgroundColor;
-        self.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, kAGMFACellMargin)];
+        self.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, kAGTableCellMargin)];
         self.separatorStyle = UITableViewCellSeparatorStyleNone;
         self.showsHorizontalScrollIndicator = NO;
-        self.rowHeight = kAGMFACellHeight + kAGMFACellMargin;
+        self.rowHeight = kAGMFACellHeight + kAGTableCellMargin;
     }
     return self;
 }

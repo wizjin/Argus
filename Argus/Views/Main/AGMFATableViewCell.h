@@ -6,14 +6,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AGTableViewCell.h"
 #import "AGMFAModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 #define kAGMFACellHeight    120
-#define kAGMFACellMargin    8
 
-@interface AGMFATableViewCell : UITableViewCell
+@interface AGMFATableViewCell : AGTableViewCell
+
+@property (nonatomic, nullable, strong) AGMFAModel *model;
 
 + (UIContextualAction *)actionEdit:(UITableView *)tableView;
 + (UIContextualAction *)actionDelete:(UITableView *)tableView;

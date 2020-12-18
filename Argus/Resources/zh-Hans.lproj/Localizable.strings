@@ -24,6 +24,8 @@
 "DATA MANAGER"="数据管理";
 "iCloud has been disabled"="iCloud已被禁用";
 "Backup to iCloud"="将数据备份到iCloud";
+"Export with QR code"="使用二维码导出";
+"Export"="导出";
 "WATCH"="手表";
 "No watch app installed"="没有安装到Apple Watch";
 "Force data sync"="强制数据同步";
@@ -42,6 +44,12 @@
 "NoMFA"="没有MFA\n点击添加记录";
 "NoMFATitle"="没有MFA记录";
 "NoMFAWatch"="可以从iPhone上的Argus应用添加记录";
+"TOTPInfoTitle"="扫描本二维码";
+"TOTPInfoDetail"="在您的新设备上下载Argus应用，并在应用内扫描本二维码";
+"Export success!"="导出记录成功！";
+"Export failed!"="导出记录失败！";
+"Export up to %@ records at a time."="一次最多导出%@条记录。";
+"This record format is not supported to export!"="不支持导出此记录格式！";
 "Add record success"="记录添加成功";
 "Record already exists"="记录已经存在";
 "Delete this record will NOT turn off OTP verification"="删除该条记录不会取消OTP验证";

@@ -41,6 +41,11 @@
 		6D906EDA2575186B00901052 /* NSData+AGExt.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D906ED92575186B00901052 /* NSData+AGExt.m */; };
 		6D906EDF2575198F00901052 /* AGCountdownView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D906EDE2575198F00901052 /* AGCountdownView.m */; };
 		6D906EE425751A0B00901052 /* AGMFAManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D906EE325751A0B00901052 /* AGMFAManager.m */; };
+		6DA0ADFC258C491300C91E86 /* AGExportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DA0ADFB258C491300C91E86 /* AGExportViewController.m */; };
+		6DA0AE02258C4E4200C91E86 /* AGExportTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DA0AE01258C4E4200C91E86 /* AGExportTableViewCell.m */; };
+		6DA0AE0B258C4F9200C91E86 /* AGTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DA0AE0A258C4F9200C91E86 /* AGTableViewCell.m */; };
+		6DA0AE14258C60AD00C91E86 /* AGExportQrcodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DA0AE13258C60AD00C91E86 /* AGExportQrcodeViewController.m */; };
+		6DA6F3DE258CC9B7004F75BD /* AGMFAModel+GPB.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DA6F3DD258CC9B7004F75BD /* AGMFAModel+GPB.m */; };
 		6DCBABDA2583535100803292 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6DCBABD82583535100803292 /* Interface.storyboard */; };
 		6DCBABE32583535200803292 /* Watch Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 6DCBABE22583535200803292 /* Watch Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		6DCBABE92583535200803292 /* InterfaceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DCBABE82583535200803292 /* InterfaceController.m */; };
@@ -198,6 +203,16 @@
 		6D906EDE2575198F00901052 /* AGCountdownView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AGCountdownView.m; sourceTree = "<group>"; };
 		6D906EE225751A0B00901052 /* AGMFAManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AGMFAManager.h; sourceTree = "<group>"; };
 		6D906EE325751A0B00901052 /* AGMFAManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AGMFAManager.m; sourceTree = "<group>"; };
+		6DA0ADFA258C491300C91E86 /* AGExportViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AGExportViewController.h; sourceTree = "<group>"; };
+		6DA0ADFB258C491300C91E86 /* AGExportViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AGExportViewController.m; sourceTree = "<group>"; };
+		6DA0AE00258C4E4200C91E86 /* AGExportTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AGExportTableViewCell.h; sourceTree = "<group>"; };
+		6DA0AE01258C4E4200C91E86 /* AGExportTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AGExportTableViewCell.m; sourceTree = "<group>"; };
+		6DA0AE09258C4F9200C91E86 /* AGTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AGTableViewCell.h; sourceTree = "<group>"; };
+		6DA0AE0A258C4F9200C91E86 /* AGTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AGTableViewCell.m; sourceTree = "<group>"; };
+		6DA0AE12258C60AD00C91E86 /* AGExportQrcodeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AGExportQrcodeViewController.h; sourceTree = "<group>"; };
+		6DA0AE13258C60AD00C91E86 /* AGExportQrcodeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AGExportQrcodeViewController.m; sourceTree = "<group>"; };
+		6DA6F3DC258CC9B7004F75BD /* AGMFAModel+GPB.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AGMFAModel+GPB.h"; sourceTree = "<group>"; };
+		6DA6F3DD258CC9B7004F75BD /* AGMFAModel+GPB.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "AGMFAModel+GPB.m"; sourceTree = "<group>"; };
 		6DCBABD62583535100803292 /* Watch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Watch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6DCBABD92583535100803292 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
 		6DCBABDB2583535100803292 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -319,6 +334,7 @@
 			isa = PBXGroup;
 			children = (
 				6D906EA42574D7A700901052 /* Settings */,
+				6DA0ADF9258C48FC00C91E86 /* Export */,
 				6D906EA22574D79C00901052 /* Main */,
 				6D906EBA2574FF1F00901052 /* Editor */,
 				6D906EA92574DFF600901052 /* Scan */,
@@ -365,6 +381,8 @@
 		6D906EA12574D78900901052 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				6DA0AE09258C4F9200C91E86 /* AGTableViewCell.h */,
+				6DA0AE0A258C4F9200C91E86 /* AGTableViewCell.m */,
 				6D906E3D2573CF7100901052 /* AGViewController.h */,
 				6D906E3E2573CF7100901052 /* AGViewController.m */,
 				6DCBAC65258387A000803292 /* AGBlurViewController.h */,
@@ -446,8 +464,23 @@
 				6D906ED5257517E400901052 /* AGMFAModel.m */,
 				6DCBAC892584ADC000803292 /* AGMFAStorage.h */,
 				6DCBAC8A2584ADC000803292 /* AGMFAStorage.m */,
+				6DA6F3DC258CC9B7004F75BD /* AGMFAModel+GPB.h */,
+				6DA6F3DD258CC9B7004F75BD /* AGMFAModel+GPB.m */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		6DA0ADF9258C48FC00C91E86 /* Export */ = {
+			isa = PBXGroup;
+			children = (
+				6DA0AE00258C4E4200C91E86 /* AGExportTableViewCell.h */,
+				6DA0AE01258C4E4200C91E86 /* AGExportTableViewCell.m */,
+				6DA0ADFA258C491300C91E86 /* AGExportViewController.h */,
+				6DA0ADFB258C491300C91E86 /* AGExportViewController.m */,
+				6DA0AE12258C60AD00C91E86 /* AGExportQrcodeViewController.h */,
+				6DA0AE13258C60AD00C91E86 /* AGExportQrcodeViewController.m */,
+			);
+			path = Export;
 			sourceTree = "<group>";
 		};
 		6DCBABD72583535100803292 /* Watch */ = {
@@ -694,9 +727,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6DA0AE14258C60AD00C91E86 /* AGExportQrcodeViewController.m in Sources */,
 				6D25C1C3258A295B00D9CEA9 /* NSURL+AGExt.m in Sources */,
 				6D906EA72574D7C400901052 /* AGSettingsViewController.m in Sources */,
 				6D906E852574AE0700901052 /* AGRouter.m in Sources */,
+				6DA0AE0B258C4F9200C91E86 /* AGTableViewCell.m in Sources */,
 				6D7DA0B2257F6008009AEFB1 /* AGQRCodeView.m in Sources */,
 				6DE9356F25766C5E00FE1F4E /* AGMFAEmptyView.m in Sources */,
 				6D906EDA2575186B00901052 /* NSData+AGExt.m in Sources */,
@@ -710,14 +745,17 @@
 				6D14B7D92581C57E00240C1B /* AGSecurity.m in Sources */,
 				6D906ED6257517E400901052 /* AGMFAModel.m in Sources */,
 				6D906EC8257506F600901052 /* AGWebViewRefresher.m in Sources */,
+				6DA6F3DE258CC9B7004F75BD /* AGMFAModel+GPB.m in Sources */,
 				6DCBAC67258387A000803292 /* AGBlurViewController.m in Sources */,
 				6D906E392573CF7100901052 /* AppDelegate.m in Sources */,
 				6D906EDF2575198F00901052 /* AGCountdownView.m in Sources */,
 				6D906EAC2574E01900901052 /* AGScanViewController.m in Sources */,
 				6D906E992574CAB900901052 /* AGMFATableViewCell.m in Sources */,
 				6D7DA0C5257FA16D009AEFB1 /* AGCodeView.m in Sources */,
+				6DA0ADFC258C491300C91E86 /* AGExportViewController.m in Sources */,
 				6D906E8D2574C32900901052 /* UIViewController+AGExt.m in Sources */,
 				6D906E782573E02100901052 /* NSString+AGExt.m in Sources */,
+				6DA0AE02258C4E4200C91E86 /* AGExportTableViewCell.m in Sources */,
 				6DCBAC8B2584ADC000803292 /* AGMFAStorage.m in Sources */,
 				6D906E4A2573CF7200901052 /* main.m in Sources */,
 				6D906EE425751A0B00901052 /* AGMFAManager.m in Sources */,
@@ -924,7 +962,7 @@
 				CODE_SIGN_ENTITLEMENTS = Argus/Argus.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = P4XS4AVCLW;
 				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/$(PROJECT_NAME)/Classes/$(PROJECT_NAME).pch";
 				INFOPLIST_FILE = "$(SRCROOT)/Argus/Resources/Info.plist";
@@ -932,7 +970,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.9.3;
+				MARKETING_VERSION = 0.9.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.wizjin.argus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -949,7 +987,7 @@
 				CODE_SIGN_ENTITLEMENTS = Argus/Argus.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = P4XS4AVCLW;
 				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/$(PROJECT_NAME)/Classes/$(PROJECT_NAME).pch";
 				INFOPLIST_FILE = "$(SRCROOT)/Argus/Resources/Info.plist";
@@ -957,7 +995,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.9.3;
+				MARKETING_VERSION = 0.9.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.wizjin.argus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -972,11 +1010,11 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = P4XS4AVCLW;
 				IBSC_MODULE = Watch_Extension;
 				INFOPLIST_FILE = Watch/Info.plist;
-				MARKETING_VERSION = 0.9.3;
+				MARKETING_VERSION = 0.9.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.wizjin.argus.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
@@ -993,11 +1031,11 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = P4XS4AVCLW;
 				IBSC_MODULE = Watch_Extension;
 				INFOPLIST_FILE = Watch/Info.plist;
-				MARKETING_VERSION = 0.9.3;
+				MARKETING_VERSION = 0.9.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.wizjin.argus.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
@@ -1012,7 +1050,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = P4XS4AVCLW;
 				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/$(PROJECT_NAME)/Classes/$(PROJECT_NAME).pch";
 				INFOPLIST_FILE = "Watch Extension/Info.plist";
@@ -1021,7 +1059,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 0.9.3;
+				MARKETING_VERSION = 0.9.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.wizjin.argus.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
@@ -1036,7 +1074,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = P4XS4AVCLW;
 				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/$(PROJECT_NAME)/Classes/$(PROJECT_NAME).pch";
 				INFOPLIST_FILE = "Watch Extension/Info.plist";
@@ -1045,7 +1083,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 0.9.3;
+				MARKETING_VERSION = 0.9.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.wizjin.argus.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;

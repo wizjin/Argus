@@ -101,7 +101,7 @@
                             uint64_t ts = (uint64_t)(NSDate.now.timeIntervalSince1970 * 1000);
                             NSMutableArray<AGMFAModel *> *items = [NSMutableArray new];
                             for (AGMOtpParameters *item in payload.parametersArray) {
-                                NSString *url = buildURLWithParams(item);
+                                NSString *url = [AGMFAModel URLWithParams:item];
                                 if (url.length > 0) {
                                     AGMFAModel *model = [AGMFAModel modelWithData:@{
                                         @"created": @(ts++),
@@ -141,6 +141,20 @@
     if (completion != nil) {
         completion();
     }
+}
+
+- (NSArray<NSString *> *)createExportURL:(NSArray<AGMFAModel *> *)models {
+    NSMutableArray<NSString *> *urls = [NSMutableArray new];
+    AGMMigrationPayload *payload = [AGMMigrationPayload new];
+    payload.version = 1;
+    for (AGMFAModel *model in models) {
+        AGMOtpParameters *item = model.pbParams;
+        if (item != nil) {
+            [payload.parametersArray addObject:item];
+        }
+    }
+    [urls addObject:[@"otpauth-migration://offline?data=" stringByAppendingString:[payload.data base64EncodedStringWithOptions:0]]];
+    return urls;
 }
 
 - (void)copyToPasteboard:(nullable AGMFAModel *)item {
@@ -356,57 +370,6 @@
         url = [[url URLByAppendingPathComponent:@"Documents"] URLByAppendingPathComponent:@kAGMFAFileName];
     }
     return url;
-}
-
-static inline NSString *buildURLWithParams(AGMOtpParameters *params) {
-    NSURLComponents *components = [NSURLComponents new];
-    components.scheme = @"otpauth";
-    if (params.type == AGMOtpType_OtpTypeTotp) {
-        components.host = @"totp";
-        if (params.issuer.length <= 0) {
-            components.path = [NSString stringWithFormat:@"/%@", params.name];
-        } else {
-            if (params.name.length <= 0) {
-                components.path = [NSString stringWithFormat:@"/%@", params.name];
-            } else {
-                components.path = [NSString stringWithFormat:@"/%@:%@", params.issuer, params.name];
-            }
-        }
-        NSMutableArray<NSURLQueryItem *> *items = [NSMutableArray new];
-        switch (params.algorithm) {
-            case AGMAlgorithm_AlgorithmSha1:
-                break;
-            case AGMAlgorithm_AlgorithmSha256:
-                [items addObject:[NSURLQueryItem queryItemWithName:@"algorithm" value:@"sha256"]];
-                break;
-            case AGMAlgorithm_AlgorithmSha512:
-                [items addObject:[NSURLQueryItem queryItemWithName:@"algorithm" value:@"sha512"]];
-                break;
-            case AGMAlgorithm_AlgorithmMd5:
-                [items addObject:[NSURLQueryItem queryItemWithName:@"algorithm" value:@"md5"]];
-                break;
-            default:
-                return nil;
-        }
-        switch (params.digits) {
-            case AGMDigitCount_DigitCountSix:
-                break;
-            case AGMDigitCount_DigitCountEight:
-                [items addObject:[NSURLQueryItem queryItemWithName:@"digits" value:@"8"]];
-                break;
-            default:
-                return nil;
-        }
-        if (params.secret.length > 0) {
-            [items addObject:[NSURLQueryItem queryItemWithName:@"secret" value:params.secret.base32EncodedString]];
-        }
-        if (params.issuer.length > 0) {
-            [items addObject:[NSURLQueryItem queryItemWithName:@"issuer" value:params.issuer]];
-        }
-        components.queryItems = items;
-        return components.URL.absoluteString;
-    }
-    return nil;
 }
 
 

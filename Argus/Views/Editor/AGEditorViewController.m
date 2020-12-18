@@ -17,7 +17,6 @@
 
 @property (nonatomic, readonly, strong) NSTimer *refreshTimer;
 @property (nonatomic, readonly, strong) AGMFAModel *model;
-@property (nonatomic, readonly, strong) AGQRCodeView *qrCodeView;
 @property (nonatomic, readonly, strong) AGCountdownView * countdown;
 @property (nonatomic, readonly, strong) AGCodeView *codeLabel;
 @property (nonatomic, readonly, strong) UITapGestureRecognizer *recognizer;
@@ -82,7 +81,7 @@
     codeLabel.fontSize = 60;
 
     AGQRCodeView *qrCodeView = [AGQRCodeView new];
-    [view addSubview:(_qrCodeView = qrCodeView)];
+    [view addSubview:qrCodeView];
     [qrCodeView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(codeLabel.mas_bottom).offset(40);
         make.centerX.equalTo(codeLabel);

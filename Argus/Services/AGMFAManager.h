@@ -7,6 +7,7 @@
 
 #import <Foundation/Foundation.h>
 #import "AGMFAModel.h"
+#import "AGMFAModel+GPB.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -28,6 +29,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (AGMFAModel *)itemAtIndex:(NSInteger)index;
 - (NSUInteger)itemCount;
 - (void)deleteItem:(AGMFAModel *)item completion:(void (^ __nullable)(void))completion;
+- (NSArray<NSString *> *)createExportURL:(NSArray<AGMFAModel *> *)models;
 - (void)copyToPasteboard:(nullable AGMFAModel *)item;
 - (void)active;
 - (void)deactive;

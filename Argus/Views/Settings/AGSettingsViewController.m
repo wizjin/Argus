@@ -118,6 +118,16 @@
     };
     row.hidden = @"$icloudwarn.isHidden=NO";
     [section addFormRow:row];
+    
+    row = [XLFormRowDescriptor formRowDescriptorWithTag:@"export" rowType:XLFormRowDescriptorTypeSelectorPush title:@"Export with QR code".localized];
+    [row.cellConfigIfDisabled setObject:theme.minorLabelColor forKey:@"textLabel.textColor"];
+    row.disabled = [NSPredicate predicateWithBlock:^BOOL(id obj, NSDictionary<NSString *,id> *binds) {
+        return AGMFAManager.shared.itemCount <= 0;
+    }];
+    row.action.formBlock = ^(XLFormRowDescriptor *row) {
+        [AGRouter.shared routeTo:@"/page/export"];
+    };
+    [section addFormRow:row];
 
     // WATCH
     [form addFormSection:(section = [XLFormSectionDescriptor formSectionWithTitle:@"WATCH".localized])];

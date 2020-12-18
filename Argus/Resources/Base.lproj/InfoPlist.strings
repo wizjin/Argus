@@ -9,4 +9,5 @@ CFBundleDisplayName="Argus";
 NSCameraUsageDescription="To scan a QR code when you need it.";
 NSPhotoLibraryUsageDescription="To picker a QR code from photo when you need it.";
 NSFaceIDUsageDescription="Use FaceID to unlock app when you need it.";
+NSPhotoLibraryAddUsageDescription="To save export QR code into photo library when you need it.";
 ScanActionTitle="Scan QR code";
