@@ -11,7 +11,7 @@
 #import "AGRouter.h"
 #import "AGTheme.h"
 
-@interface AGScanViewController () <AVCaptureMetadataOutputObjectsDelegate, PHPickerViewControllerDelegate>
+@interface AGScanViewController () <AVCaptureMetadataOutputObjectsDelegate, PHPickerViewControllerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 @property (nonatomic, readonly, assign) BOOL isClosed;
 @property (nonatomic, readonly, strong) AVCaptureSession *captureSession;
@@ -102,7 +102,7 @@
         navigationBar.backgroundColor = UIColor.clearColor;
         navigationBar.translucent = YES;
         
-        UIImage *backImage = [UIImage systemImageNamed:@"chevron.backward.circle.fill"];
+        UIImage *backImage = [UIImage systemImageNamed:@"chevron.left.circle.fill"];
         navigationBar.backIndicatorImage = backImage;
         navigationBar.backIndicatorTransitionMaskImage = backImage;
     }
@@ -148,7 +148,7 @@
 }
 
 #pragma mark - PHPickerViewControllerDelegate
-- (void)picker:(PHPickerViewController *)picker didFinishPicking:(NSArray<PHPickerResult *> *)results {
+- (void)picker:(PHPickerViewController *)picker didFinishPicking:(NSArray<PHPickerResult *> *)results  API_AVAILABLE(ios(14)){
     @weakify(self);
     [picker dismissViewControllerAnimated:YES completion:^{
         if (results.count > 0) {
@@ -167,15 +167,41 @@
     }];
 }
 
+#pragma mark - UIImagePickerControllerDelegate
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
+    id object =  [info valueForKey:UIImagePickerControllerOriginalImage];
+    if ([object isKindOfClass:UIImage.class]) {
+        @weakify(self);
+        [picker dismissViewControllerAnimated:YES completion:^{
+            dispatch_async(dispatch_get_main_queue(), ^{
+                @strongify(self);
+                [self scanImage:(UIImage *)object];
+            });
+        }];
+    }
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+    [picker dismissViewControllerAnimated:YES completion:nil];
+}
+
 #pragma mark - Private Methods
 - (void)actionSelectPhoto:(id)sender {
-    PHPickerConfiguration *configuration = [PHPickerConfiguration new];
-    configuration.filter = PHPickerFilter.imagesFilter;
-    configuration.selectionLimit = 1;
-    PHPickerViewController *pickerViewController = [[PHPickerViewController alloc] initWithConfiguration:configuration];
-    pickerViewController.modalPresentationStyle = UIModalPresentationFullScreen;
-    pickerViewController.delegate = self;
-    [self presentViewController:pickerViewController animated:YES completion:nil];
+    if (@available(iOS 14, *)) {
+        PHPickerConfiguration *configuration = [PHPickerConfiguration new];
+        configuration.filter = PHPickerFilter.imagesFilter;
+        configuration.selectionLimit = 1;
+        PHPickerViewController *pickerViewController = [[PHPickerViewController alloc] initWithConfiguration:configuration];
+        pickerViewController.delegate = self;
+        pickerViewController.modalPresentationStyle = UIModalPresentationFullScreen;
+        [self presentViewController:pickerViewController animated:YES completion:nil];
+    } else {
+        UIImagePickerController *pickerViewController = [UIImagePickerController new];
+        pickerViewController.delegate = self;
+        pickerViewController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        pickerViewController.modalPresentationStyle = UIModalPresentationFullScreen;
+        [self presentViewController:pickerViewController animated:YES completion:nil];
+    }
 }
 
 - (void)startScan {

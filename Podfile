@@ -2,7 +2,7 @@ source 'https://github.com/CocoaPods/Specs.git'
 
 $project_name = 'Argus'
 
-platform :ios, '14.0'
+platform :ios, '13.0'
 
 inhibit_all_warnings!
 

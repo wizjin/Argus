@@ -202,7 +202,11 @@ static inline BOOL showViewController(UIViewController *vc, BOOL animated, BOOL 
     if (!tryPush) {
         [nav popToRootViewControllerAnimated:NO];
     }
-    nav.navigationBar.topItem.backButtonDisplayMode = UINavigationItemBackButtonDisplayModeMinimal;
+    if (@available(iOS 14.0, *)) {
+        nav.navigationBar.topItem.backButtonDisplayMode = UINavigationItemBackButtonDisplayModeMinimal;
+    } else {
+        nav.navigationBar.topItem.backButtonTitle = @"";
+    }
     [nav pushViewController:vc animated:animated];
     return YES;
 }
