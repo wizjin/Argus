@@ -37,7 +37,7 @@ static NSString *const cellIdentifier = @"cell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Export".localized style:UIBarButtonItemStylePlain target:self action:@selector(actionExport:)];
+    self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithTitle:@"Export".localized target:self action:@selector(actionExport:)];
 
     UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
     [self.view addSubview:(_tableView = tableView)];

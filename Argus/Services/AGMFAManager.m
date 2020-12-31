@@ -78,7 +78,7 @@
     BOOL res = NO;
     if ([url.scheme isEqualToString:@"otpauth"]) {
         AGMFAModel *model = [AGMFAModel modelWithData:@{
-            @"created": @(NSDate.now.timeIntervalSince1970 * 1000),
+            @"created": @(NSDate.date.timeIntervalSince1970 * 1000),
             @"url": url.absoluteString,
         }];
         if ([self insertItems:@[model]]) {
@@ -98,7 +98,7 @@
                         NSError *error = nil;
                         AGMMigrationPayload *payload = [AGMMigrationPayload parseFromData:data error:&error];
                         if (error == nil) {
-                            uint64_t ts = (uint64_t)(NSDate.now.timeIntervalSince1970 * 1000);
+                            uint64_t ts = (uint64_t)(NSDate.date.timeIntervalSince1970 * 1000);
                             NSMutableArray<AGMFAModel *> *items = [NSMutableArray new];
                             for (AGMOtpParameters *item in payload.parametersArray) {
                                 NSString *url = [AGMFAModel URLWithParams:item];
@@ -203,7 +203,7 @@
     BOOL res = NO;
     if (self.hasWatch) {
         res = [self.session updateApplicationContext:@{
-            @"last": @(focus ? NSDate.now.timeIntervalSince1970 : 0),
+            @"last": @(focus ? NSDate.date.timeIntervalSince1970 : 0),
             @"data": self.storage.fileData
         } error:nil];
     }

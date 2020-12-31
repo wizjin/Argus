@@ -72,7 +72,7 @@
         [videoPreviewLayer setVideoGravity:AVLayerVideoGravityResizeAspectFill];
         [videoPreviewLayer setFrame:viewPreview.layer.bounds];
     }
-    UIButton *photoButton = [UIButton systemButtonWithImage:[UIImage systemImageNamed:@"photo"] target:self action:@selector(actionSelectPhoto:)];
+    UIButton *photoButton = [UIButton buttonWithImage:[UIImage imageWithSymbol:@"photo"] target:self action:@selector(actionSelectPhoto:)];
     [self.view addSubview:(_photoButton = photoButton)];
     photoButton.backgroundColor = [theme.labelColor colorWithAlphaComponent:0.8];
     photoButton.tintColor = theme.backgroundColor;
@@ -101,8 +101,8 @@
         [navigationBar setBackgroundImage:AGTheme.shared.clearImage forBarMetrics:UIBarMetricsDefault];
         navigationBar.backgroundColor = UIColor.clearColor;
         navigationBar.translucent = YES;
-        
-        UIImage *backImage = [UIImage systemImageNamed:@"chevron.left.circle.fill"];
+
+        UIImage *backImage = [UIImage imageWithSymbol:@"chevron.left.circle.fill"].barItemImage;
         navigationBar.backIndicatorImage = backImage;
         navigationBar.backIndicatorTransitionMaskImage = backImage;
     }
@@ -148,7 +148,7 @@
 }
 
 #pragma mark - PHPickerViewControllerDelegate
-- (void)picker:(PHPickerViewController *)picker didFinishPicking:(NSArray<PHPickerResult *> *)results  API_AVAILABLE(ios(14)){
+- (void)picker:(PHPickerViewController *)picker didFinishPicking:(NSArray<PHPickerResult *> *)results  API_AVAILABLE(ios(14)) {
     @weakify(self);
     [picker dismissViewControllerAnimated:YES completion:^{
         if (results.count > 0) {

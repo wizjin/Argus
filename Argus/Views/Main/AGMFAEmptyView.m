@@ -24,9 +24,11 @@
         self.alwaysBounceHorizontal = NO;
         self.showsVerticalScrollIndicator = NO;
         self.showsHorizontalScrollIndicator = NO;
-        self.automaticallyAdjustsScrollIndicatorInsets = NO;
+        if (@available(iOS 13.0, *)) {
+            self.automaticallyAdjustsScrollIndicatorInsets = NO;
+        }
         
-        UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage systemImageNamed:@"rectangle.stack.badge.plus"]];
+        UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageWithSymbol:@"rectangle.stack.badge.plus"]];
         [self addSubview:imageView];
         imageView.tintColor = theme.minorLabelColor;
         [imageView mas_makeConstraints:^(MASConstraintMaker *make) {

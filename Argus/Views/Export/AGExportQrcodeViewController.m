@@ -35,7 +35,7 @@
     [super viewDidLoad];
     AGTheme *theme = AGTheme.shared;
     
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage systemImageNamed:@"square.and.arrow.up"] style:UIBarButtonItemStylePlain target:self action:@selector(actionExport:)];
+    self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithImage:[UIImage imageWithSymbol:@"square.and.arrow.up"] target:self action:@selector(actionExport:)];
 
     UIScrollView *view = [UIScrollView new];
     [self.view addSubview:view];
@@ -97,7 +97,7 @@
         make.right.equalTo(qrCodeView);
     }];
     createdLabel.font = [UIFont systemFontOfSize:12];
-    createdLabel.created = NSDate.now.timeIntervalSince1970*1000;
+    createdLabel.created = NSDate.date.timeIntervalSince1970*1000;
 }
 
 #pragma mark - Action Methods

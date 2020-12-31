@@ -11,7 +11,9 @@
 
 - (UINavigationController *)navigation {
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:self];
-    navigationController.modalPresentationStyle = UIModalPresentationPopover;
+    if (@available(iOS 13.0, *)) {
+        navigationController.modalPresentationStyle = UIModalPresentationPopover;
+    }
     return navigationController;
 }
 

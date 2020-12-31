@@ -67,10 +67,10 @@
         [UIView animateWithDuration:(animated ? 0.2 : 0) animations:^{
             if (selected) {
                 self.checkImage.tintColor = AGTheme.shared.tintColor;
-                self.checkImage.image = [UIImage systemImageNamed:@"checkmark.circle.fill"];
+                self.checkImage.image = [UIImage imageWithSymbol:@"checkmark.circle.fill"];
             } else {
                 self.checkImage.tintColor = AGTheme.shared.minorLabelColor;
-                self.checkImage.image = [UIImage systemImageNamed:@"circle"];
+                self.checkImage.image = [UIImage imageWithSymbol:@"circle"];
             }
         }];
     }
@@ -84,7 +84,7 @@
         self.createdLabel.created = model.created;
         if (!self.model.canExportPB) {
             self.checkImage.tintColor = AGTheme.shared.alertColor;
-            self.checkImage.image = [UIImage systemImageNamed:@"exclamationmark.circle.fill"];
+            self.checkImage.image = [UIImage imageWithSymbol:@"exclamationmark.circle.fill"];
         }
     }
 }

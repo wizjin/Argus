@@ -36,6 +36,18 @@
 #   import "NSString+AGExt.h"
 #endif
 
+#if __has_include(<UIKit/UIColor.h>)
+#   import "UIColor+AGExt.h"
+#endif
+
+#if __has_include(<UIKit/UIImage.h>)
+#   import "UIImage+AGExt.h"
+#endif
+
+#if __has_include(<UIKit/UIButton.h>)
+#   import "UIButton+AGExt.h"
+#endif
+
 #if __has_include(<UIKit/UIView.h>)
 #   import <Masonry/Masonry.h>
 #   import "UIView+AGExt.h"
@@ -43,6 +55,10 @@
 
 #if __has_include(<UIKit/UIViewController.h>)
 #   import "UIViewController+AGExt.h"
+#endif
+
+#if __has_include(<UIKit/UIBarButtonItem.h>)
+#   import "UIBarButtonItem+AGExt.h"
 #endif
 
 #endif /* __OBJC__ */

@@ -61,25 +61,27 @@
 
     // GENERAL
     [form addFormSection:(section = [XLFormSectionDescriptor formSectionWithTitle:@"GENERAL".localized])];
-    row = [XLFormRowDescriptor formRowDescriptorWithTag:@"appearance" rowType:XLFormRowDescriptorTypeSelectorActionSheet title:@"Appearance".localized];
-    row.cellConfig[@"accessoryType"] = @(UITableViewCellAccessoryDisclosureIndicator);
-    row.selectorOptions = @[
-        [XLFormOptionsObject formOptionsObjectWithValue:@(UIUserInterfaceStyleUnspecified) displayText:@"Default".localized],
-        [XLFormOptionsObject formOptionsObjectWithValue:@(UIUserInterfaceStyleLight) displayText:@"Light".localized],
-        [XLFormOptionsObject formOptionsObjectWithValue:@(UIUserInterfaceStyleDark) displayText:@"Dark".localized],
-    ];
-    for (XLFormOptionsObject *option in row.selectorOptions) {
-        if ([option.formValue integerValue] == theme.userInterfaceStyle) {
-            [row setValue:option];
-            row.value = option;
-            [self reloadFormRow:row];
-            break;
+    if (@available(iOS 13.0, *)) {
+        row = [XLFormRowDescriptor formRowDescriptorWithTag:@"appearance" rowType:XLFormRowDescriptorTypeSelectorActionSheet title:@"Appearance".localized];
+        row.cellConfig[@"accessoryType"] = @(UITableViewCellAccessoryDisclosureIndicator);
+        row.selectorOptions = @[
+            [XLFormOptionsObject formOptionsObjectWithValue:@(UIUserInterfaceStyleUnspecified) displayText:@"Default".localized],
+            [XLFormOptionsObject formOptionsObjectWithValue:@(UIUserInterfaceStyleLight) displayText:@"Light".localized],
+            [XLFormOptionsObject formOptionsObjectWithValue:@(UIUserInterfaceStyleDark) displayText:@"Dark".localized],
+        ];
+        for (XLFormOptionsObject *option in row.selectorOptions) {
+            if ([option.formValue integerValue] == theme.userInterfaceStyle) {
+                [row setValue:option];
+                row.value = option;
+                [self reloadFormRow:row];
+                break;
+            }
         }
+        row.onChangeBlock = ^(id oldValue, XLFormOptionsObject *newValue, XLFormRowDescriptor *rowDescriptor) {
+            AGTheme.shared.userInterfaceStyle = [newValue.formValue integerValue];
+        };
+        [section addFormRow:row];
     }
-    row.onChangeBlock = ^(id oldValue, XLFormOptionsObject *newValue, XLFormRowDescriptor *rowDescriptor) {
-        AGTheme.shared.userInterfaceStyle = [newValue.formValue integerValue];
-    };
-    [section addFormRow:row];
 
     row = [XLFormRowDescriptor formRowDescriptorWithTag:@"locker" rowType:XLFormRowDescriptorTypeBooleanSwitch title:@"Locker".localized];
     row.value = @(AGSecurity.shared.hasLocker);

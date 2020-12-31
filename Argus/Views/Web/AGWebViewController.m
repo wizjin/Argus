@@ -166,7 +166,7 @@
             }];
             emptyView.alwaysBounceVertical = YES;
             emptyView.backgroundColor = theme.groupedBackgroundColor;
-            UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage systemImageNamed:@"bolt.slash.fill"]];
+            UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageWithSymbol:@"bolt.slash.fill"]];
             [emptyView addSubview:imageView];
             imageView.tintColor = theme.minorLabelColor;
             [imageView mas_makeConstraints:^(MASConstraintMaker *make) {

@@ -21,8 +21,6 @@ static NSString *const cellIdentifier = @"cell";
 @property (nonatomic, readonly, strong) AGMFATableView *tableView;
 @property (nonatomic, readonly, strong) NSTimer *refreshTimer;
 @property (nonatomic, readonly, strong) NSHashTable<AGMFATableViewCell *> *refreshItems;
-@property (nonatomic, readonly, strong) UISwipeActionsConfiguration *leadingSwipeActions;
-@property (nonatomic, readonly, strong) UISwipeActionsConfiguration *trailingSwipeActions;
 
 @end
 
@@ -45,9 +43,9 @@ static NSString *const cellIdentifier = @"cell";
     [super viewDidLoad];
     self.title = AGDevice.shared.name;
 
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage systemImageNamed:@"gear"] style:UIBarButtonItemStylePlain target:self action:@selector(actionSettings:)];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage systemImageNamed:@"qrcode.viewfinder"] style:UIBarButtonItemStylePlain target:self action:@selector(actionScan:)];
-
+    self.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithImage:[UIImage imageWithSymbol:@"gear"] target:self action:@selector(actionSettings:)];
+    self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithImage:[UIImage imageWithSymbol:@"qrcode.viewfinder"] target:self action:@selector(actionScan:)];
+    
     AGMFATableView *tableView = [AGMFATableView new];
     [self.view addSubview:(_tableView = tableView)];
     [tableView registerClass:AGMFATableViewCell.class forCellReuseIdentifier:cellIdentifier];
@@ -56,9 +54,6 @@ static NSString *const cellIdentifier = @"cell";
     [tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.view);
     }];
-
-    _leadingSwipeActions = [UISwipeActionsConfiguration configurationWithActions:@[[AGMFATableViewCell actionEdit:tableView]]];
-    _trailingSwipeActions = [UISwipeActionsConfiguration configurationWithActions:@[[AGMFATableViewCell actionDelete:tableView]]];
 
     [AGMFAManager.shared addDelegate:self];
 }
@@ -80,11 +75,11 @@ static NSString *const cellIdentifier = @"cell";
 }
 
 - (nullable UISwipeActionsConfiguration *)tableView:(UITableView *)tableView leadingSwipeActionsConfigurationForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return self.leadingSwipeActions;
+    return [UISwipeActionsConfiguration configurationWithActions:@[[AGMFATableViewCell actionEdit:tableView indexPath:indexPath]]];
 }
 
 - (UISwipeActionsConfiguration *)tableView:(UITableView *)tableView trailingSwipeActionsConfigurationForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return self.trailingSwipeActions;
+    return [UISwipeActionsConfiguration configurationWithActions:@[[AGMFATableViewCell actionDelete:tableView indexPath:indexPath]]];
 }
 
 - (UIView *)tableViewEmptyView:(UITableView *)tableView {

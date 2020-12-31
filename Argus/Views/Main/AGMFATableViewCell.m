@@ -76,9 +76,9 @@
     return self;
 }
 
-+ (UIContextualAction *)actionEdit:(UITableView *)tableView {
++ (UIContextualAction *)actionEdit:(UITableView *)tableView indexPath:(NSIndexPath *)indexPath {
     UIContextualAction *action = [UIContextualAction contextualActionWithStyle:UIContextualActionStyleNormal title:nil handler:^(UIContextualAction *action, UIView *sourceView, void (^completionHandler)(BOOL)) {
-        NSIndexPath *indexPath = [sourceView.superview valueForKeyPath:@"_delegate._indexPath"];
+        //NSIndexPath *indexPath = [sourceView.superview valueForKeyPath:@"_delegate._indexPath"];
         AGMFAModel *model = [[tableView cellForRowAtIndexPath:indexPath] model];
         if (model != nil) {
             [AGRouter.shared showViewController:[[AGEditorViewController alloc] initWithModel:model] animated:YES];
@@ -86,13 +86,13 @@
         completionHandler(YES);
     }];
     action.backgroundColor = AGTheme.shared.infoColor;
-    action.image = [UIImage systemImageNamed:@"qrcode"];
+    action.image = [UIImage imageWithSymbol:@"qrcode" height:26];
     return action;
 }
 
-+ (UIContextualAction *)actionDelete:(UITableView *)tableView {
++ (UIContextualAction *)actionDelete:(UITableView *)tableView indexPath:(NSIndexPath *)indexPath {
     UIContextualAction *action = [UIContextualAction contextualActionWithStyle:UIContextualActionStyleDestructive title:nil handler:^(UIContextualAction *action, UIView *sourceView, void (^completionHandler)(BOOL)) {
-        NSIndexPath *indexPath = [sourceView.superview valueForKeyPath:@"_delegate._indexPath"];
+        //NSIndexPath *indexPath = [sourceView.superview valueForKeyPath:@"_delegate._indexPath"];
         AGMFAModel *model = [[tableView cellForRowAtIndexPath:indexPath] model];
         if (model != nil) {
             UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Delete this record will NOT turn off OTP verification".localized message:@"" preferredStyle:UIAlertControllerStyleAlert];
@@ -112,7 +112,7 @@
         }
         completionHandler(YES);
     }];
-    action.image = [UIImage systemImageNamed:@"trash.fill"];
+    action.image = [UIImage imageWithSymbol:@"trash.fill" height:26];
     return action;
 }
 

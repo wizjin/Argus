@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		6D14B7D92581C57E00240C1B /* AGSecurity.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D14B7D82581C57E00240C1B /* AGSecurity.m */; };
+		6D235911259C9EAA00C2485D /* UIBarButtonItem+AGExt.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D235910259C9EAA00C2485D /* UIBarButtonItem+AGExt.m */; };
 		6D25C1C3258A295B00D9CEA9 /* NSURL+AGExt.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D25C1C2258A295B00D9CEA9 /* NSURL+AGExt.m */; };
 		6D25C1CA258A2C6500D9CEA9 /* NSURL+AGExt.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D25C1C2258A295B00D9CEA9 /* NSURL+AGExt.m */; };
 		6D6B1F612589DD7E00E2C803 /* AGFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D6B1F602589DD7E00E2C803 /* AGFile.m */; };
@@ -16,6 +17,9 @@
 		6D7DA0BD257F6F9F009AEFB1 /* AGModel.proto in Sources */ = {isa = PBXBuildFile; fileRef = 6D7DA0BC257F6F9F009AEFB1 /* AGModel.proto */; };
 		6D7DA0C5257FA16D009AEFB1 /* AGCodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D7DA0C4257FA16D009AEFB1 /* AGCodeView.m */; };
 		6D7DA0CB257FA871009AEFB1 /* AGCreatedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D7DA0CA257FA871009AEFB1 /* AGCreatedLabel.m */; };
+		6D8D0961259C32FF00DBCE06 /* UIColor+AGExt.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D8D0960259C32FF00DBCE06 /* UIColor+AGExt.m */; };
+		6D8D096A259C358B00DBCE06 /* UIImage+AGExt.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D8D0969259C358B00DBCE06 /* UIImage+AGExt.m */; };
+		6D8D097C259C3B3100DBCE06 /* UIButton+AGExt.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D8D097B259C3B3100DBCE06 /* UIButton+AGExt.m */; };
 		6D906E392573CF7100901052 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D906E382573CF7100901052 /* AppDelegate.m */; };
 		6D906E3F2573CF7100901052 /* AGViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D906E3E2573CF7100901052 /* AGViewController.m */; };
 		6D906E442573CF7200901052 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6D906E432573CF7200901052 /* Assets.xcassets */; };
@@ -142,6 +146,8 @@
 		36CE2E938B433F3B2A760C40 /* Pods-Argus.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Argus.debug.xcconfig"; path = "Target Support Files/Pods-Argus/Pods-Argus.debug.xcconfig"; sourceTree = "<group>"; };
 		6D14B7D72581C57E00240C1B /* AGSecurity.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AGSecurity.h; sourceTree = "<group>"; };
 		6D14B7D82581C57E00240C1B /* AGSecurity.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AGSecurity.m; sourceTree = "<group>"; };
+		6D23590F259C9EAA00C2485D /* UIBarButtonItem+AGExt.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+AGExt.h"; sourceTree = "<group>"; };
+		6D235910259C9EAA00C2485D /* UIBarButtonItem+AGExt.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+AGExt.m"; sourceTree = "<group>"; };
 		6D25C1C1258A295B00D9CEA9 /* NSURL+AGExt.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSURL+AGExt.h"; sourceTree = "<group>"; };
 		6D25C1C2258A295B00D9CEA9 /* NSURL+AGExt.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSURL+AGExt.m"; sourceTree = "<group>"; };
 		6D6B1F5F2589DD7E00E2C803 /* AGFile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AGFile.h; sourceTree = "<group>"; };
@@ -153,6 +159,12 @@
 		6D7DA0C4257FA16D009AEFB1 /* AGCodeView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AGCodeView.m; sourceTree = "<group>"; };
 		6D7DA0C9257FA871009AEFB1 /* AGCreatedLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AGCreatedLabel.h; sourceTree = "<group>"; };
 		6D7DA0CA257FA871009AEFB1 /* AGCreatedLabel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AGCreatedLabel.m; sourceTree = "<group>"; };
+		6D8D095F259C32FF00DBCE06 /* UIColor+AGExt.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+AGExt.h"; sourceTree = "<group>"; };
+		6D8D0960259C32FF00DBCE06 /* UIColor+AGExt.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+AGExt.m"; sourceTree = "<group>"; };
+		6D8D0968259C358B00DBCE06 /* UIImage+AGExt.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+AGExt.h"; sourceTree = "<group>"; };
+		6D8D0969259C358B00DBCE06 /* UIImage+AGExt.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+AGExt.m"; sourceTree = "<group>"; };
+		6D8D097A259C3B3100DBCE06 /* UIButton+AGExt.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIButton+AGExt.h"; sourceTree = "<group>"; };
+		6D8D097B259C3B3100DBCE06 /* UIButton+AGExt.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIButton+AGExt.m"; sourceTree = "<group>"; };
 		6D906E342573CF7100901052 /* Argus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Argus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D906E372573CF7100901052 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		6D906E382573CF7100901052 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -360,10 +372,18 @@
 				6D25C1C2258A295B00D9CEA9 /* NSURL+AGExt.m */,
 				6D906E762573E02100901052 /* NSString+AGExt.h */,
 				6D906E772573E02100901052 /* NSString+AGExt.m */,
+				6D8D095F259C32FF00DBCE06 /* UIColor+AGExt.h */,
+				6D8D0960259C32FF00DBCE06 /* UIColor+AGExt.m */,
+				6D8D0968259C358B00DBCE06 /* UIImage+AGExt.h */,
+				6D8D0969259C358B00DBCE06 /* UIImage+AGExt.m */,
+				6D8D097A259C3B3100DBCE06 /* UIButton+AGExt.h */,
+				6D8D097B259C3B3100DBCE06 /* UIButton+AGExt.m */,
 				6DE935732576707000FE1F4E /* UIView+AGExt.h */,
 				6DE935742576707000FE1F4E /* UIView+AGExt.m */,
 				6D906E8B2574C32900901052 /* UIViewController+AGExt.h */,
 				6D906E8C2574C32900901052 /* UIViewController+AGExt.m */,
+				6D23590F259C9EAA00C2485D /* UIBarButtonItem+AGExt.h */,
+				6D235910259C9EAA00C2485D /* UIBarButtonItem+AGExt.m */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -739,6 +759,7 @@
 				6D25C1C3258A295B00D9CEA9 /* NSURL+AGExt.m in Sources */,
 				6D906EA72574D7C400901052 /* AGSettingsViewController.m in Sources */,
 				6D906E852574AE0700901052 /* AGRouter.m in Sources */,
+				6D235911259C9EAA00C2485D /* UIBarButtonItem+AGExt.m in Sources */,
 				6DA0AE0B258C4F9200C91E86 /* AGTableViewCell.m in Sources */,
 				6D7DA0B2257F6008009AEFB1 /* AGQRCodeView.m in Sources */,
 				6DE9356F25766C5E00FE1F4E /* AGMFAEmptyView.m in Sources */,
@@ -746,6 +767,7 @@
 				6D906E952574C75F00901052 /* AGDevice.m in Sources */,
 				6D6B1F612589DD7E00E2C803 /* AGFile.m in Sources */,
 				6D906EBD2574FF3200901052 /* AGEditorViewController.m in Sources */,
+				6D8D097C259C3B3100DBCE06 /* UIButton+AGExt.m in Sources */,
 				6D906E3F2573CF7100901052 /* AGViewController.m in Sources */,
 				6D906EC3257505D900901052 /* AGWebViewController.m in Sources */,
 				6DE9356A2576376F00FE1F4E /* AGMFATableView.m in Sources */,
@@ -760,12 +782,14 @@
 				6D906EAC2574E01900901052 /* AGScanViewController.m in Sources */,
 				6D906E992574CAB900901052 /* AGMFATableViewCell.m in Sources */,
 				6D7DA0C5257FA16D009AEFB1 /* AGCodeView.m in Sources */,
+				6D8D0961259C32FF00DBCE06 /* UIColor+AGExt.m in Sources */,
 				6DA0ADFC258C491300C91E86 /* AGExportViewController.m in Sources */,
 				6D906E8D2574C32900901052 /* UIViewController+AGExt.m in Sources */,
 				6D906E782573E02100901052 /* NSString+AGExt.m in Sources */,
 				6DA0AE02258C4E4200C91E86 /* AGExportTableViewCell.m in Sources */,
 				6DCBAC8B2584ADC000803292 /* AGMFAStorage.m in Sources */,
 				6D906E4A2573CF7200901052 /* main.m in Sources */,
+				6D8D096A259C358B00DBCE06 /* UIImage+AGExt.m in Sources */,
 				6D906EE425751A0B00901052 /* AGMFAManager.m in Sources */,
 				6D906EB02574E90A00901052 /* AGAcknowledgementsViewController.m in Sources */,
 				6D906E892574B02B00901052 /* AGMainViewController.m in Sources */,
@@ -899,7 +923,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -953,7 +977,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -970,7 +994,7 @@
 				CODE_SIGN_ENTITLEMENTS = Argus/Argus.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_TEAM = P4XS4AVCLW;
 				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/$(PROJECT_NAME)/Classes/$(PROJECT_NAME).pch";
 				INFOPLIST_FILE = "$(SRCROOT)/Argus/Resources/Info.plist";
@@ -978,7 +1002,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.9.5;
+				MARKETING_VERSION = 0.9.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.wizjin.argus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -995,7 +1019,7 @@
 				CODE_SIGN_ENTITLEMENTS = Argus/Argus.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_TEAM = P4XS4AVCLW;
 				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/$(PROJECT_NAME)/Classes/$(PROJECT_NAME).pch";
 				INFOPLIST_FILE = "$(SRCROOT)/Argus/Resources/Info.plist";
@@ -1003,7 +1027,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.9.5;
+				MARKETING_VERSION = 0.9.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.wizjin.argus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1018,11 +1042,11 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_TEAM = P4XS4AVCLW;
 				IBSC_MODULE = Watch_Extension;
 				INFOPLIST_FILE = Watch/Info.plist;
-				MARKETING_VERSION = 0.9.5;
+				MARKETING_VERSION = 0.9.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.wizjin.argus.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
@@ -1039,11 +1063,11 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_TEAM = P4XS4AVCLW;
 				IBSC_MODULE = Watch_Extension;
 				INFOPLIST_FILE = Watch/Info.plist;
-				MARKETING_VERSION = 0.9.5;
+				MARKETING_VERSION = 0.9.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.wizjin.argus.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
@@ -1058,7 +1082,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_TEAM = P4XS4AVCLW;
 				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/$(PROJECT_NAME)/Classes/$(PROJECT_NAME).pch";
 				INFOPLIST_FILE = "Watch Extension/Info.plist";
@@ -1067,7 +1091,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 0.9.5;
+				MARKETING_VERSION = 0.9.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.wizjin.argus.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
@@ -1082,7 +1106,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_TEAM = P4XS4AVCLW;
 				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/$(PROJECT_NAME)/Classes/$(PROJECT_NAME).pch";
 				INFOPLIST_FILE = "Watch Extension/Info.plist";
@@ -1091,7 +1115,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 0.9.5;
+				MARKETING_VERSION = 0.9.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.wizjin.argus.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;

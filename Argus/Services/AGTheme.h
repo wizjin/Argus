@@ -23,7 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readonly, strong) UIColor *groupedBackgroundColor;
 @property (nonatomic, readonly, strong) UIImage *backImage;
 @property (nonatomic, readonly, strong) UIImage *clearImage;
-@property (nonatomic, assign) UIUserInterfaceStyle userInterfaceStyle;
+@property (nonatomic, assign) UIUserInterfaceStyle userInterfaceStyle API_AVAILABLE(ios(13.0));
 
 + (instancetype)shared;
 

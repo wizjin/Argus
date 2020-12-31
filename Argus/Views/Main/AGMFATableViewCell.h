@@ -17,8 +17,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, nullable, strong) AGMFAModel *model;
 
-+ (UIContextualAction *)actionEdit:(UITableView *)tableView;
-+ (UIContextualAction *)actionDelete:(UITableView *)tableView;
++ (UIContextualAction *)actionEdit:(UITableView *)tableView indexPath:(NSIndexPath *)indexPath;
++ (UIContextualAction *)actionDelete:(UITableView *)tableView indexPath:(NSIndexPath *)indexPath;
 - (void)setModel:(AGMFAModel *)model;
 - (void)update:(time_t)now;
 

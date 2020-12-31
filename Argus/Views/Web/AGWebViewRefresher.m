@@ -32,7 +32,7 @@
         self.backgroundColor = theme.backgroundColor;
         self.tintColor = UIColor.clearColor;
 
-        UIImageView *secureIcon = [[UIImageView alloc] initWithImage:[UIImage systemImageNamed:@"exclamationmark.triangle.fill"]];
+        UIImageView *secureIcon = [[UIImageView alloc] initWithImage:[UIImage imageWithSymbol:@"exclamationmark.triangle.fill"]];
         [self addSubview:(_secureIcon = secureIcon)];
         secureIcon.frame = CGRectMake(0, 0, 10, 10);
         secureIcon.contentMode = UIViewContentModeScaleAspectFit;
@@ -60,7 +60,12 @@
         [self addSubview:(_refreshIconBG = refreshIconBG)];
         refreshIconBG.backgroundColor = [theme.labelColor colorWithAlphaComponent:0.2];
 
-        UIImageView *refreshIcon = [[UIImageView alloc] initWithImage:[UIImage systemImageNamed:@"arrow.clockwise"]];
+        UIImage *icon = [UIImage imageWithSymbol:@"arrow.clockwise"];
+        if (@available(iOS 13.0, *)) {
+        } else {
+            icon = [icon resizeWithHeight:18];
+        }
+        UIImageView *refreshIcon = [[UIImageView alloc] initWithImage:icon];
         [self addSubview:(_refreshIcon = refreshIcon)];
         refreshIcon.tintColor = theme.labelColor;
         refreshIcon.alpha = 0;
@@ -146,10 +151,10 @@
         _hasOnlySecureContent = hasOnlySecureContent;
         if (hasOnlySecureContent) {
             self.secureIcon.tintColor = theme.secureColor;
-            self.secureIcon.image = [UIImage systemImageNamed:@"lock.fill"];
+            self.secureIcon.image = [UIImage imageWithSymbol:@"lock.fill"];
         } else {
             self.secureIcon.tintColor = theme.warnColor;
-            self.secureIcon.image = [UIImage systemImageNamed:@"exclamationmark.triangle.fill"];
+            self.secureIcon.image = [UIImage imageWithSymbol:@"exclamationmark.triangle.fill"];
         }
     }
 }
