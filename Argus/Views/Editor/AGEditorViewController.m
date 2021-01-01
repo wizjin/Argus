@@ -11,6 +11,7 @@
 #import "AGQRCodeView.h"
 #import "AGCodeView.h"
 #import "AGMFAManager.h"
+#import "AGRouter.h"
 #import "AGTheme.h"
 
 @interface AGEditorViewController ()
@@ -19,6 +20,7 @@
 @property (nonatomic, readonly, strong) AGMFAModel *model;
 @property (nonatomic, readonly, strong) AGCountdownView * countdown;
 @property (nonatomic, readonly, strong) AGCodeView *codeLabel;
+@property (nonatomic, readonly, strong) AGQRCodeView *qrCodeView;
 @property (nonatomic, readonly, strong) UITapGestureRecognizer *recognizer;
 
 @end
@@ -42,6 +44,8 @@
     [super viewDidLoad];
     
     AGTheme *theme = AGTheme.shared;
+    
+    self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithImage:[UIImage imageWithSymbol:@"square.and.arrow.up"] target:self action:@selector(actionExport:)];
 
     UIScrollView *view = [UIScrollView new];
     [self.view addSubview:view];
@@ -81,7 +85,7 @@
     codeLabel.fontSize = 60;
 
     AGQRCodeView *qrCodeView = [AGQRCodeView new];
-    [view addSubview:qrCodeView];
+    [view addSubview:(_qrCodeView = qrCodeView)];
     [qrCodeView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(codeLabel.mas_bottom).offset(40);
         make.centerX.equalTo(codeLabel);
@@ -112,18 +116,20 @@
     [super viewWillDisappear:animated];
 }
 
-#pragma mark - Private Methods
-- (void)startRefreshTimer {
-    if (self.refreshTimer == nil) {
-        _refreshTimer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(actionRefresh:) userInfo:nil repeats:YES];
+#pragma mark - Actions Methods
+- (void)actionExport:(UIBarButtonItem *)sender {
+    UIActivityViewController *vc = [[UIActivityViewController alloc] initWithActivityItems:@[self.qrCodeView.snapshotImage, [NSURL URLWithString:self.model.url]] applicationActivities:nil];
+    vc.completionWithItemsHandler = ^(UIActivityType activityType, BOOL completed, NSArray *returnedItems, NSError *activityError) {
+        if (activityError != nil) {
+            [AGRouter.shared makeToast:@"Export failed!".localized];
+        } else if (completed) {
+            [AGRouter.shared makeToast:@"Export success!".localized];
+        }
+    };
+    if (UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+        vc.popoverPresentationController.barButtonItem = sender;
     }
-}
-
-- (void)stopRefreshTimer {
-    if (self.refreshTimer != nil) {
-        [self.refreshTimer invalidate];
-        _refreshTimer = nil;
-    }
+    [AGRouter.shared presentViewController:vc animated:YES];
 }
 
 - (void)actionDoCopy:(id)sender {
@@ -136,6 +142,20 @@
 
 - (void)update:(time_t)now {
     [self.countdown update:self.model remainder:[self.codeLabel update:self.model now:now]];
+}
+
+#pragma mark - Private Methods
+- (void)startRefreshTimer {
+    if (self.refreshTimer == nil) {
+        _refreshTimer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(actionRefresh:) userInfo:nil repeats:YES];
+    }
+}
+
+- (void)stopRefreshTimer {
+    if (self.refreshTimer != nil) {
+        [self.refreshTimer invalidate];
+        _refreshTimer = nil;
+    }
 }
 
 

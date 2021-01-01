@@ -33,6 +33,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
     AGTheme *theme = AGTheme.shared;
     
     self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithImage:[UIImage imageWithSymbol:@"square.and.arrow.up"] target:self action:@selector(actionExport:)];
@@ -102,12 +103,7 @@
 
 #pragma mark - Action Methods
 - (void)actionExport:(UIBarButtonItem *)sender {
-    UIGraphicsBeginImageContextWithOptions(self.view.bounds.size, NO, UIScreen.mainScreen.scale);
-    [self.view.layer renderInContext:UIGraphicsGetCurrentContext()];
-    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    
-    UIActivityViewController *vc = [[UIActivityViewController alloc] initWithActivityItems:@[image, [NSURL URLWithString:self.url]] applicationActivities:nil];
+    UIActivityViewController *vc = [[UIActivityViewController alloc] initWithActivityItems:@[self.view.snapshotImage, [NSURL URLWithString:self.url]] applicationActivities:nil];
     vc.completionWithItemsHandler = ^(UIActivityType activityType, BOOL completed, NSArray *returnedItems, NSError *activityError) {
         if (activityError != nil) {
             [AGRouter.shared makeToast:@"Export failed!".localized];

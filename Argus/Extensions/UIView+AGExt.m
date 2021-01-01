@@ -20,5 +20,16 @@
     return nil;
 }
 
+- (nullable UIImage *)snapshotImage {
+    UIImage *image = nil;
+    if (self != nil) {
+        UIGraphicsBeginImageContextWithOptions(self.bounds.size, NO, UIScreen.mainScreen.scale);
+        [self.layer renderInContext:UIGraphicsGetCurrentContext()];
+        image = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+    }
+    return image;
+}
+
 
 @end
