@@ -159,7 +159,7 @@
 
 - (void)copyToPasteboard:(nullable AGMFAModel *)item {
     if (item != nil) {
-        [UIPasteboard.generalPasteboard setString:[item calcCode:time(NULL)]];
+        [UIPasteboard.generalPasteboard setString:[item calcCode:[item calcT:time(NULL) remainder:nil]]];
         [AGRouter.shared makeToast:@"Code copied".localized];
     }
 }

@@ -112,7 +112,7 @@
             || ([self.secret isEqualToData:other.secret] && [self.title isEqualToString:other.title] && [self.detail isEqualToString:other.detail] && self.period == other.period));
 }
 
-- (uint64_t)calcT:(time_t)now remainder:(uint64_t *)remainder {
+- (uint64_t)calcT:(time_t)now remainder:(nullable uint64_t *)remainder {
     uint64_t t = floor((double)now/self.period);
     if (remainder != NULL) *remainder = (t + 1) * self.period - now;
     return t;

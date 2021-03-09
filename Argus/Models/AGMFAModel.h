@@ -23,7 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (instancetype)modelWithData:(NSDictionary *)data;
 - (BOOL)isEqual:(AGMFAModel *)other;
-- (uint64_t)calcT:(time_t)now remainder:(uint64_t *)remainder;
+- (uint64_t)calcT:(time_t)now remainder:(nullable uint64_t *)remainder;
 - (NSString *)calcCode:(uint64_t)t;
 - (NSString *)url;
 - (BOOL)canExportPB API_UNAVAILABLE(watchos);
