@@ -3,6 +3,8 @@
 [![iTunes App Store](https://img.shields.io/itunes/v/1542617858?logo=apple&style=for-the-badge)](https://itunes.apple.com/app/id1542617858)
 [![GitHub](https://img.shields.io/github/license/wizjin/Argus?style=for-the-badge)](LICENSE)
 
+<a href="https://www.producthunt.com/posts/argus-2?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-argus-2" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=288021&theme=light" alt="Argus - TOTP Authenticator Tools | Product Hunt" style="width: 185px; height: 40px;" width="185" height="40" /></a>
+
 Argus is an OTP Mobile App and support the Time-based One-time Password (TOTP) algorithm specified in RFC 6238.
 
 ## Getting Started
