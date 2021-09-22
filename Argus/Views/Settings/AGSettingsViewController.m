@@ -31,6 +31,14 @@
     [AGMFAManager.shared removeDelegate:self];
 }
 
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.view.mas_safeAreaLayoutGuideTop);
+        make.left.right.bottom.equalTo(self.view);
+    }];
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [super tableView:tableView didSelectRowAtIndexPath:indexPath];
     XLFormRowDescriptor *row = [self.form formRowAtIndex:indexPath];
@@ -121,7 +129,7 @@
     row.hidden = @"$icloudwarn.isHidden=NO";
     [section addFormRow:row];
     
-    row = [XLFormRowDescriptor formRowDescriptorWithTag:@"export" rowType:XLFormRowDescriptorTypeSelectorPush title:@"Export with QR code".localized];
+    row = [XLFormRowDescriptor formRowDescriptorWithTag:@"export-qrcode" rowType:XLFormRowDescriptorTypeSelectorPush title:@"Export with QR code".localized];
     [row.cellConfigIfDisabled setObject:theme.minorLabelColor forKey:@"textLabel.textColor"];
     row.disabled = [NSPredicate predicateWithBlock:^BOOL(id obj, NSDictionary<NSString *,id> *binds) {
         return AGMFAManager.shared.itemCount <= 0;
@@ -130,6 +138,16 @@
         [AGRouter.shared routeTo:@"/page/export"];
     };
     [section addFormRow:row];
+    
+//    row = [XLFormRowDescriptor formRowDescriptorWithTag:@"export-text" rowType:XLFormRowDescriptorTypeSelectorPush title:@"Export into text file".localized];
+//    [row.cellConfigIfDisabled setObject:theme.minorLabelColor forKey:@"textLabel.textColor"];
+//    row.disabled = [NSPredicate predicateWithBlock:^BOOL(id obj, NSDictionary<NSString *,id> *binds) {
+//        return AGMFAManager.shared.itemCount <= 0;
+//    }];
+//    row.action.formBlock = ^(XLFormRowDescriptor *row) {
+//        [AGRouter.shared routeTo:@"/page/export-text"];
+//    };
+//    [section addFormRow:row];
 
     // WATCH
     [form addFormSection:(section = [XLFormSectionDescriptor formSectionWithTitle:@"WATCH".localized])];

@@ -25,6 +25,7 @@
 "iCloud has been disabled"="iCloud已被禁用";
 "Backup to iCloud"="将数据备份到iCloud";
 "Export with QR code"="使用二维码导出";
+"Export into text file"="导出到文本文件";
 "Export"="导出";
 "WATCH"="手表";
 "No watch app installed"="没有安装到Apple Watch";

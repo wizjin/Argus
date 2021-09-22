@@ -37,7 +37,7 @@
             const char *s = self.UTF8String;
             for (int i = 0; i < length; i++) {
                 char c = s[i];
-                if (c == '_') {
+                if (c == '_' || c == '-') {
                     upper = YES;
                     continue;
                 }

@@ -52,7 +52,8 @@ static NSString *const cellIdentifier = @"cell";
     tableView.delegate = self;
     tableView.dataSource = self;
     [tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(self.view);
+        make.top.equalTo(self.view.mas_safeAreaLayoutGuideTop);
+        make.left.right.bottom.equalTo(self.view);
     }];
 
     [AGMFAManager.shared addDelegate:self];
